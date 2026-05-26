@@ -1,0 +1,148 @@
+.mtk-macleaners {
+  --mtk-primary: #1565c0;
+  --mtk-primary-dark: #0d47a1;
+  --mtk-surface: #ffffff;
+  --mtk-background: #f5f7fa;
+  --mtk-text: #1f2937;
+  --mtk-border: #dbe2ea;
+  --mtk-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--mtk-background);
+  color: var(--mtk-text);
+  font-family: Arial, Helvetica, sans-serif; }
+  .mtk-macleaners * {
+    box-sizing: border-box; }
+  .mtk-macleaners .mtk-shell {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px; }
+  .mtk-macleaners .mtk-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--mtk-surface);
+    border-radius: 16px;
+    box-shadow: var(--mtk-shadow);
+    margin-bottom: 24px; }
+  .mtk-macleaners .mtk-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; }
+  .mtk-macleaners .mtk-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2; }
+  .mtk-macleaners .mtk-phone {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--mtk-primary); }
+  .mtk-macleaners .mtk-layout {
+    display: grid;
+    grid-template-columns: 360px calc(100% - 392px);
+    gap: 32px;
+    align-items: start; }
+  .mtk-macleaners .mtk-card {
+    background: var(--mtk-surface);
+    border-radius: 20px;
+    box-shadow: var(--mtk-shadow);
+    padding: 24px;
+    width: 100%; }
+  .mtk-macleaners .mtk-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px; }
+  .mtk-macleaners .mtk-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; }
+  .mtk-macleaners .mtk-field {
+    position: relative;
+    width: 100%; }
+  .mtk-macleaners .mtk-input,
+  .mtk-macleaners .mtk-select,
+  .mtk-macleaners .mtk-textarea {
+    width: 100%;
+    border: 1px solid var(--mtk-border);
+    border-radius: 14px;
+    background: #fff;
+    padding: 18px 16px 8px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    outline: none; }
+  .mtk-macleaners .mtk-input:focus,
+  .mtk-macleaners .mtk-select:focus,
+  .mtk-macleaners .mtk-textarea:focus {
+    border-color: var(--mtk-primary);
+    box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.12); }
+  .mtk-macleaners .mtk-label {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    font-size: 13px;
+    color: #6b7280;
+    pointer-events: none;
+    transition: all 0.2s ease; }
+  .mtk-macleaners .mtk-button {
+    appearance: none;
+    border: 0;
+    border-radius: 14px;
+    background: var(--mtk-primary);
+    color: #fff;
+    min-height: 52px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease; }
+  .mtk-macleaners .mtk-button:hover {
+    background: var(--mtk-primary-dark);
+    transform: translateY(-1px); }
+  .mtk-macleaners .mtk-button:focus-visible {
+    outline: 3px solid rgba(21, 101, 192, 0.3);
+    outline-offset: 2px; }
+  .mtk-macleaners .mtk-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px; }
+  .mtk-macleaners .mtk-day {
+    background: #fff;
+    border: 1px solid var(--mtk-border);
+    border-radius: 12px;
+    min-height: 88px;
+    padding: 12px;
+    transition: all 0.2s ease; }
+  .mtk-macleaners .mtk-day:hover {
+    border-color: var(--mtk-primary);
+    transform: translateY(-2px); }
+  .mtk-macleaners .mtk-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; }
+  .mtk-macleaners .mtk-contact-item {
+    border: 1px solid var(--mtk-border);
+    border-radius: 14px;
+    padding: 16px;
+    background: #fff; }
+  @media (max-width: 1024px) {
+    .mtk-macleaners .mtk-layout {
+      grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    .mtk-macleaners .mtk-shell {
+      padding: 16px; }
+    .mtk-macleaners .mtk-header {
+      flex-direction: column;
+      align-items: flex-start; }
+    .mtk-macleaners .mtk-title {
+      font-size: 22px; }
+    .mtk-macleaners .mtk-calendar {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) {
+    .mtk-macleaners .mtk-calendar {
+      grid-template-columns: 1fr; }
+    .mtk-macleaners .mtk-card {
+      padding: 18px; } }
