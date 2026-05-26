@@ -2,7 +2,7 @@ window.MtkMacleanersConfig = {
   app: {
     name: 'MA Cleaners',
     tagline: 'Premium cleaning for homes and small businesses',
-    phone: '(646) 303-1234',
+    phone: '(201) 555-0188',
     email: 'hello@macleaners.local',
     address: 'Paramus, NJ',
     logoText: 'MA',
