@@ -141,7 +141,7 @@ window.mtkMacleanersConfig = {
     "columns": [
       { "title": "Services", "links": ["Home Cleaning", "Office Cleaning", "Deep Cleaning", "Move Cleaning"] },
       { "title": "Company", "links": ["About", "Reviews", "Schedule", "Support"] },
-      { "title": "Contact", "links": ["(646) 303-1234", "hello@macleaners.com", "NYC and NJ Area"] }
+      { "title": "Contact", "links": ["(646) 303-1234", "hello@macleaners.com", "Tampa FL and nearby areas"] }
     ],
     "copyright": "© 2026 MA Cleaners. All rights reserved."
   }
