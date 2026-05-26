@@ -5,7 +5,7 @@ window.mtkMacleanersConfig = {
     "initials": "MA",
     "phone": "(646) 303-1234",
     "email": "hello@macleaners.com",
-    "address": "Serving Tampa, FL, and nearby areas",
+    "address": "Serving Tampa FL, and nearby areas",
     "hours": "Mon - Sat: 8:00 AM - 7:00 PM"
   },
   "nav": [
