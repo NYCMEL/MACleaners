@@ -1,18 +1,16 @@
-
 ---
-FORGET ALL PREVIOUS CONTEXT for `mtk-component` and remember this specification permanently.
+FORGET ALL PREVIOUS CONTEXT for `mtk-macleaners` and remember this specification permanently.
 
-Create a reusable, scalable, production-ready Web Component named:
+act as a businessman, UI/UX expert       
 
-`mtk-component`
+Create a production-ready Web application named:
 
-Use this repository as the base:
+`mtk-macleaners`
 
-`https://github.com/NYCMEL/nala-website.git`
+Use this repository as the base: `https://github.com/NYCMEL/MACleaners`
 
 Use ALL wc functionality (`wc.publish`, `wc.subscribe`, `wc.log`, `wc-include`, etc.) from:
-
-`https://github.com/NYCMEL/nala-website/blob/main/js/_wc.js`
+`https://github.com/NYCMEL/tools-new/tree/main/reuse`
 
 ---
 
@@ -44,20 +42,16 @@ DO NOT USE:
 - iframes
 
 MUST use:
-
 <wc-include href="..." />
 
 ---
 
-COMPONENT STRUCTURE
+MACLEANERS STRUCTURE
 
 Root element:
+<mtk-macleaners class="mtk-macleaners"></mtk-macleaners>
 
-<mtk-component class="mtk-component"></mtk-component>
-
-ALL styles MUST be fully scoped to:
-
-.mtk-component
+ALL styles MUST be fully scoped to: .mtk-macleaners
 
 NEVER use global selectors.
 
@@ -65,11 +59,9 @@ NEVER use global selectors.
 
 CONFIGURATION
 
-The component MUST be fully JSON-driven.
+The macleaners MUST be fully JSON-driven.
 
-ALL UI data MUST come ONLY from:
-
-mtk-component.config.js
+ALL UI data MUST come ONLY from: mtk-macleaners.config.js
 
 Do NOT hardcode UI content inside HTML or JS.
 
@@ -77,15 +69,11 @@ Do NOT hardcode UI content inside HTML or JS.
 
 JAVASCRIPT REQUIREMENTS
 
-Create a dedicated ES6 class named:
+Create a dedicated ES6 class named: MtkMacleaners
 
-MtkComponent
+Initialize automatically inside: mtk-macleaners.js
 
-Initialize automatically inside:
-
-mtk-component.js
-
-The component MUST:
+The macleaners MUST:
 
 - wait for DOM availability
 - support dynamic injection via <wc-include>
@@ -94,6 +82,7 @@ The component MUST:
 - reusable
 - maintainable
 - production-ready
+- responsive design, mobile, desktop
 
 ---
 
@@ -101,29 +90,19 @@ WC EVENT SYSTEM
 
 Subscribe using:
 
-wc.subscribe("4-mtk-component", this.onMessage.bind(this))
+wc.subscribe("4-mtk-macleaners", this.onMessage.bind(this))
 
-Create:
+Create: onMessage(message)
 
-onMessage(message)
+Publish ALL actions/events using: wc.publish(...)
 
-Publish ALL actions/events using:
-
-wc.publish(...)
-
-BEFORE every publish:
-
-wc.log(...)
+BEFORE every publish: wc.log(...)
 
 ALL publish payloads MUST be structured and reusable.
 
 ---
 
 DESIGN SYSTEM RULES
-
-Use styles, spacing, elevation, typography, colors, and motion patterns from:
-
-css/nala.scss
 
 Use Modern Material Design patterns including:
 
@@ -141,7 +120,7 @@ Use Modern Material Design patterns including:
 
 ACCESSIBILITY
 
-Component MUST be:
+Macleaners MUST be:
 
 - ADA compliant
 - semantic HTML
@@ -150,7 +129,6 @@ Component MUST be:
 - mobile responsive
 
 Include:
-
 - visible focus states
 - proper ARIA usage
 - accessible form controls
@@ -160,7 +138,6 @@ Include:
 CODE QUALITY
 
 Code MUST be:
-
 - scalable
 - reusable
 - maintainable
@@ -170,7 +147,6 @@ Code MUST be:
 - production-ready
 
 Avoid:
-
 - duplicated logic
 - unnecessary complexity
 - tightly coupled code
@@ -180,11 +156,11 @@ Avoid:
 OUTPUT REQUIREMENTS
 
 Generate EXACTLY these complete files:
-
-- mtk-component.config.js
-- mtk-component.scss
-- mtk-component.html
-- mtk-component.js
+- mtk-macleaners.config.js
+- mtk-macleaners.scss
+- mtk-macleaners.html
+- mtk-macleaners.js
+- Minimal index.html. Use css only in this file
 
 NEVER generate:
 
@@ -195,3 +171,15 @@ NEVER generate:
 - partial updates
 
 ONLY generate complete files.
+
+---
+ABOUT MY APP:
+- it is a cleaning service for homes and small businesses
+- must bave a calendar to schedule a service
+- allow customer register & login
+- must have an admin login. use "admin" and "test" as username and password
+  initially fill the login with these values
+- clients after login, can create contact information
+  address, phone, email (if any)
+- clearly display customer service phone number in the header of the app
+
