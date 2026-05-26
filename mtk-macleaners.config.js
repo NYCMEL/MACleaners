@@ -1,134 +1,113 @@
-window.mtkMacleanersConfig = {
+window.MtkMacleanersConfig = {
   app: {
-    name: "MACleaners",
-    eyebrow: "Homes and small businesses",
-    title: "Reliable cleaning services that fit your schedule",
-    customerServiceLabel: "Customer Service",
-    customerServicePhone: "(201) 555-0198",
-    loginRegisterLabel: "Login / Register",
-    logoutLabel: "Logout",
-    navLabel: "MACleaners sections"
+    name: 'MA Cleaners',
+    tagline: 'Premium cleaning for homes and small businesses',
+    phone: '(201) 555-0188',
+    email: 'hello@macleaners.local',
+    address: 'Paramus, NJ',
+    logoText: 'MA',
+    defaultLanguage: 'en',
+    currency: 'USD',
+    admin: { username: 'admin', password: 'test' }
   },
-  auth: {
-    title: "Login or register",
-    loginTab: "Login",
-    registerTab: "Register",
-    loginButton: "Login",
-    registerButton: "Create Account",
-    closeLabel: "Close login and registration",
-    loginDefaults: {
-      username: "admin",
-      password: "test"
-    },
-    fields: {
-      fullName: "Full name",
-      username: "Username",
-      password: "Password",
-      phone: "Phone",
-      email: "Email"
-    },
-    placeholders: {
-      fullName: "Jane Customer",
-      username: "admin",
-      password: "test",
-      phone: "(201) 555-0123",
-      email: "name@example.com"
-    }
-  },
-  storage: {
-    usersKey: "mtk-macleaners-users",
-    sessionKey: "mtk-macleaners-session",
-    contactsKey: "mtk-macleaners-contacts",
-    bookingsKey: "mtk-macleaners-bookings"
-  },
-  events: {
-    ready: "mtk-macleaners-ready",
-    login: "mtk-macleaners-login",
-    logout: "mtk-macleaners-logout",
-    register: "mtk-macleaners-register",
-    contactSave: "mtk-macleaners-contact-save",
-    bookingCreate: "mtk-macleaners-booking-create",
-    navigation: "mtk-macleaners-navigation",
-    authToggle: "mtk-macleaners-auth-toggle",
-    carouselChange: "mtk-macleaners-carousel-change"
-  },
-  messages: {
-    loginSuccess: "You are signed in.",
-    logoutSuccess: "You are signed out.",
-    registerSuccess: "Account created and signed in.",
-    contactSaved: "Contact information saved.",
-    bookingSaved: "Service scheduled.",
-    invalidLogin: "Username or password is incorrect.",
-    required: "Please complete the required fields."
-  },
-  carousel: {
-    ariaLabel: "Featured MACleaners services",
-    previousLabel: "Previous slide",
-    nextLabel: "Next slide",
+  nav: [
+    { label: 'Services', target: 'services' },
+    { label: 'Quote', target: 'quote' },
+    { label: 'Calendar', target: 'calendar' },
+    { label: 'Plans', target: 'plans' },
+    { label: 'FAQ', target: 'faq' }
+  ],
+  hero: {
     slides: [
       {
-        image: "./img/cleaners.png",
-        alt: "Professional cleaners preparing a clean home and business space",
-        eyebrow: "Book trusted cleaners today",
-        title: "Fresh spaces for homes and small businesses",
-        text: "Schedule recurring or one-time cleaning with clear service details and reliable support.",
-        primaryAction: "Schedule Service",
-        secondaryAction: "Login / Register"
+        eyebrow: 'Home and small business cleaning',
+        title: 'A spotless space without the stress.',
+        text: 'Book trusted cleaning pros, get an instant estimate, and manage every visit from one simple dashboard.',
+        primaryCta: 'Get Instant Quote',
+        secondaryCta: 'Book Now',
+        visual: 'sparkle-home',
+        stat: '4.9 average rating'
       },
       {
-        image: "./img/cleaners.png",
-        alt: "Clean bright room ready for customers",
-        eyebrow: "Business-ready cleaning",
-        title: "Keep your office customer-ready",
-        text: "Flexible cleaning for offices, studios, storefronts, and small facilities.",
-        primaryAction: "View Services",
-        secondaryAction: "Save Contact Info"
+        eyebrow: 'Flexible scheduling',
+        title: 'Weekly, biweekly, monthly, or one-time deep cleans.',
+        text: 'Choose the frequency, room count, and preferred time. We keep the process fast, clear, and reliable.',
+        primaryCta: 'Schedule Service',
+        secondaryCta: 'View Services',
+        visual: 'calendar-clean',
+        stat: 'Same-week openings'
       },
       {
-        image: "./img/cleaners.png",
-        alt: "Clean home kitchen and living space",
-        eyebrow: "Home care made simple",
-        title: "A cleaner home without the hassle",
-        text: "Choose a service date, add your address, and keep your booking organized.",
-        primaryAction: "Schedule Service",
-        secondaryAction: "Login / Register"
+        eyebrow: 'Premium care',
+        title: 'Licensed, bonded, insured, and satisfaction focused.',
+        text: 'Modern cleaning service with real-time updates, reminders, and a cleaner assignment workflow.',
+        primaryCta: 'Start Booking',
+        secondaryCta: 'See Plans',
+        visual: 'shield-clean',
+        stat: '100% satisfaction promise'
       }
     ]
   },
-  stats: [
-    { value: "24hr", label: "response window" },
-    { value: "4.9", label: "customer rating" },
-    { value: "100%", label: "insured teams" }
-  ],
-  services: {
-    title: "Cleaning services",
-    items: [
-      { title: "Home Cleaning", text: "Bedrooms, bathrooms, kitchens, living areas, dusting, floors, and high-touch surfaces." },
-      { title: "Small Business Cleaning", text: "Offices, storefronts, studios, waiting rooms, and employee spaces." },
-      { title: "Deep Cleaning", text: "Detailed cleaning for seasonal resets, move-ins, move-outs, and special projects." }
+  quote: {
+    basePrice: 89,
+    bedroomPrice: 22,
+    bathroomPrice: 28,
+    squareFootRate: 0.05,
+    frequencyDiscounts: {
+      one_time: 0,
+      weekly: 0.15,
+      biweekly: 0.10,
+      monthly: 0.05
+    },
+    frequencies: [
+      { value: 'one_time', label: 'One time' },
+      { value: 'weekly', label: 'Weekly' },
+      { value: 'biweekly', label: 'Biweekly' },
+      { value: 'monthly', label: 'Monthly' }
     ]
   },
-  scheduler: {
-    title: "Schedule a service",
-    note: "Pick a preferred date and service type. We will confirm availability by phone.",
-    fields: {
-      serviceType: "Service type",
-      date: "Preferred date",
-      time: "Preferred time",
-      notes: "Service notes"
-    },
-    serviceOptions: ["Home Cleaning", "Small Business Cleaning", "Deep Cleaning", "Move-In / Move-Out"],
-    timeOptions: ["8:00 AM", "10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM"],
-    button: "Schedule Service"
+  services: [
+    { title: 'Standard Cleaning', icon: 'home', text: 'Routine cleaning for kitchens, bathrooms, living areas, dusting, floors, and surface refreshes.', price: 'From $119' },
+    { title: 'Deep Cleaning', icon: 'auto_awesome', text: 'Detailed reset for neglected spaces, high-touch areas, appliances, trim, and hard-to-reach spots.', price: 'From $189' },
+    { title: 'Move-In / Move-Out', icon: 'inventory_2', text: 'Empty-home cleaning designed for leases, real estate handoffs, and move-ready presentation.', price: 'From $229' },
+    { title: 'Office Cleaning', icon: 'business', text: 'Small business cleaning for workstations, restrooms, break rooms, conference rooms, and entries.', price: 'Custom' },
+    { title: 'Airbnb Cleaning', icon: 'hotel', text: 'Turnover cleaning with supply checks, staging details, and fast guest-ready preparation.', price: 'Custom' }
+  ],
+  trust: [
+    { title: 'Licensed', text: 'Registered cleaning business standards.' },
+    { title: 'Bonded', text: 'Extra confidence for every visit.' },
+    { title: 'Insured', text: 'Protected service for homes and offices.' },
+    { title: 'Satisfaction Guarantee', text: 'Tell us within 24 hours and we will make it right.' }
+  ],
+  reviews: [
+    { name: 'Ari P.', rating: 5, text: 'Fast booking, clear pricing, and the team left the house looking brand new.' },
+    { name: 'Dana M.', rating: 5, text: 'The dashboard and reminders make recurring cleaning easy to manage.' },
+    { name: 'Chris L.', rating: 5, text: 'Professional service, great communication, and a very clean office every week.' }
+  ],
+  serviceAreas: ['Paramus', 'Ridgewood', 'Hackensack', 'Teaneck', 'Fort Lee', 'Englewood', 'Fair Lawn', 'Hoboken', 'Jersey City', 'Newark'],
+  calendar: {
+    availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    timeSlots: ['8:00 AM', '10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM']
   },
-  contact: {
-    title: "Customer contact information",
-    note: "Save your service address, phone, and email after login.",
-    fields: {
-      address: "Service address",
-      phone: "Phone",
-      email: "Email"
-    },
-    button: "Save Contact Information"
+  plans: [
+    { name: 'Refresh', cadence: 'Monthly', price: '$129+', features: ['Standard cleaning', 'Email reminders', 'Customer dashboard'] },
+    { name: 'Shine', cadence: 'Biweekly', price: '$109+', featured: true, features: ['Priority scheduling', 'SMS reminders', 'Cleaner preferences'] },
+    { name: 'Signature', cadence: 'Weekly', price: '$99+', features: ['Best recurring rate', 'Real-time updates', 'Satisfaction follow-up'] }
+  ],
+  faq: [
+    { q: 'Can I book online?', a: 'Yes. Use the quote form and calendar to estimate and request a service time.' },
+    { q: 'Do you support SMS reminders?', a: 'Yes. The UI includes SMS reminder preferences and the backend is ready for SMS integration.' },
+    { q: 'Can customers manage bookings?', a: 'Yes. Customers can log in, save contact information, and view booking requests.' },
+    { q: 'Is there an admin dashboard?', a: 'Yes. Admin login is username admin and password test for the demo.' },
+    { q: 'Do you support payments?', a: 'The interface includes Stripe and PayPal payment options and can be connected to live providers.' }
+  ],
+  footer: {
+    socials: ['Facebook', 'Instagram', 'LinkedIn'],
+    policies: ['Privacy Policy', 'Terms of Service', 'Satisfaction Policy'],
+    links: ['Home Cleaning', 'Deep Cleaning', 'Office Cleaning', 'Airbnb Cleaning']
+  },
+  i18n: {
+    en: { bookNow: 'Book Now', loginRegister: 'Login / Register' },
+    es: { bookNow: 'Reservar', loginRegister: 'Ingresar / Registrarse' }
   }
 };
