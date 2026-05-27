@@ -46,7 +46,7 @@ textarea {
   align-items: center;
   gap: 28px;
   margin-left: auto;
-  color: #132238;
+  color: steelblue;
   font-weight: 700; }
 
 .site-nav a {
@@ -94,7 +94,7 @@ textarea {
   background: #10a6a5; }
 
 .secondary {
-  color: #132238;
+  color: steelblue;
   background: #ffcc4d; }
 
 .nav-toggle {
@@ -111,7 +111,7 @@ textarea {
   width: 22px;
   height: 2px;
   margin: 5px auto;
-  background: #132238;
+  background: steelblue;
   transition: transform 220ms ease, opacity 220ms ease; }
 
 .section,
@@ -141,7 +141,7 @@ h1,
 h2,
 h3 {
   margin: 0;
-  color: #132238;
+  color: steelblue;
   line-height: 1.08; }
 
 h1 {
@@ -204,7 +204,7 @@ h3 {
 .stats span {
   display: block;
   margin-top: 8px;
-  color: #132238;
+  color: steelblue;
   font-weight: 800; }
 
 .section-heading {
@@ -262,7 +262,7 @@ h3 {
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  color: #132238;
+  color: steelblue;
   font-weight: 700; }
 
 .feature-list span {
@@ -310,7 +310,7 @@ h3 {
   transform: translateY(-6px); }
 
 .contact {
-  background: linear-gradient(135deg, #132238 0%, #1e3a5f 100%);
+  background: linear-gradient(135deg, steelblue 0%, #1e3a5f 100%);
   color: rgba(255, 255, 255, 0.82); }
 
 .contact h2 {
@@ -322,7 +322,7 @@ h3 {
   gap: 6px;
   padding: 22px 28px;
   margin-top: 24px;
-  color: #132238; }
+  color: steelblue; }
 
 .contact-card a {
   color: #10a6a5;
@@ -337,7 +337,7 @@ h3 {
 .contact-form label {
   display: grid;
   gap: 7px;
-  color: #132238;
+  color: steelblue;
   font-weight: 800; }
 
 .contact-form input,
@@ -347,7 +347,7 @@ h3 {
   border: 2px solid #e0e8ee;
   border-radius: 18px;
   padding: 14px 16px;
-  color: #132238;
+  color: steelblue;
   background: #ffffff;
   outline: none;
   transition: border 220ms ease, box-shadow 220ms ease; }
@@ -368,7 +368,7 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 32px 6vw;
+  padding: 10px 6vw;
   color: #ffffff;
   background: #0d1828; }
 
