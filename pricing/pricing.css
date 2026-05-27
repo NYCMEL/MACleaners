@@ -38,14 +38,14 @@ body {
     color: #0f8dcc; }
 
 .pricing-card__badge {
-  width: 70%;
+  width: 100%;
   min-height: 7.65rem;
   display: grid;
   place-items: center;
   margin-bottom: 0.9rem;
   background: #0f8dcc;
   color: #ffffff;
-  font-size: clamp(1.8rem, 2.1vw, 2.35rem);
+  font-size: 28px;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase; }
@@ -53,7 +53,7 @@ body {
 .pricing-card__title {
   margin: 0;
   color: #303033;
-  font-size: clamp(1.8rem, 2vw, 2.3rem);
+  font-size: 28px;
   font-weight: 400;
   letter-spacing: 0.03em;
   line-height: 1.2;
@@ -142,4 +142,5 @@ body {
     padding-top: 0; }
   .pricing-card__badge,
   .pricing-card__rule {
-    width: 78%; } }
+    width: 78%;
+    font-size: 24px; } }
