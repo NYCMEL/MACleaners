@@ -3,13 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MA Cleaners professional home and small business cleaning services.">
-  <title>MA Cleaners</title>
-  <link rel="stylesheet" href="mtk-macleaners.css">
+  <title>We Clean | Cleaning Services</title>
+  <meta name="description" content="A simplified cleaning service website built with HTML, SCSS, and Vanilla JavaScript.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <wc-include href="mtk-macleaners.html"></wc-include>
-  <script src="mtk-macleaners.config.js"></script>
-  <script src="mtk-macleaners.js"></script>
+  <header class="site-header" data-animate>
+    <a class="brand" href="#home" aria-label="We Clean home">
+      <img src="img/logo.png" alt="We Clean logo">
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="header-action" href="#contact">Book Service</a>
+  </header>
+
+  <main id="home">
+    <section class="hero section-grid">
+      <div class="hero-content" data-animate>
+        <p class="eyebrow">Professional cleaning company</p>
+        <h1>Clean spaces, calm days, happier homes.</h1>
+        <p class="hero-copy">We Clean helps busy families and businesses keep every room fresh, healthy, and ready for life.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#contact">Schedule Cleaning</a>
+          <a class="button secondary" href="#services">View Services</a>
+        </div>
+      </div>
+      <div class="hero-image" data-animate>
+        <img src="img/cleaning-woman.png" alt="Cleaning professional holding supplies">
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Company stats" data-animate>
+      <article><strong data-count="15">0</strong><span>Years Experience</span></article>
+      <article><strong data-count="2400">0</strong><span>Happy Clients</span></article>
+      <article><strong data-count="98">0</strong><span>Quality Score</span></article>
+      <article><strong data-count="24">0</strong><span>Hour Support</span></article>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading" data-animate>
+        <p class="eyebrow">Our Services</p>
+        <h2>Reliable cleaning for every need.</h2>
+        <p>Choose the right service, and our team handles the dirty work with care, speed, and consistent results.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-card" data-animate><img src="img/icon-5.png" alt=""><h3>Floor Cleaning</h3><p>Deep floor care for tile, wood, and high traffic areas.</p></article>
+        <article class="service-card" data-animate><img src="img/icon-6.png" alt=""><h3>Window Cleaning</h3><p>Clear glass, clean frames, and brighter rooms.</p></article>
+        <article class="service-card" data-animate><img src="img/icon-7.png" alt=""><h3>Laundry</h3><p>Wash, fold, and light garment care for busy homes.</p></article>
+        <article class="service-card" data-animate><img src="img/icon-8.png" alt=""><h3>Trash Treatment</h3><p>Waste area cleanup with odor control and sanitation.</p></article>
+        <article class="service-card" data-animate><img src="img/icon-9.png" alt=""><h3>Extra Shiny</h3><p>Detail polish for kitchens, bathrooms, and surfaces.</p></article>
+        <article class="service-card" data-animate><img src="img/icon-10.png" alt=""><h3>Cloth Ironing</h3><p>Fresh pressed clothes for the week ahead.</p></article>
+      </div>
+    </section>
+
+    <section class="section about section-grid" id="about">
+      <div class="about-image" data-animate>
+        <img src="img/cleaning-service.png" alt="Cleaning service team illustration">
+      </div>
+      <div class="about-content" data-animate>
+        <p class="eyebrow">Why choose us</p>
+        <h2>Simple booking. Friendly people. Spotless results.</h2>
+        <p>We simplified the original site into a fast static experience without heavy plugins, external dependencies, or unused WordPress code.</p>
+        <ul class="feature-list">
+          <li><span>✓</span> Residential and small business cleaning</li>
+          <li><span>✓</span> Flexible one-time or recurring service</li>
+          <li><span>✓</span> Trained, professional cleaning teams</li>
+          <li><span>✓</span> Clean HTML, SCSS, and Vanilla JavaScript</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section gallery" aria-label="Cleaning gallery">
+      <div class="section-heading" data-animate>
+        <p class="eyebrow">Gallery</p>
+        <h2>Before guests arrive, after we leave.</h2>
+      </div>
+      <div class="gallery-grid">
+        <img data-animate src="img/product1-01.jpg" alt="Clean room detail">
+        <img data-animate src="img/product1-02.jpg" alt="Cleaning product detail">
+        <img data-animate src="img/product1-03.jpg" alt="Home cleaning detail">
+        <img data-animate src="img/product3-03.jpg" alt="Organized room detail">
+      </div>
+    </section>
+
+    <section class="section" id="blog">
+      <div class="section-heading" data-animate>
+        <p class="eyebrow">Latest Articles</p>
+        <h2>Cleaning tips and service updates.</h2>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card" data-animate><img src="img/Blog-10.jpg" alt="Cleaning tips"><div><p>Nov 13, 2023</p><h3>Office Cleaning</h3><span>Fresh workspaces help teams stay focused and ready.</span></div></article>
+        <article class="blog-card" data-animate><img src="img/Blog-09.jpg" alt="House cleaning"><div><p>Nov 13, 2023</p><h3>House Cleaning</h3><span>Healthy habits for cleaner rooms between visits.</span></div></article>
+        <article class="blog-card" data-animate><img src="img/Blog-05.jpg" alt="Service gallery"><div><p>Nov 13, 2023</p><h3>Service Gallery</h3><span>Small details make a big difference in every service.</span></div></article>
+      </div>
+    </section>
+
+    <section class="section contact section-grid" id="contact">
+      <div data-animate>
+        <p class="eyebrow">Get started</p>
+        <h2>Book a cleaning service today.</h2>
+        <p>Tell us what you need, and we will contact you to confirm details, schedule, and pricing.</p>
+        <div class="contact-card">
+          <strong>Call us</strong>
+          <a href="tel:1234567890">(123) 456-7890</a>
+        </div>
+      </div>
+      <form class="contact-form" data-animate>
+        <label><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+        <label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+        <label><span>Service</span><select name="service"><option>Home Cleaning</option><option>Office Cleaning</option><option>Window Cleaning</option><option>Laundry</option></select></label>
+        <label><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+        <button class="button primary" type="submit">Request Quote</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="img/logo.png" alt="We Clean logo">
+    <p>Cleaning © 2016 WeClean LLC, All rights reserved</p>
+    <a href="#home">Back to top</a>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
