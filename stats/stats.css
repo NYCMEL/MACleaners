@@ -1,17 +1,11 @@
-.stats-page {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: #f7f5ef;
-  font-family: Roboto, Arial, sans-serif;
-  color: #5f6368; }
-
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   width: 100%;
-  padding: 0; }
+  padding: 0;
+  margin-top: 60px;
+  margin-bottom: 60px; }
 
 .stats__card {
   min-height: 218px;
