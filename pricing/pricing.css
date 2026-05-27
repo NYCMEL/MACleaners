@@ -136,7 +136,7 @@ body {
     grid-template-columns: 1fr;
     padding: 1rem; }
   .pricing-card {
-    min-height: 520px;
+    /* min-height: 520px; */
     padding: 2rem 1.5rem 3rem; }
   .pricing-card--featured {
     padding-top: 0; }
