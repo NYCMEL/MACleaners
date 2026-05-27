@@ -322,7 +322,8 @@ h3 {
   gap: 6px;
   padding: 22px 28px;
   margin-top: 24px;
-  color: steelblue; }
+  color: steelblue;
+  border-radius: 10px; }
 
 .contact-card a {
   color: #10a6a5;
