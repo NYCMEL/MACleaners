@@ -1,3 +1,7 @@
+.stats-page {
+  max-width: 90%;
+  margin: 0 auto; }
+
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
