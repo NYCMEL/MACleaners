@@ -582,7 +582,8 @@ h3 {
 /* Default placeholder color */
 input::placeholder,
 textarea::placeholder {
-  color: #CCC
+    color: #CCC;
+    font-weight: normal;
 }
 
 /* Smooth fade effect on focus */
