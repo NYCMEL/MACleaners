@@ -466,3 +466,21 @@ h3 {
   .site-footer {
     align-items: flex-start;
     flex-direction: column; } }
+
+/* Default placeholder color */
+input::placeholder,
+textarea::placeholder {
+  color: #CCC; }
+
+/* Smooth fade effect on focus */
+input,
+textarea {
+  transition: color 0.3s ease; }
+
+input::placeholder,
+textarea::placeholder {
+  transition: opacity 0.3s ease; }
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.15; }
