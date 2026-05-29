@@ -20,14 +20,6 @@ class WeCleanSite {
 		weekly: -20,
 		biweekly: -15,
 		monthly: -10
-	    },
-	    extras: {
-		fridge: 35,
-		oven: 35,
-		windows: 45,
-		cabinets: 40,
-		laundry: 30,
-		pets: 25
 	    }
 	};
 	this.init();
@@ -114,20 +106,9 @@ class WeCleanSite {
 	if (!this.calculator) return;
 
 	const continueButton = this.calculator.querySelector('.calculator-continue');
-	const extrasPanel = this.calculator.querySelector('.calculator-extras');
 
 	this.calculator.addEventListener('input', () => this.updateCalculatorTotal());
 	this.calculator.addEventListener('change', () => this.updateCalculatorTotal());
-
-	if (continueButton && extrasPanel) {
-	    continueButton.addEventListener('click', () => {
-		extrasPanel.hidden = false;
-		continueButton.hidden = true;
-		this.updateCalculatorTotal();
-		const firstExtra = extrasPanel.querySelector('input, select, textarea, button');
-		if (firstExtra) firstExtra.focus({ preventScroll: true });
-	    });
-	}
 
 	this.calculator.addEventListener('submit', (event) => {
 	    event.preventDefault();
@@ -151,15 +132,13 @@ class WeCleanSite {
 	const bedrooms = Number(formData.get('bedrooms') || 0);
 	const bathrooms = Number(formData.get('bathrooms') || 1);
 	const frequency = formData.get('frequency') || 'once';
-	const extras = formData.getAll('extras');
 
 	const base = this.calculatorPrices.service[service] || this.calculatorPrices.service.standard;
 	const bedroomPrice = bedrooms * this.calculatorPrices.bedroom;
 	const bathroomPrice = Math.max(bathrooms - 1, 0) * this.calculatorPrices.bathroom;
 	const recurringDiscount = this.calculatorPrices.frequency[frequency] || 0;
-	const extrasPrice = extras.reduce((sum, item) => sum + (this.calculatorPrices.extras[item] || 0), 0);
 
-	return Math.max(base + bedroomPrice + bathroomPrice + recurringDiscount + extrasPrice, 65);
+	return Math.max(base + bedroomPrice + bathroomPrice + recurringDiscount, 65);
     }
 
     updateCalculatorTotal() {
