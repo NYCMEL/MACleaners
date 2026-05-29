@@ -175,11 +175,5 @@ ONLY generate complete files.
 ---
 ABOUT MY APP:
 - it is a cleaning service for homes and small businesses
-- must bave a calendar to schedule a service
-- allow customer register & login
-- must have an admin login. use "admin" and "test" as username and password
-  initially fill the login with these values
-- clients after login, can create contact information
-  address, phone, email (if any)
-- clearly display customer service phone number in the header of the app
+- my current code is here: git@github.com:NYCMEL/MACleaners.git
 
