@@ -17,7 +17,8 @@
   &__hero,
   &__section,
   &__footer {
-    width: min(1180px, 100%);
+    width: 100%;
+    max-width: 1180px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -103,7 +104,7 @@
 
   &__hero-copy,
   &__hero-card {
-    padding: clamp(28px, 5vw, 56px);
+    padding: 40px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 36px;
   }
@@ -120,7 +121,7 @@
   &__title {
     max-width: 780px;
     margin: 0;
-    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    font-size: 4.2rem;
     line-height: 0.94;
     letter-spacing: -0.08em;
   }
@@ -221,7 +222,7 @@
   &__section,
   &__footer {
     margin-top: 24px;
-    padding: clamp(24px, 4vw, 42px);
+    padding: 34px;
     background: rgba(255, 255, 255, 0.92);
     border-radius: 34px;
   }
@@ -232,7 +233,7 @@
 
   &__section-heading h2 {
     margin: 0;
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: 2.6rem;
     line-height: 1;
     letter-spacing: -0.06em;
   }
