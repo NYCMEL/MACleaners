@@ -16,6 +16,9 @@
     margin-right: auto;
     margin-left: auto; }
   .mtk-macleaners__header {
+    position: sticky;
+    top: 16px;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: space-between;
