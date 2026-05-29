@@ -1,144 +1,168 @@
 window.macleanersConfig = {
   "app": {
     "name": "MACleaners",
+    "legalName": "MA Cleaners LLC",
     "tagline": "Reliable cleaning for every need.",
     "serviceArea": "Tampa, FL",
-    "phone": "(813) 555-0198",
-    "email": "hello@macleaners.com",
+    "phone": "(646) 303-1234",
+    "phoneHref": "tel:6463031234",
+    "email": "",
     "businessHours": "Monday-Friday 8AM-6PM",
-    "heroImage": "images/macleaners-hero.jpg",
-    "logoText": "MA",
-    "language": "en"
+    "logo": "./img/logo.png",
+    "heroImage": "./img/cleaning-woman.png",
+    "aboutImage": "./img/cleaning-service.png",
+    "year": "2026"
   },
   "navigation": [
-    { "label": "Services", "target": "services" },
-    { "label": "Why Us", "target": "trust" },
-    { "label": "Process", "target": "process" },
-    { "label": "Reviews", "target": "reviews" },
-    { "label": "Request Quote", "target": "quote" }
+    {
+      "label": "Home",
+      "target": "home"
+    },
+    {
+      "label": "Services",
+      "target": "services"
+    },
+    {
+      "label": "About",
+      "target": "about"
+    },
+    {
+      "label": "Contact",
+      "target": "contact"
+    }
   ],
   "hero": {
-    "eyebrow": "Homes and small businesses",
-    "title": "A cleaner space without the stress.",
-    "description": "Book dependable residential, move-in, deep cleaning, recurring cleaning, and small office cleaning in Tampa with a team that treats every room like it matters.",
-    "primaryAction": { "label": "Request a Quote", "target": "quote", "event": "quote:start" },
-    "secondaryAction": { "label": "View Services", "target": "services", "event": "services:view" },
-    "stats": [
-      { "value": "5", "label": "Cleaning types" },
-      { "value": "24h", "label": "Fast follow-up" },
-      { "value": "100%", "label": "Customer-first service" }
-    ]
+    "eyebrow": "Your trusted neighborhood cleaning service.",
+    "title": "Cleaner spaces, Happier home",
+    "description": "MA Cleaners makes it easy to keep your home fresh, clean, and stress-free. Their team is reliable, detail-oriented, and focused on giving every customer a comfortable and spotless living space with friendly, professional service.",
+    "primaryAction": {
+      "label": "Schedule Cleaning",
+      "target": "contact",
+      "event": "hero:schedule"
+    },
+    "secondaryAction": {
+      "label": "View Services",
+      "target": "services",
+      "event": "hero:services"
+    }
   },
   "services": {
-    "eyebrow": "Cleaning services",
-    "title": "Built for everyday life, moving days, and busy workspaces.",
-    "items": [
+    "eyebrow": "Our Services",
+    "title": "Reliable cleaning for every need.",
+    "description": "Choose the right service, and our team handles the dirty work with care.",
+    "pricingNote": "Average charges for 1,100 SQFT apt or homes",
+    "plans": [
       {
-        "name": "Standard Cleaning",
-        "description": "Routine upkeep for kitchens, bathrooms, bedrooms, living areas, floors, surfaces, and high-touch spots.",
-        "icon": "home",
-        "event": "service:standard"
+        "name": "Starter",
+        "price": "65",
+        "label": "Getting to know us",
+        "tone": "default",
+        "event": "plan:starter"
+      },
+      {
+        "name": "Standard",
+        "badge": "Most Popular",
+        "price": "115",
+        "label": "Each Visit. ($100/Recurring)",
+        "tone": "featured",
+        "event": "plan:standard"
       },
       {
         "name": "Deep Cleaning",
-        "description": "A more detailed reset for buildup, baseboards, appliance exteriors, bathroom detail, and hard-to-reach areas.",
-        "icon": "auto_awesome",
-        "event": "service:deep"
+        "price": "200",
+        "label": "Each Visit",
+        "tone": "green",
+        "event": "plan:deep"
       },
       {
-        "name": "Move-In/Move-Out",
-        "description": "Detailed cleaning for empty or almost-empty homes so a new chapter starts fresh.",
-        "icon": "local_shipping",
-        "event": "service:move"
-      },
-      {
-        "name": "Recurring Weekly",
-        "description": "Reliable recurring visits for customers who want a consistently clean home without reminders.",
-        "icon": "event_repeat",
-        "event": "service:recurring"
-      },
-      {
-        "name": "Small Office Cleaning",
-        "description": "Professional cleaning for compact offices, reception areas, break rooms, restrooms, and shared spaces.",
-        "icon": "business",
-        "event": "service:office"
+        "name": "Ultimate Pack",
+        "price": "250",
+        "label": "Each Visit",
+        "tone": "amber",
+        "event": "plan:ultimate"
       }
     ]
   },
-  "trust": {
-    "eyebrow": "Why MACleaners",
-    "title": "Professional, local, and easy to work with.",
-    "cards": [
-      { "title": "Clear communication", "description": "Short, friendly follow-ups so customers know what happens next." },
-      { "title": "Flexible service", "description": "One-time, recurring, residential, and small business cleaning options." },
-      { "title": "No made-up pricing", "description": "Details are collected first, then a team member confirms availability and next steps." }
+  "about": {
+    "eyebrow": "Why choose us",
+    "title": "Simple booking. Spotless results.",
+    "description": "One simple phone call, and we’ll be on our way to make your home cleaner and brighter. To know us is to love us.",
+    "features": [
+      "Residential and small business cleaning",
+      "Flexible one-time or recurring service",
+      "Trained, professional cleaning teams"
     ]
   },
-  "process": {
-    "eyebrow": "How it works",
-    "title": "A simple quote flow that respects the customer's time.",
-    "steps": [
-      { "number": "01", "title": "Tell us what you need", "description": "Choose the cleaning type and share the property basics." },
-      { "number": "02", "title": "Pick your preferred date", "description": "Send the date that works best for you and whether this is one-time or recurring." },
-      { "number": "03", "title": "We confirm availability", "description": "A team member reviews the details and follows up with next steps." }
-    ]
-  },
-  "reviews": {
-    "eyebrow": "Customer care",
-    "title": "Service that feels personal.",
-    "items": [
-      { "quote": "Friendly, calm, and professional from the first call.", "name": "Residential customer" },
-      { "quote": "They understood exactly what our small office needed.", "name": "Office manager" },
-      { "quote": "The quote process was simple and respectful.", "name": "Move-out customer" }
-    ]
-  },
-  "quote": {
-    "eyebrow": "Request a quote",
-    "title": "Tell us about your cleaning needs.",
-    "description": "A team member will confirm availability. Pricing is never guessed before your details are reviewed.",
-    "successTitle": "Quote request ready",
-    "successMessage": "Thank you. A MACleaners team member will confirm availability and next steps.",
-    "submitLabel": "Send Request",
+  "stats": [
+    {
+      "value": "8%",
+      "label": "New Clients / year"
+    },
+    {
+      "value": "89%",
+      "label": "Happy returning Clients"
+    },
+    {
+      "value": "3+",
+      "label": "Years in Business"
+    }
+  ],
+  "contact": {
+    "eyebrow": "Get started",
+    "title": "Book a cleaning service today.",
+    "description": "Call us the first time and tell us what you’d like done. After that, just give us your phone number when you come back.",
+    "cardLabel": "Call us",
+    "formTitle": "Request service",
+    "submitLabel": "Request Quote",
+    "successMessage": "Thanks. Your request is ready to be sent.",
     "fields": [
-      { "name": "name", "label": "Full name", "type": "text", "required": true, "autocomplete": "name" },
-      { "name": "phone", "label": "Phone number", "type": "tel", "required": true, "autocomplete": "tel" },
-      { "name": "address", "label": "Service address", "type": "text", "required": true, "autocomplete": "street-address" },
-      { "name": "bedsBaths", "label": "Bedrooms / Bathrooms", "type": "text", "required": true, "autocomplete": "off" },
-      { "name": "preferredDate", "label": "Preferred date", "type": "date", "required": true, "autocomplete": "off" }
-    ],
-    "selects": [
       {
-        "name": "cleaningType",
-        "label": "Cleaning type",
+        "name": "name",
+        "label": "Name",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "autocomplete": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "autocomplete": "tel",
+        "required": true
+      },
+      {
+        "name": "service",
+        "label": "Type of Service",
+        "type": "select",
         "required": true,
         "options": [
-          "Standard Cleaning",
-          "Deep Cleaning",
-          "Move-In/Move-Out",
-          "Recurring Weekly",
-          "Small Office Cleaning"
+          "Home Cleaning",
+          "Office Cleaning",
+          "Window Cleaning",
+          "Laundry"
         ]
       },
       {
-        "name": "frequency",
-        "label": "One-time or recurring",
+        "name": "message",
+        "label": "Message",
+        "type": "textarea",
         "required": true,
-        "options": [
-          "One-time",
-          "Recurring weekly",
-          "Recurring bi-weekly",
-          "Recurring monthly"
-        ]
+        "placeholder": "What would you like us to do?"
       }
     ]
   },
   "footer": {
-    "headline": "MACleaners",
-    "description": "Reliable cleaning for every need in Tampa, FL.",
-    "links": [
-      { "label": "Services", "target": "services" },
-      { "label": "Request Quote", "target": "quote" },
-      { "label": "Business Hours", "target": "contact" }
-    ]
+    "text": "Cleaning © 2026 MA Cleaners LLC, All rights reserved"
+  },
+  "toTop": {
+    "label": "Back to top",
+    "symbol": "↑"
   }
 };
