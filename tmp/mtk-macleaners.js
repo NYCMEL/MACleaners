@@ -1,384 +1,365 @@
-class MtkMacleaners {
-  constructor(element, config) {
-    this.element = element;
-    this.config = config || {};
-    this.channel = this.getValue(this.config, "meta.eventChannel", "4-mtk-macleaners");
-    this.component = this.getValue(this.config, "meta.component", "mtk-macleaners");
-    this.onMessage = this.onMessage.bind(this);
-    this.init();
-  }
+(function () {
+  "use strict";
 
-  init() {
-    if (!this.element || this.element.dataset.mtkMacleanersInitialized === "true") {
-      return;
-    }
+  const COMPONENT = "mtk-macleaners";
+  const INBOUND_CHANNEL = "4-mtk-macleaners";
+  const OUTBOUND_CHANNEL = "mtk-macleaners";
 
-    this.element.dataset.mtkMacleanersInitialized = "true";
-    this.render();
-    this.bindEvents();
-
-    if (window.wc && typeof window.wc.subscribe === "function") {
-      window.wc.subscribe("4-mtk-macleaners", this.onMessage.bind(this));
-    }
-
-    this.publish("ready", {
-      app: this.getValue(this.config, "app.name", "MA Cleaners")
-    });
-  }
-
-  getValue(source, path, fallback) {
-    const value = String(path).split(".").reduce((current, key) => {
-      if (current && Object.prototype.hasOwnProperty.call(current, key)) {
-        return current[key];
+  function createWcFallback() {
+    const bus = new EventTarget();
+    return {
+      publish(topic, payload) {
+        bus.dispatchEvent(new CustomEvent(topic, { detail: payload }));
+      },
+      subscribe(topic, callback) {
+        bus.addEventListener(topic, function (event) {
+          callback(event.detail);
+        });
+      },
+      log() {
+        if (window.console && typeof window.console.log === "function") {
+          window.console.log.apply(window.console, arguments);
+        }
       }
-      return undefined;
-    }, source);
-
-    return value === undefined || value === null ? fallback : value;
-  }
-
-  safe(value) {
-    return String(value || "").replace(/[&<>"']/g, character => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      "\"": "&quot;",
-      "'": "&#39;"
-    }[character]));
-  }
-
-  slug(value) {
-    return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  icon(value) {
-    const icons = {
-      home: "⌂",
-      sparkle: "✦",
-      key: "⌁",
-      calendar: "◷",
-      business: "▦",
-      check: "✓"
     };
-
-    return icons[value] || "✓";
   }
 
-  render() {
-    const app = this.config.app || {};
-    const hero = this.config.hero || {};
-    const servicesSection = this.config.servicesSection || {};
-    const trustSection = this.config.trustSection || {};
-    const contact = this.config.contact || {};
-
-    this.element.innerHTML = `
-      <div class="mtk-macleaners__shell">
-        <header class="mtk-macleaners__header">
-          <div class="mtk-macleaners__brand" aria-label="${this.safe(app.name)}">
-            <span class="mtk-macleaners__brand-name">${this.safe(app.name)}</span>
-            <span class="mtk-macleaners__tagline">${this.safe(app.tagline)}</span>
-          </div>
-          <nav class="mtk-macleaners__nav" aria-label="Primary navigation">
-            ${this.renderNavigation()}
-          </nav>
-        </header>
-
-        <main class="mtk-macleaners__main">
-          <section class="mtk-macleaners__hero" aria-label="${this.safe(app.eyebrow)}">
-            <div class="mtk-macleaners__hero-content">
-              <div class="mtk-macleaners__eyebrow">${this.safe(app.eyebrow)}</div>
-              <h1 class="mtk-macleaners__title">${this.safe(hero.title)}</h1>
-              <p class="mtk-macleaners__copy">${this.safe(hero.body)}</p>
-              <div class="mtk-macleaners__actions">
-                ${this.renderAction(hero.primaryAction, "mtk-macleaners__button")}
-                ${this.renderAction(hero.secondaryAction, "mtk-macleaners__button mtk-macleaners__button--secondary")}
-              </div>
-            </div>
-            <aside class="mtk-macleaners__card mtk-macleaners__panel" aria-label="Service highlights">
-              ${this.renderHighlights(hero.highlights || [])}
-              <div class="mtk-macleaners__highlight"><span class="mtk-macleaners__icon" aria-hidden="true">☎</span><span>${this.safe(app.phone)}</span></div>
-              <div class="mtk-macleaners__highlight"><span class="mtk-macleaners__icon" aria-hidden="true">⌖</span><span>${this.safe(app.serviceArea)}</span></div>
-              <div class="mtk-macleaners__highlight"><span class="mtk-macleaners__icon" aria-hidden="true">◷</span><span>${this.safe(app.hours)}</span></div>
-            </aside>
-          </section>
-
-          <section class="mtk-macleaners__section" data-section="services" aria-label="${this.safe(servicesSection.eyebrow)}">
-            <div class="mtk-macleaners__eyebrow">${this.safe(servicesSection.eyebrow)}</div>
-            <h2 class="mtk-macleaners__section-title">${this.safe(servicesSection.title)}</h2>
-            <div class="mtk-macleaners__grid">${this.renderServices()}</div>
-          </section>
-
-          <section class="mtk-macleaners__section" data-section="trust" aria-label="${this.safe(trustSection.eyebrow)}">
-            <div class="mtk-macleaners__eyebrow">${this.safe(trustSection.eyebrow)}</div>
-            <h2 class="mtk-macleaners__section-title">${this.safe(trustSection.title)}</h2>
-            <div class="mtk-macleaners__trust-grid">${this.renderTrust()}</div>
-          </section>
-
-          <section class="mtk-macleaners__section" data-section="schedule" aria-label="Schedule service">
-            ${this.renderForm()}
-          </section>
-
-          <section class="mtk-macleaners__contact" data-section="contact" aria-label="Contact MA Cleaners">
-            <div>
-              <h2 class="mtk-macleaners__contact-title">${this.safe(contact.title)}</h2>
-              <p class="mtk-macleaners__contact-copy">${this.safe(contact.body)}</p>
-            </div>
-            ${this.renderAction(contact.action, "mtk-macleaners__button")}
-          </section>
-        </main>
-      </div>
-    `;
+  if (!window.wc) {
+    window.wc = createWcFallback();
   }
 
-  renderNavigation() {
-    return (this.config.navigation || []).map(item => `
-      <button class="mtk-macleaners__nav-button" type="button" data-action="navigate" data-target="${this.safe(item.target)}">
-        ${this.safe(item.label)}
-      </button>
-    `).join("");
-  }
-
-  renderAction(action, className) {
-    if (!action) {
-      return "";
+  class MtkMacleaners {
+    constructor(element, config) {
+      this.element = element;
+      this.config = config;
+      this.state = {
+        activeSection: "services",
+        lastInboundAction: null
+      };
+      this.boundOnMessage = this.onMessage.bind(this);
+      this.init();
     }
 
-    return `
-      <button class="${this.safe(className)}" type="button" data-action="${this.safe(action.action)}">
-        ${this.safe(action.label)}
-      </button>
-    `;
-  }
-
-  renderHighlights(items) {
-    return items.map(item => `
-      <div class="mtk-macleaners__highlight">
-        <span class="mtk-macleaners__icon" aria-hidden="true">✓</span>
-        <span>${this.safe(item)}</span>
-      </div>
-    `).join("");
-  }
-
-  renderServices() {
-    return (this.config.services || []).map(service => `
-      <article class="mtk-macleaners__card">
-        <span class="mtk-macleaners__icon" aria-hidden="true">${this.safe(this.icon(service.icon))}</span>
-        <h3 class="mtk-macleaners__card-title">${this.safe(service.title)}</h3>
-        <p class="mtk-macleaners__card-copy">${this.safe(service.description)}</p>
-      </article>
-    `).join("");
-  }
-
-  renderTrust() {
-    return (this.config.trust || []).map(item => `
-      <article class="mtk-macleaners__card">
-        <span class="mtk-macleaners__trust-value">${this.safe(item.value)}</span>
-        <span class="mtk-macleaners__card-copy">${this.safe(item.label)}</span>
-      </article>
-    `).join("");
-  }
-
-  renderForm() {
-    const form = this.config.form || {};
-
-    return `
-      <form class="mtk-macleaners__form" novalidate>
-        <div class="mtk-macleaners__eyebrow">${this.safe(form.eyebrow)}</div>
-        <h2 class="mtk-macleaners__form-title">${this.safe(form.title)}</h2>
-        <p class="mtk-macleaners__form-note">${this.safe(form.note)}</p>
-        <div class="mtk-macleaners__form-grid">
-          ${(form.fields || []).map(field => this.renderField(field)).join("")}
-        </div>
-        <button class="mtk-macleaners__button" type="submit">${this.safe(form.submitLabel)}</button>
-        <div class="mtk-macleaners__status" role="status" aria-live="polite"></div>
-      </form>
-    `;
-  }
-
-  renderField(field) {
-    const required = field.required ? "required aria-required=\"true\"" : "";
-    const autocomplete = field.autocomplete ? `autocomplete="${this.safe(field.autocomplete)}"` : "";
-    const fieldName = this.safe(field.name);
-    const fieldLabel = this.safe(field.label);
-
-    if (field.type === "select") {
-      return `
-        <div class="mtk-macleaners__field">
-          <label class="mtk-macleaners__field-label" for="${fieldName}">${fieldLabel}</label>
-          <select class="mtk-macleaners__field-control" name="${fieldName}" aria-label="${fieldLabel}" ${required}>
-            <option value="">Select ${fieldLabel}</option>
-            ${(field.options || []).map(option => `<option value="${this.safe(option)}">${this.safe(option)}</option>`).join("")}
-          </select>
-        </div>
-      `;
-    }
-
-    return `
-      <div class="mtk-macleaners__field">
-        <label class="mtk-macleaners__field-label" for="${fieldName}">${fieldLabel}</label>
-        <input class="mtk-macleaners__field-control" name="${fieldName}" type="${this.safe(field.type)}" aria-label="${fieldLabel}" ${autocomplete} ${required}>
-      </div>
-    `;
-  }
-
-  bindEvents() {
-    this.element.addEventListener("click", event => {
-      const trigger = event.target.closest("[data-action]");
-
-      if (!trigger || !this.element.contains(trigger)) {
+    init() {
+      if (!this.element || this.element.dataset.mtkMacleanersReady === "true") {
         return;
       }
 
-      const action = trigger.dataset.action;
-      const target = trigger.dataset.target || "";
+      this.element.dataset.mtkMacleanersReady = "true";
+      this.element.setAttribute("role", "region");
+      this.element.setAttribute("aria-label", this.config.app.name);
+      this.render();
+      this.bindEvents();
+      wc.subscribe(INBOUND_CHANNEL, this.boundOnMessage);
+      this.publish(this.config.events.ready, { status: "ready" });
+    }
 
-      this.publish(action, { target });
+    render() {
+      this.element.innerHTML = [
+        this.renderHeader(),
+        this.renderHero(),
+        this.renderServices(),
+        this.renderTrust(),
+        this.renderProcess(),
+        this.renderForm(),
+        this.renderFaq(),
+        this.renderFooter()
+      ].join("");
+    }
 
-      if (action === "navigate") {
-        this.scrollToSection(target);
+    icon(name) {
+      const icons = {
+        home: "⌂",
+        sparkle: "✦",
+        move: "⇄",
+        repeat: "↻",
+        business: "▦"
+      };
+      return icons[name] || "•";
+    }
+
+    renderHeader() {
+      const nav = this.config.navigation.map((item) => {
+        return `<button class="mtk-macleaners__nav-button" type="button" data-action="scroll" data-target="${this.escape(item.target)}">${this.escape(item.label)}</button>`;
+      }).join("");
+
+      return `<header class="mtk-macleaners__header" aria-label="Site header">
+        <div class="mtk-macleaners__brand" aria-label="${this.escape(this.config.app.name)}">
+          <span class="mtk-macleaners__brand-mark" aria-hidden="true">MA</span>
+          <span class="mtk-macleaners__brand-text">${this.escape(this.config.app.name)}</span>
+        </div>
+        <nav class="mtk-macleaners__nav" aria-label="Primary navigation">${nav}</nav>
+      </header>`;
+    }
+
+    renderHero() {
+      const stats = this.config.stats.map((stat) => {
+        return `<li class="mtk-macleaners__stat"><strong>${this.escape(stat.value)}</strong><span>${this.escape(stat.label)}</span></li>`;
+      }).join("");
+
+      return `<section class="mtk-macleaners__hero" aria-labelledby="mtk-macleaners-hero-title">
+        <div class="mtk-macleaners__hero-copy">
+          <p class="mtk-macleaners__eyebrow">${this.escape(this.config.app.eyebrow)}</p>
+          <h1 class="mtk-macleaners__title" id="mtk-macleaners-hero-title">${this.escape(this.config.app.headline)}</h1>
+          <p class="mtk-macleaners__lead">${this.escape(this.config.app.subheadline)}</p>
+          <div class="mtk-macleaners__actions">
+            <button class="mtk-macleaners__button mtk-macleaners__button--primary" type="button" data-action="scroll" data-target="quote">${this.escape(this.config.app.primaryAction)}</button>
+            <button class="mtk-macleaners__button mtk-macleaners__button--secondary" type="button" data-action="scroll" data-target="services">${this.escape(this.config.app.secondaryAction)}</button>
+          </div>
+        </div>
+        <aside class="mtk-macleaners__hero-card" aria-label="Business details">
+          <p>${this.escape(this.config.app.serviceArea)}</p>
+          <p>${this.escape(this.config.app.hours)}</p>
+          <p><span>${this.escape(this.config.app.phoneLabel)}</span><strong>${this.escape(this.config.app.phone)}</strong></p>
+          <ul class="mtk-macleaners__stats" aria-label="Business highlights">${stats}</ul>
+        </aside>
+      </section>`;
+    }
+
+    renderSectionHeading(section) {
+      return `<div class="mtk-macleaners__section-heading">
+        <p class="mtk-macleaners__eyebrow">${this.escape(section.eyebrow)}</p>
+        <h2>${this.escape(section.title)}</h2>
+      </div>`;
+    }
+
+    renderServices() {
+      const cards = this.config.services.items.map((item) => {
+        return `<article class="mtk-macleaners__card">
+          <span class="mtk-macleaners__icon" aria-hidden="true">${this.icon(item.icon)}</span>
+          <h3>${this.escape(item.title)}</h3>
+          <p>${this.escape(item.description)}</p>
+        </article>`;
+      }).join("");
+
+      return `<section class="mtk-macleaners__section" data-section="services" aria-labelledby="mtk-macleaners-services-title">
+        ${this.renderSectionHeading(this.config.services).replace("<h2>", "<h2 id=\"mtk-macleaners-services-title\">")}
+        <div class="mtk-macleaners__grid mtk-macleaners__grid--services">${cards}</div>
+      </section>`;
+    }
+
+    renderTrust() {
+      const cards = this.config.trust.cards.map((card) => {
+        return `<article class="mtk-macleaners__card mtk-macleaners__card--soft"><h3>${this.escape(card.title)}</h3><p>${this.escape(card.text)}</p></article>`;
+      }).join("");
+
+      return `<section class="mtk-macleaners__section" data-section="trust" aria-labelledby="mtk-macleaners-trust-title">
+        ${this.renderSectionHeading(this.config.trust).replace("<h2>", "<h2 id=\"mtk-macleaners-trust-title\">")}
+        <div class="mtk-macleaners__grid">${cards}</div>
+      </section>`;
+    }
+
+    renderProcess() {
+      const steps = this.config.process.steps.map((step) => {
+        return `<li class="mtk-macleaners__step"><span>${this.escape(step.number)}</span><div><h3>${this.escape(step.title)}</h3><p>${this.escape(step.text)}</p></div></li>`;
+      }).join("");
+
+      return `<section class="mtk-macleaners__section mtk-macleaners__section--process" data-section="process" aria-labelledby="mtk-macleaners-process-title">
+        ${this.renderSectionHeading(this.config.process).replace("<h2>", "<h2 id=\"mtk-macleaners-process-title\">")}
+        <ol class="mtk-macleaners__steps">${steps}</ol>
+      </section>`;
+    }
+
+    renderField(field) {
+      const attributes = [
+        `class="mtk-macleaners__control"`,
+        `name="${this.escape(field.name)}"`,
+        `type="${this.escape(field.type)}"`,
+        `aria-label="${this.escape(field.label)}"`,
+        field.required ? "required" : "",
+        field.autocomplete ? `autocomplete="${this.escape(field.autocomplete)}"` : "",
+        field.min ? `min="${this.escape(field.min)}"` : "",
+        field.step ? `step="${this.escape(field.step)}"` : ""
+      ].filter(Boolean).join(" ");
+
+      if (field.type === "textarea") {
+        return `<label class="mtk-macleaners__field"><textarea class="mtk-macleaners__control" name="${this.escape(field.name)}" aria-label="${this.escape(field.label)}" placeholder=" "></textarea><span>${this.escape(field.label)}</span></label>`;
       }
 
-      if (action === "schedule") {
-        this.scrollToSection("schedule");
+      return `<label class="mtk-macleaners__field"><input ${attributes} placeholder=" "><span>${this.escape(field.label)}</span></label>`;
+    }
+
+    renderSelect(select) {
+      const options = [`<option value=""></option>`].concat(select.options.map((option) => `<option value="${this.escape(option)}">${this.escape(option)}</option>`)).join("");
+      return `<label class="mtk-macleaners__field mtk-macleaners__field--select"><select class="mtk-macleaners__control" name="${this.escape(select.name)}" aria-label="${this.escape(select.label)}" ${select.required ? "required" : ""}>${options}</select><span>${this.escape(select.label)}</span></label>`;
+    }
+
+    renderForm() {
+      const selects = this.config.form.selects.map((select) => this.renderSelect(select)).join("");
+      const fields = this.config.form.fields.map((field) => this.renderField(field)).join("");
+
+      return `<section class="mtk-macleaners__section mtk-macleaners__section--quote" data-section="quote" aria-labelledby="mtk-macleaners-quote-title">
+        ${this.renderSectionHeading(this.config.form).replace("<h2>", "<h2 id=\"mtk-macleaners-quote-title\">")}
+        <p class="mtk-macleaners__helper">${this.escape(this.config.form.helper)}</p>
+        <form class="mtk-macleaners__form" novalidate>
+          <div class="mtk-macleaners__form-grid">${selects}${fields}</div>
+          <button class="mtk-macleaners__button mtk-macleaners__button--primary" type="submit">${this.escape(this.config.form.submitLabel)}</button>
+          <div class="mtk-macleaners__status" role="status" aria-live="polite"></div>
+        </form>
+      </section>`;
+    }
+
+    renderFaq() {
+      const items = this.config.faq.items.map((item) => {
+        return `<details class="mtk-macleaners__faq-item"><summary>${this.escape(item.question)}</summary><p>${this.escape(item.answer)}</p></details>`;
+      }).join("");
+
+      return `<section class="mtk-macleaners__section" data-section="faq" aria-labelledby="mtk-macleaners-faq-title">
+        ${this.renderSectionHeading(this.config.faq).replace("<h2>", "<h2 id=\"mtk-macleaners-faq-title\">")}
+        <div class="mtk-macleaners__faq">${items}</div>
+      </section>`;
+    }
+
+    renderFooter() {
+      return `<footer class="mtk-macleaners__footer"><p>${this.escape(this.config.app.name)} · ${this.escape(this.config.app.serviceArea)} · ${this.escape(this.config.app.hours)}</p></footer>`;
+    }
+
+    bindEvents() {
+      this.element.addEventListener("click", (event) => {
+        const actionElement = event.target.closest("[data-action]");
+        if (!actionElement || !this.element.contains(actionElement)) {
+          return;
+        }
+        const action = actionElement.dataset.action;
+        const target = actionElement.dataset.target;
+        if (action === "scroll") {
+          this.scrollToSection(target);
+          this.publish(this.config.events.action, { action, target });
+        }
+      });
+
+      const form = this.element.querySelector(".mtk-macleaners__form");
+      if (form) {
+        form.addEventListener("submit", (event) => this.handleSubmit(event));
+      }
+    }
+
+    handleSubmit(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = form.querySelector(".mtk-macleaners__status");
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        this.publish(this.config.events.action, { action: "invalid-form" });
+        return;
       }
 
-      if (action === "call") {
-        this.callBusiness();
+      const formData = new FormData(form);
+      const payload = {};
+      formData.forEach((value, key) => {
+        payload[key] = value;
+      });
+
+      if (status) {
+        status.innerHTML = `<strong>${this.escape(this.config.form.successTitle)}</strong><span>${this.escape(this.config.form.successMessage)}</span>`;
       }
+
+      this.publish(this.config.events.submit, { form: payload, submittedAt: new Date().toISOString() });
+      form.reset();
+    }
+
+    scrollToSection(target) {
+      const section = this.element.querySelector(`[data-section="${CSS.escape(target)}"]`);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    onMessage(message) {
+      if (!message || typeof message !== "object") {
+        return;
+      }
+
+      this.state.lastInboundAction = message.action || null;
+
+      if (message.action === "scroll" && message.target) {
+        this.scrollToSection(message.target);
+      }
+
+      if (message.action === "reset") {
+        const form = this.element.querySelector(".mtk-macleaners__form");
+        if (form) {
+          form.reset();
+        }
+      }
+    }
+
+    publish(eventName, detail) {
+      const payload = {
+        component: COMPONENT,
+        event: eventName,
+        channel: OUTBOUND_CHANNEL,
+        detail: detail || {},
+        timestamp: new Date().toISOString()
+      };
+
+      wc.log(COMPONENT, eventName, payload);
+      wc.publish(OUTBOUND_CHANNEL, payload);
+    }
+
+    escape(value) {
+      return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  }
+
+  function loadIncludes() {
+    const includes = Array.from(document.querySelectorAll("wc-include[href]"));
+    includes.forEach((include) => {
+      if (include.dataset.mtkMacleanersIncludeReady === "true") {
+        return;
+      }
+      include.dataset.mtkMacleanersIncludeReady = "true";
+      const href = include.getAttribute("href");
+      fetch(href)
+        .then((response) => response.ok ? response.text() : "")
+        .then((html) => {
+          if (html) {
+            include.innerHTML = html;
+            bootstrap();
+          }
+        })
+        .catch(() => bootstrap());
     });
-
-    const form = this.element.querySelector(".mtk-macleaners__form");
-
-    if (form) {
-      form.addEventListener("submit", event => this.handleSubmit(event));
-    }
   }
 
-  scrollToSection(target) {
-    const section = this.element.querySelector(`[data-section="${this.slug(target)}"]`) || this.element.querySelector(`[data-section="${target}"]`);
-
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  callBusiness() {
-    const phone = this.getValue(this.config, "app.phone", "").replace(/[^0-9]/g, "");
-
-    if (phone) {
-      window.location.href = `tel:${phone}`;
-    }
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const status = this.element.querySelector(".mtk-macleaners__status");
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      this.publish("schedule-invalid", { reason: "required-fields" });
+  function bootstrap() {
+    const config = window.mtkMacleanersConfig;
+    if (!config) {
       return;
     }
 
-    const data = Object.fromEntries(new FormData(form).entries());
-
-    this.publish("schedule-request", data);
-
-    if (status) {
-      status.textContent = this.getValue(this.config, "form.successMessage", "Thank you.");
-    }
-
-    form.reset();
-  }
-
-  publish(type, detail) {
-    const payload = {
-      component: this.component,
-      type,
-      detail,
-      timestamp: new Date().toISOString()
-    };
-
-    if (window.wc && typeof window.wc.log === "function") {
-      window.wc.log("mtk-macleaners publish", payload);
-    }
-
-    if (window.wc && typeof window.wc.publish === "function") {
-      window.wc.publish(this.channel, payload);
-    }
-  }
-
-  onMessage(message) {
-    this.publish("message-received", { message });
-  }
-
-  static ensureWc() {
-    if (!window.wc) {
-      window.wc = {};
-    }
-
-    if (typeof window.wc.log !== "function") {
-      window.wc.log = function noopLog() {};
-    }
-
-    if (typeof window.wc.publish !== "function") {
-      window.wc.publish = function publish(name, detail) {
-        window.dispatchEvent(new CustomEvent(name, { detail }));
-      };
-    }
-
-    if (typeof window.wc.subscribe !== "function") {
-      window.wc.subscribe = function subscribe(name, callback) {
-        window.addEventListener(name, event => callback(event.detail));
-      };
-    }
-  }
-
-  static processIncludes() {
-    const includes = Array.from(document.querySelectorAll("wc-include[href]:not([data-mtk-loaded])"));
-
-    includes.forEach(include => {
-      include.dataset.mtkLoaded = "true";
-      fetch(include.getAttribute("href"))
-        .then(response => response.ok ? response.text() : "")
-        .then(html => {
-          if (html.trim()) {
-            include.innerHTML = html;
-            MtkMacleaners.start();
-          }
-        })
-        .catch(() => {
-          include.hidden = true;
-        });
+    document.querySelectorAll("mtk-macleaners.mtk-macleaners").forEach((element) => {
+      if (element.dataset.mtkMacleanersReady !== "true") {
+        new MtkMacleaners(element, config);
+      }
     });
   }
 
-  static start() {
-    const config = window.mtkMacleanersConfig || {};
-    const elements = document.querySelectorAll("mtk-macleaners.mtk-macleaners");
-
-    elements.forEach(element => new MtkMacleaners(element, config));
-  }
-
-  static boot() {
-    MtkMacleaners.ensureWc();
-
-    const run = () => {
-      MtkMacleaners.processIncludes();
-      MtkMacleaners.start();
-    };
-
+  function ready(callback) {
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", run, { once: true });
+      document.addEventListener("DOMContentLoaded", callback, { once: true });
     } else {
-      run();
+      callback();
     }
-
-    const observer = new MutationObserver(run);
-    observer.observe(document.documentElement, { childList: true, subtree: true });
   }
-}
 
-MtkMacleaners.boot();
+  window.MtkMacleaners = MtkMacleaners;
+
+  ready(function () {
+    loadIncludes();
+    bootstrap();
+
+    const observer = new MutationObserver(function () {
+      loadIncludes();
+      bootstrap();
+    });
+
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  });
+}());

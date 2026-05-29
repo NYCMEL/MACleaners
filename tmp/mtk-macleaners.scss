@@ -1,294 +1,459 @@
 .mtk-macleaners {
   display: block;
+  box-sizing: border-box;
   min-height: 100vh;
+  padding: 24px;
+  color: #17211f;
+  background: linear-gradient(135deg, #f5fbf8 0%, #e9f5ef 48%, #ffffff 100%);
   font-family: Arial, Helvetica, sans-serif;
-  color: #17322d;
-  background: linear-gradient(145deg, #f6fbf9 0%, #e9f7f2 100%);
 
-  .mtk-macleaners__shell,
-  .mtk-macleaners__shell * {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
-  .mtk-macleaners__shell {
-    width: min(1180px, calc(100% - 32px));
-    margin: 0 auto;
-    padding: 24px 0 40px;
+  &__header,
+  &__hero,
+  &__section,
+  &__footer {
+    width: min(1180px, 100%);
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  .mtk-macleaners__header,
-  .mtk-macleaners__card,
-  .mtk-macleaners__form,
-  .mtk-macleaners__contact {
-    background: rgba(255, 255, 255, .96);
-    border: 1px solid rgba(23, 50, 45, .08);
-    border-radius: 28px;
-    box-shadow: 0 10px 28px rgba(23, 50, 45, .12);
-  }
-
-  .mtk-macleaners__header {
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 16px 18px;
-    position: sticky;
-    top: 12px;
-    z-index: 3;
+    gap: 20px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(28, 77, 63, 0.12);
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(27, 58, 49, 0.12);
     backdrop-filter: blur(14px);
   }
 
-  .mtk-macleaners__brand {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .mtk-macleaners__brand-name {
-    font-size: 1.35rem;
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-weight: 800;
-    letter-spacing: -.03em;
+    letter-spacing: -0.03em;
   }
 
-  .mtk-macleaners__tagline,
-  .mtk-macleaners__copy,
-  .mtk-macleaners__card-copy,
-  .mtk-macleaners__form-note,
-  .mtk-macleaners__contact-copy {
-    color: #496a63;
-    line-height: 1.65;
+  &__brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    color: #ffffff;
+    background: #176b55;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(23, 107, 85, 0.3);
   }
 
-  .mtk-macleaners__nav {
+  &__brand-text {
+    font-size: 1.1rem;
+  }
+
+  &__nav {
     display: flex;
-    gap: 8px;
     flex-wrap: wrap;
     justify-content: flex-end;
+    gap: 8px;
   }
 
-  .mtk-macleaners__nav-button,
-  .mtk-macleaners__button {
-    appearance: none;
+  &__nav-button,
+  &__button {
     border: 0;
-    border-radius: 999px;
     cursor: pointer;
-    font-weight: 800;
-    line-height: 1;
-    min-height: 44px;
-    padding: 12px 18px;
-    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+    font: inherit;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
   }
 
-  .mtk-macleaners__nav-button {
+  &__nav-button {
+    padding: 10px 14px;
+    color: #24423a;
     background: transparent;
-    color: #17322d;
+    border-radius: 999px;
   }
 
-  .mtk-macleaners__button {
-    background: #0b6b57;
-    color: #ffffff;
-    box-shadow: 0 8px 18px rgba(11, 107, 87, .28);
+  &__nav-button:hover,
+  &__nav-button:focus-visible {
+    background: rgba(23, 107, 85, 0.1);
   }
 
-  .mtk-macleaners__button--secondary {
-    background: #e8f4ef;
-    color: #0b6b57;
-    box-shadow: none;
-  }
-
-  .mtk-macleaners__nav-button:hover,
-  .mtk-macleaners__button:hover {
-    transform: translateY(-2px);
-  }
-
-  .mtk-macleaners__nav-button:focus-visible,
-  .mtk-macleaners__button:focus-visible,
-  .mtk-macleaners__field-control:focus-visible {
-    outline: 3px solid #93d8c2;
-    outline-offset: 3px;
-  }
-
-  .mtk-macleaners__hero {
+  &__hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-    gap: 24px;
-    align-items: stretch;
-    padding: 56px 0 28px;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 28px;
+    padding: 72px 0 42px;
   }
 
-  .mtk-macleaners__hero-content {
-    padding: 28px 8px;
+  &__hero-copy,
+  &__hero-card,
+  &__section,
+  &__footer {
+    border: 1px solid rgba(28, 77, 63, 0.12);
+    box-shadow: 0 22px 60px rgba(27, 58, 49, 0.12);
   }
 
-  .mtk-macleaners__eyebrow {
-    color: #0b6b57;
-    font-size: .78rem;
-    font-weight: 900;
-    letter-spacing: .14em;
+  &__hero-copy,
+  &__hero-card {
+    padding: clamp(28px, 5vw, 56px);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 36px;
+  }
+
+  &__eyebrow {
+    margin: 0 0 10px;
+    color: #176b55;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
   }
 
-  .mtk-macleaners__title {
-    color: #102b26;
-    font-size: clamp(2.25rem, 6vw, 4.8rem);
-    letter-spacing: -.06em;
-    line-height: .96;
-    margin: 14px 0 18px;
+  &__title {
+    max-width: 780px;
+    margin: 0;
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.08em;
   }
 
-  .mtk-macleaners__section-title {
-    color: #102b26;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    letter-spacing: -.04em;
-    line-height: 1.05;
-    margin: 10px 0 18px;
+  &__lead,
+  &__helper,
+  &__card p,
+  &__step p,
+  &__faq-item p,
+  &__footer p,
+  &__hero-card p {
+    color: #51635e;
+    line-height: 1.7;
   }
 
-  .mtk-macleaners__copy {
+  &__lead {
+    max-width: 740px;
+    margin: 24px 0 0;
     font-size: 1.1rem;
-    max-width: 700px;
   }
 
-  .mtk-macleaners__actions {
+  &__actions {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  &__button {
+    min-height: 48px;
+    padding: 0 22px;
+    border-radius: 16px;
+    font-weight: 800;
+  }
+
+  &__button--primary {
+    color: #ffffff;
+    background: #176b55;
+    box-shadow: 0 12px 26px rgba(23, 107, 85, 0.28);
+  }
+
+  &__button--secondary {
+    color: #176b55;
+    background: #e7f3ef;
+  }
+
+  &__button:hover,
+  &__button:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(23, 107, 85, 0.25);
+  }
+
+  &__hero-card {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__hero-card strong {
+    display: block;
+    margin-top: 4px;
+    color: #17211f;
+    font-size: 1.4rem;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0;
+    margin: 24px 0 0;
+    list-style: none;
+  }
+
+  &__stat {
+    padding: 14px;
+    background: #f2faf7;
+    border-radius: 18px;
+  }
+
+  &__stat strong,
+  &__stat span {
+    display: block;
+  }
+
+  &__stat strong {
+    color: #176b55;
+    font-size: 1.3rem;
+  }
+
+  &__stat span {
+    margin-top: 4px;
+    color: #51635e;
+    font-size: 0.82rem;
+  }
+
+  &__section,
+  &__footer {
+    margin-top: 24px;
+    padding: clamp(24px, 4vw, 42px);
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 34px;
+  }
+
+  &__section-heading {
+    max-width: 780px;
+  }
+
+  &__section-heading h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
     margin-top: 24px;
   }
 
-  .mtk-macleaners__panel {
-    display: grid;
-    gap: 14px;
+  &__grid--services {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
-  .mtk-macleaners__highlight {
-    align-items: center;
+  &__card {
+    min-height: 210px;
+    padding: 22px;
     background: #ffffff;
-    border-radius: 18px;
-    display: flex;
-    gap: 10px;
-    padding: 14px 16px;
+    border: 1px solid rgba(28, 77, 63, 0.12);
+    border-radius: 26px;
+    box-shadow: 0 14px 34px rgba(27, 58, 49, 0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease;
   }
 
-  .mtk-macleaners__icon {
-    align-items: center;
-    background: #dff3eb;
-    border-radius: 50%;
-    color: #0b6b57;
+  &__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px rgba(27, 58, 49, 0.14);
+  }
+
+  &__card--soft {
+    background: #f7fbf9;
+  }
+
+  &__card h3,
+  &__step h3 {
+    margin: 14px 0 8px;
+    font-size: 1.05rem;
+  }
+
+  &__icon {
     display: inline-flex;
-    font-size: 1rem;
-    font-weight: 900;
-    height: 36px;
-    justify-content: center;
-    width: 36px;
-  }
-
-  .mtk-macleaners__section {
-    padding: 28px 0;
-  }
-
-  .mtk-macleaners__grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 22px;
-  }
-
-  .mtk-macleaners__trust-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 22px;
-  }
-
-  .mtk-macleaners__card,
-  .mtk-macleaners__form,
-  .mtk-macleaners__contact {
-    padding: 24px;
-  }
-
-  .mtk-macleaners__card-title,
-  .mtk-macleaners__trust-value,
-  .mtk-macleaners__form-title,
-  .mtk-macleaners__contact-title {
-    color: #102b26;
-    font-weight: 900;
-    margin: 0 0 8px;
-  }
-
-  .mtk-macleaners__trust-value {
-    display: block;
-    font-size: 1.65rem;
-  }
-
-  .mtk-macleaners__form-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin: 22px 0;
-  }
-
-  .mtk-macleaners__field {
-    position: relative;
-  }
-
-  .mtk-macleaners__field-control {
-    background: #ffffff;
-    border: 1px solid #b8cbc5;
-    border-radius: 16px;
-    color: #17322d;
-    font-size: 1rem;
-    min-height: 58px;
-    padding: 24px 14px 8px;
-    width: 100%;
-  }
-
-  .mtk-macleaners__field-label {
-    color: #42665e;
-    font-size: .76rem;
-    font-weight: 900;
-    left: 14px;
-    pointer-events: none;
-    position: absolute;
-    top: 7px;
-  }
-
-  .mtk-macleaners__status {
-    color: #0b6b57;
-    font-weight: 900;
-    margin-top: 14px;
-    min-height: 24px;
-  }
-
-  .mtk-macleaners__contact {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin-top: 28px;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    color: #176b55;
+    background: #e7f3ef;
+    border-radius: 16px;
+    font-weight: 900;
   }
 
-  @media (max-width: 880px) {
-    .mtk-macleaners__header,
-    .mtk-macleaners__hero,
-    .mtk-macleaners__contact {
-      display: block;
-    }
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0;
+    margin: 24px 0 0;
+    list-style: none;
+  }
 
-    .mtk-macleaners__nav {
-      justify-content: flex-start;
-      margin-top: 14px;
-    }
+  &__step {
+    display: flex;
+    gap: 16px;
+    padding: 22px;
+    background: #f7fbf9;
+    border-radius: 26px;
+  }
 
-    .mtk-macleaners__grid,
-    .mtk-macleaners__trust-grid,
-    .mtk-macleaners__form-grid {
+  &__step > span {
+    flex: 0 0 auto;
+    color: #176b55;
+    font-weight: 900;
+  }
+
+  &__section--quote {
+    background: #f8fcfa;
+  }
+
+  &__form {
+    margin-top: 24px;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  &__field {
+    position: relative;
+    display: block;
+  }
+
+  &__control {
+    width: 100%;
+    min-height: 58px;
+    padding: 22px 16px 8px;
+    color: #17211f;
+    background: #ffffff;
+    border: 1px solid rgba(28, 77, 63, 0.22);
+    border-radius: 18px;
+    font: inherit;
+    outline: none;
+    transition: border 180ms ease, box-shadow 180ms ease;
+  }
+
+  textarea.mtk-macleaners__control {
+    min-height: 118px;
+    resize: vertical;
+  }
+
+  &__field span {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    color: #667873;
+    pointer-events: none;
+    transition: transform 180ms ease, color 180ms ease, font-size 180ms ease;
+  }
+
+  &__control:focus,
+  &__control:valid,
+  &__control:not(:placeholder-shown) {
+    border-color: #176b55;
+    box-shadow: 0 0 0 4px rgba(23, 107, 85, 0.13);
+  }
+
+  &__control:focus + span,
+  &__control:valid + span,
+  &__control:not(:placeholder-shown) + span,
+  &__field--select .mtk-macleaners__control + span {
+    color: #176b55;
+    font-size: 0.72rem;
+    transform: translateY(-11px);
+  }
+
+  &__status {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 12px;
+    color: #176b55;
+    vertical-align: middle;
+  }
+
+  &__faq {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  &__faq-item {
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px solid rgba(28, 77, 63, 0.12);
+    border-radius: 20px;
+  }
+
+  &__faq-item summary {
+    cursor: pointer;
+    font-weight: 800;
+  }
+
+  &__footer {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 4px solid rgba(23, 107, 85, 0.25);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 1040px) {
+    &__hero,
+    &__grid,
+    &__grid--services,
+    &__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    padding: 14px;
+
+    &__header,
+    &__hero,
+    &__grid,
+    &__grid--services,
+    &__steps,
+    &__form-grid {
       grid-template-columns: 1fr;
     }
 
-    .mtk-macleaners__contact .mtk-macleaners__button {
-      margin-top: 14px;
-      width: 100%;
+    &__header {
+      align-items: flex-start;
+      flex-direction: column;
+      border-radius: 22px;
+    }
+
+    &__nav {
+      justify-content: flex-start;
+    }
+
+    &__hero {
+      padding-top: 24px;
+    }
+
+    &__stats {
+      grid-template-columns: 1fr;
+    }
+
+    &__status {
+      margin-top: 12px;
+      margin-left: 0;
     }
   }
 }
