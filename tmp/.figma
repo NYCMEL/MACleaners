@@ -1,0 +1,445 @@
+# ROLE
+
+You are a Senior Product Designer, UX Architect, UI Engineer, Accessibility Expert, and Front-End Developer.
+
+Analyze the provided Figma design and generate a complete production-ready Home Cleaning Services website.
+
+The final result must look visually identical to the design while improving usability, responsiveness, accessibility, and conversion rates.
+
+---
+
+# PROJECT
+
+Create a modern Home Cleaning Services website called **NeatNest**.
+
+Style:
+
+* Modern SaaS landing page
+* Premium home services brand
+* Clean white design
+* Material Design inspired
+* Soft shadows
+* Rounded cards
+* Large typography
+* Orange primary accent color
+* Mobile-first responsive
+* High conversion focused
+
+Primary CTA:
+
+**Book a Service Now**
+
+---
+
+# BRAND
+
+Company Name:
+
+NeatNest
+
+Tagline:
+
+Reliable Home Services at Your Doorstep
+
+Description:
+
+From plumbing to electrical repairs, our experts ensure top-notch service with a 100% satisfaction guarantee.
+
+---
+
+# COLOR PALETTE
+
+Primary:
+#FF6A1A
+
+Secondary:
+#F5F5F5
+
+Background:
+#FFFFFF
+
+Text:
+#1F1F1F
+
+Muted Text:
+#666666
+
+Border:
+#EAEAEA
+
+Success:
+#22C55E
+
+---
+
+# TYPOGRAPHY
+
+Use:
+
+* Inter
+* Poppins
+* Roboto
+
+Headings:
+
+* Bold
+* Large
+* Clean
+
+Body:
+
+* Highly readable
+* Spacious line height
+
+---
+
+# HEADER
+
+Sticky navigation.
+
+Left:
+
+Logo:
+NeatNest
+
+Center Navigation:
+
+* Home
+* About Us
+* Our Services
+* Testimonials
+* FAQs
+
+Right:
+
+Primary CTA Button
+
+"Book a Service Now"
+
+Rounded pill shape.
+
+---
+
+# HERO SECTION
+
+Two-column layout.
+
+LEFT COLUMN:
+
+Large headline:
+
+Reliable Home Services at Your Doorstep
+
+Supporting paragraph:
+
+From plumbing to electrical repairs, our experts ensure top-notch service with a 100% satisfaction guarantee.
+
+Primary CTA:
+
+Book a Service Now
+
+Trust indicators:
+
+* More than 200 Experts
+* 4.9 Rating on Google
+
+RIGHT COLUMN:
+
+Modern image collage grid.
+
+Include:
+
+* Technician fixing appliance
+* Electrician
+* Home maintenance worker
+* Professional service team
+
+Center statistics card:
+
+100%
+
+Satisfaction Guarantee
+
+Images should overlap slightly and feel premium.
+
+---
+
+# WHY CHOOSE US SECTION
+
+Section title:
+
+Why Choose NeatNest
+
+Description:
+
+We provide reliable, high-quality, and efficient home services for all your home maintenance needs.
+
+Feature cards:
+
+1. Reliable & Fast
+2. Expert Professionals
+3. Transparent Pricing
+4. 24/7 Support
+
+Each card contains:
+
+* Material icon
+* Title
+* Short description
+
+Hover animation required.
+
+---
+
+# SERVICES SECTION
+
+Section title:
+
+Explore our Cleaning Services
+
+Description:
+
+Professional cleaning solutions for homes and businesses.
+
+Display service cards in a responsive grid.
+
+Cards include:
+
+Image
+
+Service Name
+
+Price per hour
+
+Rating
+
+Review count
+
+Favorite button
+
+View Details button
+
+Services:
+
+1. Home Deep Cleaning
+2. Move-In / Move-Out Cleaning
+3. Window & Glass Cleaning
+4. Bathroom & Kitchen Cleaning
+5. Carpet & Upholstery Cleaning
+6. Office & Commercial Cleaning
+
+Sample pricing:
+
+$25/hr to $40/hr
+
+Card design:
+
+* Material Design
+* Rounded corners
+* Soft shadows
+* Hover lift effect
+
+---
+
+# TESTIMONIAL SECTION
+
+Title:
+
+What Our Clients Say
+
+Layout:
+
+3 testimonial cards.
+
+Each card includes:
+
+* Profile photo
+* Name
+* Job title
+* Star rating
+* Review text
+
+Slider controls:
+
+Previous
+Next
+
+Show:
+
+4.9 Rating
+
+Google Reviews Badge
+
+---
+
+# PROMOTIONAL CTA SECTION
+
+Split layout.
+
+LEFT:
+
+Orange background card.
+
+Headline:
+
+Need Help? We've Got You Covered!
+
+Text:
+
+Our 24/7 emergency services are here for your repairs and cleaning needs.
+
+CTA Button:
+
+Make Your Space Shine
+
+RIGHT:
+
+Happy customer image.
+
+---
+
+# FOOTER
+
+Top Footer CTA:
+
+NeatNest
+
+Bringing spotless homes and thriving businesses together.
+
+Button:
+
+Refresh Your Space Today
+
+Newsletter Section:
+
+Email field
+
+Subscribe button
+
+Quick Links:
+
+* Home
+* About Us
+* Services
+* Contact Us
+* FAQs
+
+Services Links:
+
+* Premium Home Cleaning
+* Deep Cleaning
+* Move-In Move-Out Cleaning
+* Office Cleaning
+* Window Cleaning
+
+Bottom Footer:
+
+Privacy Policy
+
+Terms & Conditions
+
+© 2026 NeatNest
+
+---
+
+# MOBILE DESIGN
+
+Generate a fully responsive mobile version matching the provided design.
+
+Requirements:
+
+* Hamburger menu
+* Stacked cards
+* Responsive image grids
+* Touch-friendly buttons
+* Mobile service carousel
+* Optimized spacing
+
+Breakpoints:
+
+* Mobile: 320px–767px
+* Tablet: 768px–1024px
+* Desktop: 1025px+
+
+---
+
+# UX REQUIREMENTS
+
+Improve conversion rate by adding:
+
+* Sticky CTA button
+* Floating call button
+* Quick quote form
+* Service booking modal
+* Customer trust badges
+* Satisfaction guarantee badge
+* Emergency service badge
+
+---
+
+# ACCESSIBILITY
+
+Must satisfy WCAG AA.
+
+Requirements:
+
+* Semantic HTML
+* Keyboard navigation
+* Focus states
+* Proper ARIA labels
+* Color contrast compliance
+* Screen reader support
+
+---
+
+# ANIMATIONS
+
+Use subtle Material Design motion:
+
+* Card hover elevation
+* Fade-in sections
+* Smooth scrolling
+* Button ripple effects
+* Micro-interactions
+
+No excessive animations.
+
+---
+
+# SEO
+
+Include:
+
+* Meta title
+* Meta description
+* Open Graph tags
+* Structured data
+* Local business schema
+
+Target keywords:
+
+* Home Cleaning Services
+* Deep Cleaning
+* Move Out Cleaning
+* Office Cleaning
+* House Cleaning Near Me
+
+---
+
+# DELIVERABLES
+
+Generate:
+
+1. Complete UX Architecture
+2. Sitemap
+3. User Flow
+4. Wireframe Description
+5. Design System
+6. Full Responsive UI Specification
+7. Production Ready HTML
+8. Production Ready SCSS
+9. Production Ready JavaScript
+10. Accessibility Report
+11. SEO Recommendations
+
+The generated result should closely match the uploaded Figma design while maintaining modern Material Design aesthetics and professional home-services branding.
