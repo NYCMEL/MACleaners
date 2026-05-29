@@ -1,19 +1,8 @@
 .macleaners {
-  --macleaners-ink: #16332d;
-  --macleaners-muted: #55736c;
-  --macleaners-brand: #1b8f6a;
-  --macleaners-brand-dark: #11684f;
-  --macleaners-soft: #eef7f2;
-  --macleaners-surface: #ffffff;
-  --macleaners-page: #f8fbf8;
-  --macleaners-line: rgba(22, 51, 45, 0.14);
-  --macleaners-shadow: 0 18px 45px rgba(22, 51, 45, 0.12);
-  --macleaners-radius: 1.5rem;
-
   display: block;
   min-height: 100vh;
-  color: var(--macleaners-ink);
-  background: var(--macleaners-page);
+  color: #16332d;
+  background: #f8fbf8;
   font-family: Arial, Helvetica, sans-serif;
 
   *,
@@ -24,8 +13,7 @@
 
   button,
   input,
-  select,
-  textarea {
+  select {
     font: inherit;
   }
 
@@ -33,28 +21,20 @@
     cursor: pointer;
   }
 
-  a {
-    color: inherit;
-  }
-
   button:focus-visible,
-  a:focus-visible,
   input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
-    outline: 3px solid var(--macleaners-brand);
+  select:focus-visible {
+    outline: 3px solid #1b8f6a;
     outline-offset: 3px;
   }
 
   &__header {
     position: sticky;
     top: 0;
-    z-index: 50;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    z-index: 20;
+    width: 100%;
     background: rgba(248, 251, 248, 0.96);
-    border-bottom: 1px solid var(--macleaners-line);
+    border-bottom: 1px solid rgba(22, 51, 45, 0.12);
     backdrop-filter: blur(16px);
   }
 
@@ -66,13 +46,13 @@
     width: 100%;
     max-width: 1180px;
     margin: 0 auto;
-    padding: 0.85rem 1.25rem;
+    padding: 1rem 1.25rem;
   }
 
   &__brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.8rem;
     min-width: 0;
     padding: 0;
     color: inherit;
@@ -81,22 +61,33 @@
     text-align: left;
   }
 
-  &__logo {
-    display: block;
-    width: 4.4rem;
-    max-height: 3.2rem;
-    object-fit: contain;
+  &__brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 auto;
+    border-radius: 1rem;
+    color: #ffffff;
+    background: #1b8f6a;
+    box-shadow: 0 10px 30px rgba(27, 143, 106, 0.24);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  &__brand-copy {
+    display: grid;
+    gap: 0.15rem;
   }
 
   &__brand-name {
-    display: block;
     font-size: 1.05rem;
     font-weight: 800;
   }
 
   &__brand-tagline {
-    display: block;
-    color: var(--macleaners-muted);
+    color: #55736c;
     font-size: 0.78rem;
   }
 
@@ -124,44 +115,13 @@
     transform: translateY(-1px);
   }
 
-  &__header-action,
-  &__button,
-  &__text-button {
-    min-height: 3rem;
-    border-radius: 999px;
-    border: 0;
-    font-weight: 800;
-    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  }
-
-  &__header-action,
-  &__button--primary {
-    padding: 0.85rem 1.25rem;
-    color: #ffffff;
-    background: var(--macleaners-brand);
-    box-shadow: 0 12px 30px rgba(27, 143, 106, 0.25);
-  }
-
-  &__button--secondary {
-    padding: 0.85rem 1.25rem;
-    color: var(--macleaners-ink);
-    background: #ffffff;
-    border: 1px solid var(--macleaners-line);
-  }
-
-  &__button:hover,
-  &__header-action:hover,
-  &__text-button:hover {
-    transform: translateY(-2px);
-  }
-
   &__menu-button {
     display: none;
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.6rem;
     background: #ffffff;
-    border: 1px solid var(--macleaners-line);
+    border: 1px solid rgba(22, 51, 45, 0.14);
     border-radius: 0.9rem;
     box-shadow: 0 8px 20px rgba(22, 51, 45, 0.08);
 
@@ -169,7 +129,7 @@
       display: block;
       height: 2px;
       margin: 0.28rem 0;
-      background: var(--macleaners-ink);
+      background: #16332d;
       border-radius: 999px;
     }
   }
@@ -177,14 +137,13 @@
   &__mobile-nav {
     display: grid;
     gap: 0.25rem;
-    max-width: 1180px;
-    margin: 0 auto;
     padding: 0 1rem 1rem;
     border-top: 1px solid rgba(22, 51, 45, 0.08);
   }
 
   &__hero,
   &__section,
+  &__quote-section,
   &__footer {
     width: 100%;
     max-width: 1180px;
@@ -194,43 +153,18 @@
 
   &__hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(16rem, 0.95fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
     align-items: center;
     gap: 2rem;
-    min-height: 38rem;
-  }
-
-  &__hero-image,
-  &__about-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__hero-image img,
-  &__about-image img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  &__hero-image img {
-    width: min(100%, 30rem);
-  }
-
-  &__about-image img {
-    width: min(100%, 28rem);
+    min-height: 39rem;
   }
 
   &__section--soft {
     max-width: none;
-    background: var(--macleaners-soft);
+    background: #eef7f2;
 
     > .macleaners__section-header,
-    > .macleaners__grid,
-    > .macleaners__pricing-note,
-    > .macleaners__stats-grid {
+    > .macleaners__grid {
       max-width: 1180px;
       margin-right: auto;
       margin-left: auto;
@@ -241,17 +175,16 @@
     max-width: 48rem;
     margin-bottom: 2rem;
 
-    h1,
     h2 {
       margin: 0.35rem 0 0;
       color: #102923;
-      font-size: clamp(2.25rem, 6vw, 4.8rem);
+      font-size: clamp(2rem, 5vw, 4.5rem);
       line-height: 1.02;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.06em;
     }
 
     p {
-      max-width: 44rem;
+      max-width: 42rem;
       margin: 1rem 0 0;
       color: #4f6963;
       font-size: 1.08rem;
@@ -264,7 +197,7 @@
     align-items: center;
     min-height: 2rem;
     padding: 0.3rem 0.75rem;
-    color: var(--macleaners-brand-dark);
+    color: #11684f;
     background: rgba(27, 143, 106, 0.12);
     border-radius: 999px;
     font-size: 0.78rem;
@@ -273,174 +206,222 @@
     text-transform: uppercase;
   }
 
-  &__actions {
+  &__actions,
+  &__stats {
     display: flex;
     flex-wrap: wrap;
     gap: 0.85rem;
     margin-top: 1.6rem;
   }
 
-  &__pricing-grid,
-  &__stats-grid,
-  &__about-grid,
-  &__contact-grid {
-    display: grid;
-    gap: 1.2rem;
-  }
-
-  &__pricing-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  &__about-grid,
-  &__contact-grid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    align-items: center;
-    gap: 2rem;
-  }
-
-  &__stats-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  &__card,
-  &__price-card,
-  &__stat-card,
-  &__contact-card,
-  &__form {
-    background: var(--macleaners-surface);
-    border: 1px solid var(--macleaners-line);
-    border-radius: var(--macleaners-radius);
-    box-shadow: var(--macleaners-shadow);
-  }
-
-  &__price-card {
-    position: relative;
-    min-height: 18rem;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: transform 180ms ease, box-shadow 180ms ease;
-  }
-
-  &__price-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 55px rgba(22, 51, 45, 0.16);
-  }
-
-  &__price-card--featured {
-    background: var(--macleaners-brand);
-    color: #ffffff;
-  }
-
-  &__price-card--green {
-    background: #f0f4c3;
-  }
-
-  &__price-card--amber {
-    background: #ffecb3;
-  }
-
-  &__badge {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2rem;
-    padding: 0.35rem 0.75rem;
-    color: var(--macleaners-brand-dark);
-    background: #ffffff;
+  &__button,
+  &__text-button {
+    min-height: 3rem;
     border-radius: 999px;
-    font-size: 0.78rem;
+    border: 0;
     font-weight: 800;
+    transition: box-shadow 180ms ease, transform 180ms ease, background 180ms ease;
   }
 
-  &__price-title {
-    margin: 0;
-    font-size: 1.35rem;
+  &__button {
+    padding: 0.85rem 1.25rem;
   }
 
-  &__rule {
-    width: 3rem;
-    height: 0.2rem;
-    margin: 1rem auto;
-    background: currentColor;
-    border-radius: 999px;
-    opacity: 0.28;
+  &__button--primary {
+    color: #ffffff;
+    background: #1b8f6a;
+    box-shadow: 0 14px 30px rgba(27, 143, 106, 0.25);
   }
 
-  &__price {
-    margin: 1.2rem 0 0.5rem;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1;
+  &__button--secondary {
+    color: #16332d;
+    background: #ffffff;
+    border: 1px solid rgba(22, 51, 45, 0.14);
   }
 
-  &__price span {
-    font-size: 0.48em;
-    vertical-align: super;
+  &__button:hover,
+  &__text-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(22, 51, 45, 0.14);
   }
 
-  &__pricing-note {
-    margin-top: 1.8rem;
-    text-align: center;
-  }
-
-  &__feature-list {
-    display: grid;
-    gap: 0.8rem;
-    margin: 1.5rem 0 0;
+  &__stats {
     padding: 0;
     list-style: none;
   }
 
-  &__feature-list li {
-    display: flex;
-    gap: 0.65rem;
-    align-items: flex-start;
-    color: #244d45;
-    line-height: 1.5;
+  &__stat {
+    min-width: 8rem;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(22, 51, 45, 0.08);
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 28px rgba(22, 51, 45, 0.08);
+
+    strong,
+    span {
+      display: block;
+    }
+
+    strong {
+      color: #1b8f6a;
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+
+    span {
+      margin-top: 0.35rem;
+      color: #55736c;
+      font-size: 0.86rem;
+    }
   }
 
-  &__check {
-    color: var(--macleaners-brand-dark);
-    font-weight: 900;
-  }
-
-  &__stat-card {
-    min-height: 9rem;
-    padding: 1.6rem;
-    text-align: center;
-  }
-
-  &__stat-number {
-    display: block;
-    font-size: clamp(2.3rem, 5vw, 4.4rem);
-    font-weight: 900;
-    color: var(--macleaners-brand-dark);
-  }
-
-  &__stat-label {
-    color: var(--macleaners-muted);
-    font-weight: 800;
-  }
-
-  &__contact-card {
+  &__hero-panel {
     display: grid;
-    gap: 0.5rem;
-    max-width: 22rem;
-    padding: 1.5rem;
-    margin-top: 1.4rem;
+    min-height: 28rem;
+    padding: 1rem;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.22)),
+      linear-gradient(135deg, #1b8f6a, #b7e4ce);
+    border-radius: 2rem;
+    box-shadow: 0 24px 60px rgba(22, 51, 45, 0.2);
   }
 
-  &__contact-card a {
-    color: var(--macleaners-brand-dark);
-    font-size: 1.45rem;
+  &__hero-card {
+    align-self: end;
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.2rem;
+    color: #16332d;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 1.5rem;
+    box-shadow: 0 16px 34px rgba(22, 51, 45, 0.16);
+
+    strong {
+      font-size: 1.35rem;
+    }
+
+    span:last-child {
+      color: #55736c;
+    }
+  }
+
+  &__hero-icon,
+  &__material-icon {
+    font-family: "Material Icons", "Material Symbols Outlined", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+
+  &__hero-icon {
+    color: #1b8f6a;
+    font-size: 2.4rem;
+  }
+
+  &__grid,
+  &__steps {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__grid--services {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  &__grid--three,
+  &__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &__card,
+  &__review,
+  &__step,
+  &__form {
+    background: #ffffff;
+    border: 1px solid rgba(22, 51, 45, 0.08);
+    border-radius: 1.5rem;
+    box-shadow: 0 14px 36px rgba(22, 51, 45, 0.08);
+  }
+
+  &__card,
+  &__review,
+  &__step {
+    padding: 1.25rem;
+  }
+
+  &__service-card {
+    display: grid;
+    align-content: start;
+    gap: 0.8rem;
+  }
+
+  &__material-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    color: #11684f;
+    background: rgba(27, 143, 106, 0.12);
+    border-radius: 1rem;
+    font-size: 1.7rem;
+  }
+
+  &__card h3,
+  &__step h3 {
+    margin: 0;
+    color: #102923;
+    font-size: 1.1rem;
+  }
+
+  &__card p,
+  &__step p,
+  &__review blockquote {
+    margin: 0;
+    color: #55736c;
+    line-height: 1.65;
+  }
+
+  &__text-button {
+    justify-self: start;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.8rem;
+    color: #11684f;
+    background: rgba(27, 143, 106, 0.1);
+  }
+
+  &__step span {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    color: #1b8f6a;
     font-weight: 900;
-    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+
+  &__review {
+    margin: 0;
+
+    figcaption {
+      margin-top: 1rem;
+      color: #16332d;
+      font-weight: 800;
+    }
+  }
+
+  &__quote-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 1.15fr);
+    align-items: start;
+    gap: 2rem;
   }
 
   &__form {
-    display: grid;
-    gap: 1rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   &__form-grid {
@@ -452,82 +433,103 @@
   &__field {
     position: relative;
     display: block;
+    min-height: 4rem;
+
+    input,
+    select {
+      width: 100%;
+      min-height: 4rem;
+      padding: 1.3rem 1rem 0.5rem;
+      color: #16332d;
+      background: #f8fbf8;
+      border: 1px solid rgba(22, 51, 45, 0.18);
+      border-radius: 1rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    select {
+      appearance: none;
+    }
+
+    span {
+      position: absolute;
+      top: 1.24rem;
+      left: 1rem;
+      color: #55736c;
+      pointer-events: none;
+      transform-origin: left top;
+      transition: transform 160ms ease, color 160ms ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #1b8f6a;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(27, 143, 106, 0.12);
+    }
+
+    input:focus + span,
+    input:not(:placeholder-shown) + span,
+    select:focus + span,
+    select:not([value=""]) + span {
+      color: #11684f;
+      transform: translateY(-0.82rem) scale(0.78);
+    }
   }
 
-  &__field--full {
-    grid-column: 1 / -1;
-  }
-
-  &__field input,
-  &__field select,
-  &__field textarea {
-    width: 100%;
-    min-height: 3.8rem;
-    padding: 1.35rem 0.95rem 0.55rem;
-    color: var(--macleaners-ink);
-    background: #ffffff;
-    border: 1px solid var(--macleaners-line);
-    border-radius: 1rem;
-  }
-
-  &__field textarea {
-    min-height: 8rem;
-    resize: vertical;
-  }
-
-  &__field span {
-    position: absolute;
-    top: 0.52rem;
-    left: 0.95rem;
-    color: var(--macleaners-muted);
-    font-size: 0.78rem;
-    font-weight: 800;
-    pointer-events: none;
+  &__form--validated {
+    input:invalid,
+    select:invalid {
+      border-color: #b3261e;
+    }
   }
 
   &__form-status {
     min-height: 1.5rem;
-    color: var(--macleaners-brand-dark);
-    font-weight: 800;
+    margin: 1rem 0;
+    color: #11684f;
+    font-weight: 700;
+  }
+
+  &__form-submit {
+    width: 100%;
   }
 
   &__footer {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 1.25rem;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    border-top: 1px solid var(--macleaners-line);
+    color: #d7efe5;
+    background: #102923;
+    border-radius: 2rem 2rem 0 0;
+
+    strong {
+      display: block;
+      color: #ffffff;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0.35rem 0 0;
+    }
   }
 
-  &__to-top {
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
-    z-index: 60;
-    width: 3rem;
-    height: 3rem;
+  &__footer-contact {
+    display: grid;
+    gap: 0.3rem;
+    color: #d7efe5;
+    font-size: 0.9rem;
+  }
+
+  &__footer-link {
     color: #ffffff;
-    background: var(--macleaners-brand);
-    border: 0;
-    border-radius: 999px;
-    box-shadow: var(--macleaners-shadow);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(0.5rem);
-    transition: opacity 180ms ease, transform 180ms ease;
   }
 
-  &__to-top.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 940px) {
-    &__nav,
-    &__header-action {
+  @media (max-width: 980px) {
+    &__nav {
       display: none;
     }
 
@@ -536,40 +538,48 @@
     }
 
     &__hero,
-    &__about-grid,
-    &__contact-grid {
+    &__quote-section,
+    &__footer {
       grid-template-columns: 1fr;
     }
 
-    &__pricing-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    &__hero {
+      min-height: auto;
+      padding-top: 3rem;
+    }
+
+    &__grid--services,
+    &__grid--three,
+    &__steps,
+    &__form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__footer {
+      border-radius: 0;
     }
   }
 
-  @media (max-width: 680px) {
+  @media (max-width: 640px) {
+    &__header-inner,
     &__hero,
     &__section,
+    &__quote-section,
     &__footer {
-      padding: 3.25rem 1rem;
-    }
-
-    &__header-inner {
-      padding: 0.75rem 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
     }
 
     &__brand-tagline {
       display: none;
     }
 
-    &__pricing-grid,
-    &__stats-grid,
-    &__form-grid {
-      grid-template-columns: 1fr;
+    &__hero-panel {
+      min-height: 18rem;
     }
 
-    &__footer {
-      align-items: flex-start;
-      flex-direction: column;
+    &__section-header h2 {
+      font-size: 2.3rem;
     }
   }
 }
