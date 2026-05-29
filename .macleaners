@@ -1,11 +1,11 @@
 ---
-FORGET ALL PREVIOUS CONTEXT for `mtk-macleaners` and remember this specification permanently.
+FORGET ALL PREVIOUS CONTEXT for `macleaners` and remember this specification permanently.
 
 act as a businessman, UI/UX expert       
 
 Create a production-ready Web application named:
 
-`mtk-macleaners`
+`macleaners`
 
 Use this repository as the base: `https://github.com/NYCMEL/MACleaners`
 
@@ -49,9 +49,9 @@ MUST use:
 MACLEANERS STRUCTURE
 
 Root element:
-<mtk-macleaners class="mtk-macleaners"></mtk-macleaners>
+<macleaners class="macleaners"></macleaners>
 
-ALL styles MUST be fully scoped to: .mtk-macleaners
+ALL styles MUST be fully scoped to: .macleaners
 
 NEVER use global selectors.
 
@@ -61,7 +61,7 @@ CONFIGURATION
 
 The macleaners MUST be fully JSON-driven.
 
-ALL UI data MUST come ONLY from: mtk-macleaners.config.js
+ALL UI data MUST come ONLY from: macleaners.config.js
 
 Do NOT hardcode UI content inside HTML or JS.
 
@@ -71,7 +71,7 @@ JAVASCRIPT REQUIREMENTS
 
 Create a dedicated ES6 class named: MtkMacleaners
 
-Initialize automatically inside: mtk-macleaners.js
+Initialize automatically inside: macleaners.js
 
 The macleaners MUST:
 
@@ -90,7 +90,7 @@ WC EVENT SYSTEM
 
 Subscribe using:
 
-wc.subscribe("4-mtk-macleaners", this.onMessage.bind(this))
+wc.subscribe("4-macleaners", this.onMessage.bind(this))
 
 Create: onMessage(message)
 
@@ -156,10 +156,10 @@ Avoid:
 OUTPUT REQUIREMENTS
 
 Generate EXACTLY these complete files:
-- mtk-macleaners.config.js
-- mtk-macleaners.scss
-- mtk-macleaners.html
-- mtk-macleaners.js
+- macleaners.config.js
+- macleaners.scss
+- macleaners.html
+- macleaners.js
 - Minimal index.html. Use css only in this file
 
 NEVER generate:
@@ -174,6 +174,6 @@ ONLY generate complete files.
 
 ---
 ABOUT MY APP:
-- it is a cleaning service for homes and small businesses
-- my current code is here: git@github.com:NYCMEL/MACleaners.git
+- use my current code is here: git@github.com:NYCMEL/MACleaners.git
+- follow images, styles stc. from this github
 
