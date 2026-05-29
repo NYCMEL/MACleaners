@@ -1,15 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MACleaners</title>
-  <link rel="stylesheet" href="macleaners.css">
-</head>
-<body>
-  <wc-include href="macleaners.html"></wc-include>
-  <script src="wc.js"></script>
-  <script src="macleaners.config.js"></script>
-  <script src="macleaners.js"></script>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MACleaners | Cleaning Services</title>
+	<meta name="description" content="A simplified cleaning service website built with HTML, SCSS, and Vanilla JavaScript.">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="pricing/pricing.css">
+	<link rel="stylesheet" href="stats/stats.css">
+    </head>
+
+    <body>
+	<header class="site-header" data-animate>
+	    <a class="brand" href="#home" aria-label="MACleaners home">
+		<img src="./img/logo.png" alt="MACleaners logo">
+	    </a>
+	    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+		<span></span><span></span><span></span>
+	    </button>
+	    <nav class="site-nav" aria-label="Main navigation">
+		<a href="#home">Home</a>
+		<a href="#services">Services</a>
+		<a href="#about">About</a>
+		<a href="#contact">Contact</a>
+	    </nav>
+	    <a class="header-action" href="#contact">Book Service</a>
+	</header>
+
+	<main id="home">
+	    <section class="hero section-grid">
+		<div class="hero-content" data-animate>
+		    <p class="eyebrow">Your trusted neighborhood cleaning service.</p>
+		    <h1>Cleaner spaces, Happier home</h1>
+		    <p class="hero-copy">
+			<b>MA Cleaners</b> makes it easy to keep your home fresh, clean, and stress-free.
+			Their team is reliable,
+			detail-oriented,
+			and focused on giving every customer a comfortable and spotless living space with friendly,
+			professional service.
+		    </p>
+		    <div class="hero-actions">
+			<a class="button primary" href="#contact">Schedule Cleaning</a>
+			<a class="button secondary" href="#services">View Services</a>
+		    </div>
+		</div>
+		<div class="hero-image" data-animate>
+		    <img src="./img/cleaning-woman.png" alt="Cleaning professional holding supplies" width="60%">
+		</div>
+	    </section>
+
+	    <section class="section" id="services">
+		<div class="section-heading" data-animate>
+		    <p class="eyebrow">Our Services</p>
+		    <h2>Reliable cleaning for every need.</h2>
+		    <p>
+			Choose the right service, and our team handles the dirty work with care
+		    </p>
+		</div>
+
+		<div>
+		    <!-- PRICING -->
+		    <main class="pricing-section" aria-label="Cleaning service pricing plans">
+			<article class="pricing-card">
+			    <h2 class="pricing-card__title">Starter</h2>
+			    <div class="pricing-card__rule" aria-hidden="true"></div>
+			    <div class="pricing-card__price"><span>$</span>65</div>
+			    <p class="pricing-card__subhead">Getting to know us</p>
+			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
+			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Single Visit service">Buy Service</a> -->
+			</article>
+
+			<article class="pricing-card pricing-card--featured">
+			    <div class="pricing-card__badge">Most Popular</div>
+			    <div class="pricing-card__price"><span>$</span>115</div>
+			    <p class="pricing-card__subhead">Each Visit. <small><small>($100/Recurring)</small></small></p>
+			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
+			    <!-- <a class="pricing-card__button pricing-card__button--primary" href="#" aria-label="Buy On Demand service">Buy Service</a> -->
+			</article>
+
+			<article class="pricing-card" style="background:#F0F4C3">
+			    <h2 class="pricing-card__title">Deep Cleaning</h2>
+			    <div class="pricing-card__rule" aria-hidden="true"></div>
+			    <div class="pricing-card__price"><span>$</span>200</div>
+			    <p class="pricing-card__subhead">Each Visit</p>
+			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
+			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Maintenance service">Buy Service</a> -->
+			</article>
+
+			<article class="pricing-card" style="background:#FFECB3">
+			    <h2 class="pricing-card__title">Ultimate Pack</h2>
+			    <div class="pricing-card__rule" aria-hidden="true"></div>
+			    <div class="pricing-card__price"><span>$</span>250</div>
+			    <p class="pricing-card__subhead">Each Visit</p>
+			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
+			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Complete Pack service">Buy Service</a> -->
+			</article>
+		    </main>
+		    
+		    <h3 align="center">Average charges for 1,100 SQFT apt or homes</h3>
+		</div>
+	    </section>
+
+	    <section class="section about section-grid" id="about">
+		<div class="about-image" data-animate>
+		    <img src="./img/cleaning-service.png" alt="Cleaning service team illustration" style="width:75%;margin:auto;margin-bottom:40px;">
+		</div>
+		<div class="about-content" data-animate>
+		    <p class="eyebrow">Why choose us</p>
+		    <h2>Simple booking. Spotless results.</h2>
+		    <p>
+			One simple phone call, and we’ll be on our way to make your home cleaner and brighter. <i>To know is is to love us</i>
+		    </p>
+		    <ul class="feature-list">
+			<li><span>✓</span> Residential and small business cleaning</li>
+			<li><span>✓</span> Flexible one-time or recurring service</li>
+			<li><span>✓</span> Trained, professional cleaning teams</li>
+		    </ul>
+		</div>
+	    </section>
+
+	    <!-- STATS -->
+	    <main class="stats-page">
+		<section class="stats" aria-label="Company highlights">
+		    <article class="stats__card" tabindex="0">
+			<strong class="stats__number">8%</strong>
+			<span class="stats__label">New Clients / year</span>
+		    </article>
+
+		    <article class="stats__card" tabindex="0">
+			<strong class="stats__number">89%</strong>
+			<span class="stats__label">Happy returning Clients</span>
+		    </article>
+
+		    <article class="stats__card" tabindex="0">
+			<strong class="stats__number">3+</strong>
+			<span class="stats__label">Years in Business</span>
+		    </article>
+		</section>
+	    </main>
+	    
+	    <section class="section contact section-grid" id="contact">
+		<div data-animate>
+		    <p class="eyebrow">Get started</p>
+		    <h2>Book a cleaning service today.</h2>
+		    <p>Call us the first time and tell us what you’d like done. After that, just give us your phone number when you come back.</p>
+		    <div class="contact-card">
+			<strong>Call us</strong>
+			<a href="tel:6463031234">(646) 303-1234</a>
+		    </div>
+		</div>
+		<!--
+		     <form class="contact-form" data-animate>
+		     <label><span>Name</span><input type="text" name="name" autocomplete="name" placeholder="John Doe" required></label>
+		     <label><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="JohnDoe@gmail.com"required></label>
+		     <label><span>Phone Number</span><input type="phone" name="phone" autocomplete="phone" placeholder="6463031234" required></label>
+		     <label><span>Type of Service</span><select name="service"><option>Home Cleaning</option><option>Office Cleaning</option><option>Window Cleaning</option><option>Laundry</option></select></label>
+		     <label><span>Message</span><textarea name="message" placeholder="What would you like us to do?" rows="5" required></textarea></label>
+		     <button class="button primary" type="submit">Request Quote</button>
+		     <p class="form-status" role="status" aria-live="polite"></p>
+		     </form>
+		-->
+	    </section>
+	</main>
+
+	<footer class="site-footer">
+	    <p>Cleaning © 2026 <b>MA Cleaners</b> LLC, All rights reserved</p>
+	</footer>
+
+	<button class="to-top" type="button" aria-label="Back to top">↑</button>
+	<script src="script.js"></script>
+    
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
