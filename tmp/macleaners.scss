@@ -1,0 +1,98 @@
+.macleaners {
+  display: block;
+  min-height: 100vh;
+  color: #1f2933;
+  background: #e7e9ee;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+.macleaners *, .macleaners *::before, .macleaners *::after { box-sizing: border-box; }
+.macleaners img { max-width: 100%; display: block; }
+.macleaners a { color: inherit; text-decoration: none; }
+.macleaners button, .macleaners input, .macleaners select, .macleaners textarea { font: inherit; }
+.macleaners__header {
+  position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 28px;
+  min-height: 86px; padding: 18px 6vw; background: rgba(255,255,255,.94);
+  backdrop-filter: blur(16px); box-shadow: 0 8px 24px rgba(19,34,56,.08);
+}
+.macleaners__brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.macleaners__brand img { width: 181px; height: auto; }
+.macleaners__nav { display: flex; align-items: center; gap: 28px; margin-left: auto; color: steelblue; font-weight: 700; }
+.macleaners__nav a { position: relative; padding: 8px 0; outline: none; }
+.macleaners__nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 99px; background: #10a6a5; transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+.macleaners__nav a:hover::after, .macleaners__nav a:focus-visible::after { transform: scaleX(1); }
+.macleaners__header-action, .macleaners__button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 12px 22px; border: 0; border-radius: 999px; font-weight: 800; cursor: pointer; transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease; outline: none; }
+.macleaners__header-action:hover, .macleaners__button:hover, .macleaners__header-action:focus-visible, .macleaners__button:focus-visible { transform: translateY(-2px); box-shadow: 0 20px 45px rgba(19,34,56,.12); }
+.macleaners__header-action, .macleaners__button--primary { color: #fff; background: #10a6a5; }
+.macleaners__button--secondary { color: steelblue; background: #ffcc4d; }
+.macleaners__nav-toggle { display: none; width: 44px; height: 44px; margin-left: auto; border: 0; border-radius: 12px; background: #f4fbfb; cursor: pointer; }
+.macleaners__nav-toggle span { display: block; width: 22px; height: 2px; margin: 5px auto; background: steelblue; transition: transform 220ms ease, opacity 220ms ease; }
+.macleaners__section, .macleaners__hero { padding: 86px 6vw; background: #fff; }
+.macleaners__section-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center; }
+.macleaners__hero { min-height: 720px; background: radial-gradient(circle at 70% 20%, #ddffff 0, rgba(221,255,255,0) 34%), linear-gradient(135deg, #f4fbfb 0%, #fff 55%); overflow: hidden; }
+.macleaners__eyebrow { margin: 0 0 12px; color: #10a6a5; font-size: .78rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+.macleaners h1, .macleaners h2, .macleaners h3 { margin: 0; color: steelblue; line-height: 1.08; }
+.macleaners h1 { max-width: 720px; font-size: clamp(3rem, 7vw, 6.2rem); letter-spacing: .02em; }
+.macleaners h2 { font-size: clamp(2.1rem, 4vw, 4rem); }
+.macleaners h3 { font-size: 1.35rem; }
+.macleaners__hero-copy, .macleaners__section-heading p, .macleaners__about-content p, .macleaners__contact p { max-width: 650px; color: #1f2933; font-size: 1.08rem; }
+.macleaners__hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.macleaners__hero-image { position: relative; display: flex; justify-content: center; align-items: end; animation: macleaners-float 5s ease-in-out infinite; }
+.macleaners__hero-image::before { content: ""; position: absolute; right: 0; bottom: 0; width: 78%; height: 68%; z-index: 0; border-radius: 44% 56% 50% 50%; background: #ffcc4d; opacity: .55; }
+.macleaners__hero-image img { position: relative; z-index: 1; width: min(520px, 82%); margin: 0 auto; }
+.macleaners__section-heading { max-width: 760px; margin: 0 auto 42px; text-align: center; }
+.macleaners__pricing-section { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; max-width: 1180px; margin: 0 auto; }
+.macleaners__pricing-card { position: relative; min-height: 260px; padding: 32px 24px; border-radius: 28px; background: #fff; box-shadow: 0 20px 45px rgba(19,34,56,.12); text-align: center; transition: transform 220ms ease, box-shadow 220ms ease; }
+.macleaners__pricing-card:hover, .macleaners__pricing-card:focus-visible { transform: translateY(-6px); box-shadow: 0 26px 55px rgba(19,34,56,.18); outline: 3px solid rgba(16,166,165,.32); outline-offset: 3px; }
+.macleaners__pricing-card--featured { color: #fff; background: #10a6a5; }
+.macleaners__pricing-card--featured .macleaners__pricing-price, .macleaners__pricing-card--featured .macleaners__pricing-subhead, .macleaners__pricing-card--featured .macleaners__pricing-badge { color: #fff; }
+.macleaners__pricing-card--green { background: #f0f4c3; }
+.macleaners__pricing-card--yellow { background: #ffecb3; }
+.macleaners__pricing-title, .macleaners__pricing-badge { color: steelblue; font-size: 1.2rem; font-weight: 900; }
+.macleaners__pricing-rule { width: 52px; height: 4px; margin: 16px auto 22px; border-radius: 99px; background: #10a6a5; }
+.macleaners__pricing-price { color: steelblue; font-size: clamp(3rem, 5vw, 4.8rem); font-weight: 900; line-height: 1; }
+.macleaners__pricing-price span { font-size: .42em; vertical-align: super; }
+.macleaners__pricing-subhead { margin: 16px 0 0; color: #526070; font-weight: 800; }
+.macleaners__pricing-note { margin-top: 36px; text-align: center; }
+.macleaners__about-image img { width: 75%; margin: 0 auto 40px; }
+.macleaners__feature-list { display: grid; gap: 14px; padding: 0; margin: 28px 0 0; list-style: none; }
+.macleaners__feature-list li { display: flex; gap: 12px; align-items: flex-start; color: #1f2933; font-weight: 700; }
+.macleaners__feature-list span { display: inline-flex; justify-content: center; align-items: center; flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%; color: #fff; background: #10a6a5; font-weight: 900; }
+.macleaners__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 24px 6vw; background: #e7e9ee; position: relative; z-index: 5; }
+.macleaners__stats-card { padding: 28px; border-radius: 28px; background: #fff; box-shadow: 0 20px 45px rgba(19,34,56,.12); text-align: center; outline: none; }
+.macleaners__stats-card:focus-visible { outline: 3px solid rgba(16,166,165,.36); outline-offset: 4px; }
+.macleaners__stats-number { display: block; color: #10a6a5; font-size: 2.4rem; line-height: 1; }
+.macleaners__stats-label { display: block; margin-top: 8px; color: steelblue; font-weight: 800; }
+.macleaners__contact-card, .macleaners__form { border-radius: 28px; background: #fff; box-shadow: 0 20px 45px rgba(19,34,56,.12); }
+.macleaners__contact-card { display: inline-grid; gap: 4px; margin-top: 22px; padding: 24px 28px; }
+.macleaners__contact-card strong { color: steelblue; font-size: .9rem; text-transform: uppercase; letter-spacing: .12em; }
+.macleaners__contact-card a { color: #10a6a5; font-size: 1.5rem; font-weight: 900; }
+.macleaners__form { display: grid; gap: 18px; padding: 30px; }
+.macleaners__field { position: relative; display: block; }
+.macleaners__field input, .macleaners__field select, .macleaners__field textarea { width: 100%; border: 2px solid rgba(82,96,112,.18); border-radius: 16px; padding: 20px 16px 10px; color: #1f2933; background: #fff; outline: none; transition: border-color 220ms ease, box-shadow 220ms ease; }
+.macleaners__field input:focus, .macleaners__field select:focus, .macleaners__field textarea:focus { border-color: #10a6a5; box-shadow: 0 0 0 4px rgba(16,166,165,.16); }
+.macleaners__field textarea { resize: vertical; }
+.macleaners__field span { position: absolute; left: 16px; top: 15px; color: #526070; pointer-events: none; transition: transform 220ms ease, font-size 220ms ease, color 220ms ease; }
+.macleaners__field input:focus + span, .macleaners__field input:not(:placeholder-shown) + span, .macleaners__field textarea:focus + span, .macleaners__field textarea:not(:placeholder-shown) + span, .macleaners__field select + span { transform: translateY(-10px); color: #10a6a5; font-size: .74rem; font-weight: 800; }
+.macleaners__form-status { min-height: 24px; margin: 0; color: #10a6a5; font-weight: 800; }
+.macleaners__footer { padding: 30px 6vw; color: #fff; background: #223447; text-align: center; }
+.macleaners__to-top { position: fixed; right: 22px; bottom: 22px; z-index: 30; width: 48px; height: 48px; border: 0; border-radius: 50%; color: #fff; background: #10a6a5; box-shadow: 0 20px 45px rgba(19,34,56,.12); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 220ms ease, transform 220ms ease; }
+.macleaners__to-top--visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.macleaners [data-animate] { opacity: 0; transform: translateY(18px); transition: opacity 520ms ease, transform 520ms ease; }
+.macleaners .macleaners__visible { opacity: 1; transform: translateY(0); }
+@keyframes macleaners-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (max-width: 980px) {
+  .macleaners__header { flex-wrap: wrap; }
+  .macleaners__nav-toggle { display: block; }
+  .macleaners__nav, .macleaners__header-action { display: none; width: 100%; }
+  .macleaners__header--open .macleaners__nav, .macleaners__header--open .macleaners__header-action { display: flex; }
+  .macleaners__header--open .macleaners__nav { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .macleaners__section-grid, .macleaners__pricing-section, .macleaners__stats { grid-template-columns: 1fr; }
+  .macleaners__hero { min-height: auto; }
+}
+@media (max-width: 640px) {
+  .macleaners__header, .macleaners__section, .macleaners__hero, .macleaners__stats, .macleaners__footer { padding-left: 22px; padding-right: 22px; }
+  .macleaners__brand img { width: 150px; }
+  .macleaners h1 { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .macleaners__hero-image img { width: 90%; }
+}

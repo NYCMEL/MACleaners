@@ -17,7 +17,7 @@ body {
 
 .pricing-card {
   position: relative;
-  min-height: 640px;
+  /* min-height: 640px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,14 +40,14 @@ body {
   color: #0f8dcc; }
 
 .pricing-card__badge {
-  width: 70%;
+  width: 130%;
   min-height: 7.65rem;
   display: grid;
   place-items: center;
   margin-bottom: 0.9rem;
   background: #0f8dcc;
   color: #ffffff;
-  font-size: clamp(1.8rem, 2.1vw, 2.35rem);
+  font-size: 28px;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase; }
@@ -55,7 +55,7 @@ body {
 .pricing-card__title {
   margin: 0;
   color: #303033;
-  font-size: clamp(1.8rem, 2vw, 2.3rem);
+  font-size: 28px;
   font-weight: 400;
   letter-spacing: 0.03em;
   line-height: 1.2;
@@ -74,7 +74,7 @@ body {
   gap: 0.35rem;
   margin: 0;
   color: #303033;
-  font-size: clamp(3.3rem, 4vw, 4.25rem);
+  font-size: 4rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1; }
@@ -85,13 +85,13 @@ body {
 .pricing-card__subhead {
   margin: 0.7rem 0 2.1rem;
   color: #303033;
-  font-size: clamp(1.25rem, 1.45vw, 1.65rem);
+  font-size: 1.45rem;
   font-weight: 500; }
 
 .pricing-card__copy {
   margin: 0;
   color: #6f6f72;
-  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-size: 1.3rem;
   font-weight: 500;
   line-height: 1.85; }
 
@@ -106,7 +106,7 @@ body {
   border-radius: 0.35rem;
   color: #6f6f72;
   background: #ffffff;
-  font-size: clamp(1.05rem, 1.35vw, 1.45rem);
+  font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-decoration: none;
@@ -142,10 +142,13 @@ body {
     grid-template-columns: 1fr;
     padding: 1rem; }
   .pricing-card {
-    min-height: 520px;
+    /* min-height: 520px; */
     padding: 2rem 1.5rem 3rem; }
   .pricing-card--featured {
     padding-top: 0; }
   .pricing-card__badge,
   .pricing-card__rule {
-    width: 78%; } }
+    width: 78%;
+    font-size: 24px; } }
+78%;
+    font-size: 24px; } }
