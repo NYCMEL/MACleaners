@@ -1,52 +1,51 @@
 window.macleanersConfig = {
   app: {
-    name: "MACleaners",
-    legalName: "MA Cleaners LLC",
+    name: "macleaners",
+    brandName: "MA Cleaners",
     title: "MACleaners | Cleaning Services",
     description: "A simplified cleaning service website built with HTML, SCSS, and Vanilla JavaScript.",
     phone: "(646) 303-1234",
     phoneHref: "tel:6463031234",
-    copyright: "Cleaning © 2026 MA Cleaners LLC, All rights reserved",
-    logo: "../img/logo.png",
-    logoAlt: "MACleaners logo"
+    copyright: "Cleaning © 2026 MA Cleaners LLC, All rights reserved"
+  },
+  assets: {
+    logo: "./img/logo.png",
+    hero: "./img/cleaning-woman.png",
+    about: "./img/cleaning-service.png"
   },
   navigation: [
-    { label: "Home", target: "home" },
-    { label: "Services", target: "services" },
-    { label: "About", target: "about" },
-    { label: "Contact", target: "contact" }
+    { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" }
   ],
-  header: {
-    action: { label: "Book Service", target: "contact", event: "header:book" }
-  },
+  headerAction: { label: "Book Service", href: "#contact" },
   hero: {
     eyebrow: "Your trusted neighborhood cleaning service.",
     title: "Cleaner spaces, Happier home",
-    description: "MA Cleaners makes it easy to keep your home fresh, clean, and stress-free. Their team is reliable, detail-oriented, and focused on giving every customer a comfortable and spotless living space with friendly, professional service.",
-    image: "../img/cleaning-woman.png",
-    imageAlt: "Cleaning professional holding supplies",
-    primaryAction: { label: "Schedule Cleaning", target: "contact", event: "hero:schedule" },
-    secondaryAction: { label: "View Services", target: "services", event: "hero:services" }
+    copy: "MA Cleaners makes it easy to keep your home fresh, clean, and stress-free. Their team is reliable, detail-oriented, and focused on giving every customer a comfortable and spotless living space with friendly, professional service.",
+    actions: [
+      { label: "Schedule Cleaning", href: "#contact", variant: "primary" },
+      { label: "View Services", href: "#services", variant: "secondary" }
+    ],
+    imageAlt: "Cleaning professional holding supplies"
   },
   services: {
     eyebrow: "Our Services",
     title: "Reliable cleaning for every need.",
-    description: "Choose the right service, and our team handles the dirty work with care"
-  },
-  pricing: {
-    note: "Average charges for 1,100 SQFT apt or homes",
-    cards: [
-      { title: "Starter", price: "65", subhead: "Getting to know us", featured: false, tone: "default" },
-      { title: "", badge: "Most Popular", price: "115", subhead: "Each Visit.", small: "($100/Recurring)", featured: true, tone: "primary" },
-      { title: "Deep Cleaning", price: "200", subhead: "Each Visit", featured: false, tone: "green" },
-      { title: "Ultimate Pack", price: "250", subhead: "Each Visit", featured: false, tone: "amber" }
+    copy: "Choose the right service, and our team handles the dirty work with care",
+    pricingNote: "Average charges for 1,100 SQFT apt or homes",
+    plans: [
+      { title: "Starter", price: "65", subhead: "Getting to know us", featured: false, theme: "default" },
+      { title: "Most Popular", price: "115", subhead: "Each Visit. ($100/Recurring)", featured: true, theme: "featured" },
+      { title: "Deep Cleaning", price: "200", subhead: "Each Visit", featured: false, theme: "green" },
+      { title: "Ultimate Pack", price: "250", subhead: "Each Visit", featured: false, theme: "yellow" }
     ]
   },
   about: {
     eyebrow: "Why choose us",
     title: "Simple booking. Spotless results.",
-    description: "One simple phone call, and we’ll be on our way to make your home cleaner and brighter. To know is is to love us",
-    image: "../img/cleaning-service.png",
+    copy: "One simple phone call, and we'll be on our way to make your home cleaner and brighter. To know us is to love us",
     imageAlt: "Cleaning service team illustration",
     features: [
       "Residential and small business cleaning",
@@ -55,17 +54,26 @@ window.macleanersConfig = {
     ]
   },
   stats: [
-    { value: "8%", label: "New Clients / year" },
-    { value: "89%", label: "Happy returning Clients" },
-    { value: "3+", label: "Years in Business" }
+    { number: "8%", label: "New Clients / year" },
+    { number: "89%", label: "Happy returning Clients" },
+    { number: "3+", label: "Years in Business" }
   ],
   contact: {
     eyebrow: "Get started",
     title: "Book a cleaning service today.",
-    description: "Call us the first time and tell us what you’d like done. After that, just give us your phone number when you come back.",
-    cardTitle: "Call us"
+    copy: "Call us the first time and tell us what you'd like done. After that, just give us your phone number when you come back.",
+    callLabel: "Call us"
   },
-  events: {
-    channel: "4-macleaners"
+  form: {
+    title: "Request service",
+    submitLabel: "Request Quote",
+    successMessage: "Thanks. Your request is ready to be sent.",
+    fields: [
+      { name: "name", label: "Name", type: "text", autocomplete: "name", placeholder: "John Doe", required: true },
+      { name: "email", label: "Email", type: "email", autocomplete: "email", placeholder: "JohnDoe@gmail.com", required: true },
+      { name: "phone", label: "Phone Number", type: "tel", autocomplete: "tel", placeholder: "6463031234", required: true },
+      { name: "service", label: "Type of Service", type: "select", options: ["Home Cleaning", "Office Cleaning", "Window Cleaning", "Laundry"] },
+      { name: "message", label: "Message", type: "textarea", placeholder: "What would you like us to do?", rows: 5, required: true }
+    ]
   }
 };
