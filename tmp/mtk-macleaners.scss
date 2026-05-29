@@ -1,0 +1,294 @@
+.mtk-macleaners {
+  display: block;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #17322d;
+  background: linear-gradient(145deg, #f6fbf9 0%, #e9f7f2 100%);
+
+  .mtk-macleaners__shell,
+  .mtk-macleaners__shell * {
+    box-sizing: border-box;
+  }
+
+  .mtk-macleaners__shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+  }
+
+  .mtk-macleaners__header,
+  .mtk-macleaners__card,
+  .mtk-macleaners__form,
+  .mtk-macleaners__contact {
+    background: rgba(255, 255, 255, .96);
+    border: 1px solid rgba(23, 50, 45, .08);
+    border-radius: 28px;
+    box-shadow: 0 10px 28px rgba(23, 50, 45, .12);
+  }
+
+  .mtk-macleaners__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    position: sticky;
+    top: 12px;
+    z-index: 3;
+    backdrop-filter: blur(14px);
+  }
+
+  .mtk-macleaners__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mtk-macleaners__brand-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -.03em;
+  }
+
+  .mtk-macleaners__tagline,
+  .mtk-macleaners__copy,
+  .mtk-macleaners__card-copy,
+  .mtk-macleaners__form-note,
+  .mtk-macleaners__contact-copy {
+    color: #496a63;
+    line-height: 1.65;
+  }
+
+  .mtk-macleaners__nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .mtk-macleaners__nav-button,
+  .mtk-macleaners__button {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    line-height: 1;
+    min-height: 44px;
+    padding: 12px 18px;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+  }
+
+  .mtk-macleaners__nav-button {
+    background: transparent;
+    color: #17322d;
+  }
+
+  .mtk-macleaners__button {
+    background: #0b6b57;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(11, 107, 87, .28);
+  }
+
+  .mtk-macleaners__button--secondary {
+    background: #e8f4ef;
+    color: #0b6b57;
+    box-shadow: none;
+  }
+
+  .mtk-macleaners__nav-button:hover,
+  .mtk-macleaners__button:hover {
+    transform: translateY(-2px);
+  }
+
+  .mtk-macleaners__nav-button:focus-visible,
+  .mtk-macleaners__button:focus-visible,
+  .mtk-macleaners__field-control:focus-visible {
+    outline: 3px solid #93d8c2;
+    outline-offset: 3px;
+  }
+
+  .mtk-macleaners__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    gap: 24px;
+    align-items: stretch;
+    padding: 56px 0 28px;
+  }
+
+  .mtk-macleaners__hero-content {
+    padding: 28px 8px;
+  }
+
+  .mtk-macleaners__eyebrow {
+    color: #0b6b57;
+    font-size: .78rem;
+    font-weight: 900;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .mtk-macleaners__title {
+    color: #102b26;
+    font-size: clamp(2.25rem, 6vw, 4.8rem);
+    letter-spacing: -.06em;
+    line-height: .96;
+    margin: 14px 0 18px;
+  }
+
+  .mtk-macleaners__section-title {
+    color: #102b26;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: -.04em;
+    line-height: 1.05;
+    margin: 10px 0 18px;
+  }
+
+  .mtk-macleaners__copy {
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+
+  .mtk-macleaners__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .mtk-macleaners__panel {
+    display: grid;
+    gap: 14px;
+  }
+
+  .mtk-macleaners__highlight {
+    align-items: center;
+    background: #ffffff;
+    border-radius: 18px;
+    display: flex;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .mtk-macleaners__icon {
+    align-items: center;
+    background: #dff3eb;
+    border-radius: 50%;
+    color: #0b6b57;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 900;
+    height: 36px;
+    justify-content: center;
+    width: 36px;
+  }
+
+  .mtk-macleaners__section {
+    padding: 28px 0;
+  }
+
+  .mtk-macleaners__grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 22px;
+  }
+
+  .mtk-macleaners__trust-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 22px;
+  }
+
+  .mtk-macleaners__card,
+  .mtk-macleaners__form,
+  .mtk-macleaners__contact {
+    padding: 24px;
+  }
+
+  .mtk-macleaners__card-title,
+  .mtk-macleaners__trust-value,
+  .mtk-macleaners__form-title,
+  .mtk-macleaners__contact-title {
+    color: #102b26;
+    font-weight: 900;
+    margin: 0 0 8px;
+  }
+
+  .mtk-macleaners__trust-value {
+    display: block;
+    font-size: 1.65rem;
+  }
+
+  .mtk-macleaners__form-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 22px 0;
+  }
+
+  .mtk-macleaners__field {
+    position: relative;
+  }
+
+  .mtk-macleaners__field-control {
+    background: #ffffff;
+    border: 1px solid #b8cbc5;
+    border-radius: 16px;
+    color: #17322d;
+    font-size: 1rem;
+    min-height: 58px;
+    padding: 24px 14px 8px;
+    width: 100%;
+  }
+
+  .mtk-macleaners__field-label {
+    color: #42665e;
+    font-size: .76rem;
+    font-weight: 900;
+    left: 14px;
+    pointer-events: none;
+    position: absolute;
+    top: 7px;
+  }
+
+  .mtk-macleaners__status {
+    color: #0b6b57;
+    font-weight: 900;
+    margin-top: 14px;
+    min-height: 24px;
+  }
+
+  .mtk-macleaners__contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 880px) {
+    .mtk-macleaners__header,
+    .mtk-macleaners__hero,
+    .mtk-macleaners__contact {
+      display: block;
+    }
+
+    .mtk-macleaners__nav {
+      justify-content: flex-start;
+      margin-top: 14px;
+    }
+
+    .mtk-macleaners__grid,
+    .mtk-macleaners__trust-grid,
+    .mtk-macleaners__form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mtk-macleaners__contact .mtk-macleaners__button {
+      margin-top: 14px;
+      width: 100%;
+    }
+  }
+}
