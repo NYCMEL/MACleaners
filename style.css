@@ -223,8 +223,8 @@ h3 {
 
 .service-card,
 .blog-card,
-.contact-form,
-.contact-card {
+.contact-card,
+.booking-calculator {
   border-radius: 28px;
   background: #ffffff;
   box-shadow: 0 20px 45px rgba(19, 34, 56, 0.12); }
@@ -242,6 +242,16 @@ h3 {
 .service-card:hover {
   transform: translateY(-8px); }
 
+.pricing-card--deep {
+  background: #f0f4c3; }
+
+.pricing-card--ultimate {
+  background: #ffecb3; }
+
+.pricing-note {
+  margin-top: 28px;
+  text-align: center; }
+
 .about {
   background: #f4fbfb; }
 
@@ -250,6 +260,10 @@ h3 {
   background: #ffffff;
   box-shadow: 0 20px 45px rgba(19, 34, 56, 0.12);
   overflow: hidden; }
+
+.about-image__media {
+  width: 75%;
+  margin: 0 auto 40px; }
 
 .feature-list {
   display: grid;
@@ -330,20 +344,34 @@ h3 {
   font-size: 1.35rem;
   font-weight: 900; }
 
-.contact-form {
+.booking-calculator {
   display: grid;
-  gap: 18px;
-  padding: 28px; }
+  gap: 20px;
+  padding: 28px;
+  color: steelblue; }
 
-.contact-form label {
+.calculator-header {
+  display: grid;
+  gap: 8px; }
+
+.calculator-header p {
+  margin: 0;
+  max-width: none; }
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px; }
+
+.booking-calculator label {
   display: grid;
   gap: 7px;
   color: steelblue;
   font-weight: 800; }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
+.booking-calculator input,
+.booking-calculator select,
+.booking-calculator textarea {
   width: 100%;
   border: 2px solid #e0e8ee;
   border-radius: 18px;
@@ -353,11 +381,64 @@ h3 {
   outline: none;
   transition: border 220ms ease, box-shadow 220ms ease; }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
+.booking-calculator input:focus,
+.booking-calculator select:focus,
+.booking-calculator textarea:focus {
   border-color: #10a6a5;
   box-shadow: 0 0 0 4px rgba(16, 166, 165, 0.14); }
+
+.calculator-total {
+  display: grid;
+  gap: 4px;
+  padding: 22px;
+  border: 2px solid rgba(16, 166, 165, 0.16);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(16, 166, 165, 0.12), rgba(255, 204, 77, 0.22)); }
+
+.calculator-total span {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem; }
+
+.calculator-total strong {
+  color: #10a6a5;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1; }
+
+.calculator-total small {
+  color: #526070;
+  font-weight: 700; }
+
+.calculator-extras {
+  display: grid;
+  gap: 18px; }
+
+.calculator-extras[hidden] {
+  display: none; }
+
+.extras-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px; }
+
+.extras-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border: 2px solid #e0e8ee;
+  border-radius: 18px;
+  background: #f4fbfb;
+  cursor: pointer; }
+
+.extras-list input {
+  width: auto;
+  accent-color: #10a6a5; }
+
+.calculator-notes {
+  display: grid;
+  gap: 7px; }
 
 .form-status {
   margin: 0;
@@ -410,7 +491,8 @@ h3 {
   transform: translateY(0); }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0); }
   50% {
     transform: translateY(-18px); } }
@@ -460,7 +542,9 @@ h3 {
   .service-grid,
   .blog-grid,
   .gallery-grid,
-  .stats {
+  .stats,
+  .calculator-grid,
+  .extras-list {
     grid-template-columns: 1fr; }
   h1 {
     font-size: 3rem; }
@@ -468,20 +552,15 @@ h3 {
     align-items: flex-start;
     flex-direction: column; } }
 
-/* Default placeholder color */
 input::placeholder,
 textarea::placeholder {
-  color: #CCC;
-  font-weight: normal; }
+  color: #cccccc;
+  font-weight: normal;
+  transition: opacity 0.3s ease; }
 
-/* Smooth fade effect on focus */
 input,
 textarea {
   transition: color 0.3s ease; }
-
-input::placeholder,
-textarea::placeholder {
-  transition: opacity 0.3s ease; }
 
 input:focus::placeholder,
 textarea:focus::placeholder {

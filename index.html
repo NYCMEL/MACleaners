@@ -59,51 +59,42 @@
 		</div>
 
 		<div>
-		    <!-- PRICING -->
 		    <main class="pricing-section" aria-label="Cleaning service pricing plans">
 			<article class="pricing-card">
 			    <h2 class="pricing-card__title">Starter</h2>
 			    <div class="pricing-card__rule" aria-hidden="true"></div>
 			    <div class="pricing-card__price"><span>$</span>65</div>
 			    <p class="pricing-card__subhead">Getting to know us</p>
-			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
-			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Single Visit service">Buy Service</a> -->
 			</article>
 
 			<article class="pricing-card pricing-card--featured">
 			    <div class="pricing-card__badge">Most Popular</div>
 			    <div class="pricing-card__price"><span>$</span>115</div>
 			    <p class="pricing-card__subhead">Each Visit. <small><small>($100/Recurring)</small></small></p>
-			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
-			    <!-- <a class="pricing-card__button pricing-card__button--primary" href="#" aria-label="Buy On Demand service">Buy Service</a> -->
 			</article>
 
-			<article class="pricing-card" style="background:#F0F4C3">
+			<article class="pricing-card pricing-card--deep">
 			    <h2 class="pricing-card__title">Deep Cleaning</h2>
 			    <div class="pricing-card__rule" aria-hidden="true"></div>
 			    <div class="pricing-card__price"><span>$</span>200</div>
 			    <p class="pricing-card__subhead">Each Visit</p>
-			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
-			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Maintenance service">Buy Service</a> -->
 			</article>
 
-			<article class="pricing-card" style="background:#FFECB3">
+			<article class="pricing-card pricing-card--ultimate">
 			    <h2 class="pricing-card__title">Ultimate Pack</h2>
 			    <div class="pricing-card__rule" aria-hidden="true"></div>
 			    <div class="pricing-card__price"><span>$</span>250</div>
 			    <p class="pricing-card__subhead">Each Visit</p>
-			    <!-- <p class="pricing-card__copy">Extra charges based on extra work taken.</p> -->
-			    <!-- <a class="pricing-card__button" href="#" aria-label="Buy Complete Pack service">Buy Service</a> -->
 			</article>
 		    </main>
-		    
-		    <h3 align="center">Average charges for 1,100 SQFT apt or homes</h3>
+
+		    <h3 class="pricing-note">Average charges for 1,100 SQFT apt or homes</h3>
 		</div>
 	    </section>
 
 	    <section class="section about section-grid" id="about">
 		<div class="about-image" data-animate>
-		    <img src="./img/cleaning-service.png" alt="Cleaning service team illustration" style="width:75%;margin:auto;margin-bottom:40px;">
+		    <img class="about-image__media" src="./img/cleaning-service.png" alt="Cleaning service team illustration">
 		</div>
 		<div class="about-content" data-animate>
 		    <p class="eyebrow">Why choose us</p>
@@ -119,7 +110,6 @@
 		</div>
 	    </section>
 
-	    <!-- STATS -->
 	    <main class="stats-page">
 		<section class="stats" aria-label="Company highlights">
 		    <article class="stats__card" tabindex="0">
@@ -138,24 +128,116 @@
 		    </article>
 		</section>
 	    </main>
-	    
+
 	    <section class="section contact section-grid" id="contact">
 		<div data-animate>
 		    <p class="eyebrow">Get started</p>
 		    <h2>Book a cleaning service today.</h2>
-		    <p>Call us the first time and tell us what you’d like done. After that, just give us your phone number when you come back.</p>
+		    <p>Start with the price calculator, add extras, then send the request. A team member will confirm availability.</p>
 		    <div class="contact-card">
 			<strong>Call us</strong>
 			<a href="tel:6463031234">(646) 303-1234</a>
 		    </div>
 		</div>
-		<form class="contact-form" data-animate>
-		    <label><span>Name</span><input type="text" name="name" autocomplete="name" placeholder="John Doe" required></label>
-		    <label><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="JohnDoe@gmail.com"required></label>
-		    <label><span>Phone Number</span><input type="phone" name="phone" autocomplete="phone" placeholder="6463031234" required></label>
-		    <label><span>Type of Service</span><select name="service"><option>Home Cleaning</option><option>Office Cleaning</option><option>Window Cleaning</option><option>Laundry</option></select></label>
-		    <label><span>Message</span><textarea name="message" placeholder="What would you like us to do?" rows="5" required></textarea></label>
-		    <button class="button primary" type="submit">Request Quote</button>
+
+		<form class="booking-calculator" data-animate aria-label="Cleaning price calculator">
+		    <div class="calculator-header">
+			<p class="eyebrow">Price Calculator</p>
+			<h3>See your estimate</h3>
+			<p>Pick your service details. Extras appear after you continue.</p>
+		    </div>
+
+		    <div class="calculator-grid">
+			<label>
+			    <span>Service Type</span>
+			    <select name="service" aria-label="Service Type">
+				<option value="standard">Standard Cleaning</option>
+				<option value="deep">Deep Cleaning</option>
+				<option value="move">Move-In / Move-Out</option>
+				<option value="office">Small Office Cleaning</option>
+			    </select>
+			</label>
+
+			<label>
+			    <span>Bedrooms</span>
+			    <select name="bedrooms" aria-label="Bedrooms">
+				<option value="0">Studio</option>
+				<option value="1">1 Bedroom</option>
+				<option value="2" selected>2 Bedrooms</option>
+				<option value="3">3 Bedrooms</option>
+				<option value="4">4 Bedrooms</option>
+				<option value="5">5+ Bedrooms</option>
+			    </select>
+			</label>
+
+			<label>
+			    <span>Bathrooms</span>
+			    <select name="bathrooms" aria-label="Bathrooms">
+				<option value="1">1 Bathroom</option>
+				<option value="2" selected>2 Bathrooms</option>
+				<option value="3">3 Bathrooms</option>
+				<option value="4">4 Bathrooms</option>
+				<option value="5">5+ Bathrooms</option>
+			    </select>
+			</label>
+
+			<label>
+			    <span>Recurring</span>
+			    <select name="frequency" aria-label="Recurring Frequency">
+				<option value="once">One-time</option>
+				<option value="weekly">Weekly</option>
+				<option value="biweekly">Every 2 Weeks</option>
+				<option value="monthly">Monthly</option>
+			    </select>
+			</label>
+		    </div>
+
+		    <div class="calculator-total" aria-live="polite">
+			<span>Estimated total</span>
+			<strong class="calculator-total__price">$0</strong>
+			<small>Flat-rate estimate. Final availability will be confirmed by MACleaners.</small>
+		    </div>
+
+		    <button class="button secondary calculator-continue" type="button">Continue to extras</button>
+
+		    <div class="calculator-extras" hidden>
+			<h3>Choose extras</h3>
+			<div class="extras-list" role="group" aria-label="Cleaning extras">
+			    <label><input type="checkbox" name="extras" value="fridge"> <span>Inside Fridge</span></label>
+			    <label><input type="checkbox" name="extras" value="oven"> <span>Inside Oven</span></label>
+			    <label><input type="checkbox" name="extras" value="windows"> <span>Interior Windows</span></label>
+			    <label><input type="checkbox" name="extras" value="cabinets"> <span>Inside Cabinets</span></label>
+			    <label><input type="checkbox" name="extras" value="laundry"> <span>Laundry Fold</span></label>
+			    <label><input type="checkbox" name="extras" value="pets"> <span>Pet Hair Detail</span></label>
+			</div>
+
+			<div class="calculator-grid">
+			    <label>
+				<span>Name</span>
+				<input type="text" name="name" autocomplete="name" placeholder="John Doe">
+			    </label>
+			    <label>
+				<span>Phone</span>
+				<input type="tel" name="phone" autocomplete="tel" placeholder="6463031234">
+			    </label>
+			    <label>
+				<span>Preferred Date</span>
+				<input type="date" name="date">
+			    </label>
+			    <label>
+				<span>ZIP Code</span>
+				<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="33602">
+			    </label>
+			</div>
+
+			<label class="calculator-notes">
+			    <span>Notes</span>
+			    <textarea name="notes" rows="4" placeholder="Tell us anything important about your home or schedule."></textarea>
+			</label>
+
+			<button class="button primary" type="submit">Request Quote</button>
+		    </div>
+
 		    <p class="form-status" role="status" aria-live="polite"></p>
 		</form>
 	    </section>

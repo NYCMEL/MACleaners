@@ -270,8 +270,8 @@ h3 {
 
 .service-card,
 .blog-card,
-.contact-form,
-.contact-card {
+.contact-card,
+.booking-calculator {
   border-radius: $radius;
   background: $white;
   box-shadow: $shadow;
@@ -293,6 +293,19 @@ h3 {
   }
 }
 
+.pricing-card--deep {
+  background: #f0f4c3;
+}
+
+.pricing-card--ultimate {
+  background: #ffecb3;
+}
+
+.pricing-note {
+  margin-top: 28px;
+  text-align: center;
+}
+
 .about {
   background: $light;
 }
@@ -302,6 +315,11 @@ h3 {
   background: $white;
   box-shadow: $shadow;
   overflow: hidden;
+}
+
+.about-image__media {
+  width: 75%;
+  margin: 0 auto 40px;
 }
 
 .feature-list {
@@ -398,35 +416,117 @@ h3 {
   }
 }
 
-.contact-form {
+.booking-calculator {
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+  color: $dark;
+}
+
+.calculator-header {
+  display: grid;
+  gap: 8px;
+
+  p {
+    margin: 0;
+    max-width: none;
+  }
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.booking-calculator label {
+  display: grid;
+  gap: 7px;
+  color: $dark;
+  font-weight: 800;
+}
+
+.booking-calculator input,
+.booking-calculator select,
+.booking-calculator textarea {
+  width: 100%;
+  border: 2px solid #e0e8ee;
+  border-radius: 18px;
+  padding: 14px 16px;
+  color: $dark;
+  background: $white;
+  outline: none;
+  transition: border $ease, box-shadow $ease;
+}
+
+.booking-calculator input:focus,
+.booking-calculator select:focus,
+.booking-calculator textarea:focus {
+  border-color: $primary;
+  box-shadow: 0 0 0 4px rgba(16, 166, 165, 0.14);
+}
+
+.calculator-total {
+  display: grid;
+  gap: 4px;
+  padding: 22px;
+  border: 2px solid rgba(16, 166, 165, 0.16);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(16, 166, 165, 0.12), rgba(255, 204, 77, 0.22));
+
+  span {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+  }
+
+  strong {
+    color: $primary;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1;
+  }
+
+  small {
+    color: $text;
+    font-weight: 700;
+  }
+}
+
+.calculator-extras {
   display: grid;
   gap: 18px;
-  padding: 28px;
+}
+
+.calculator-extras[hidden] {
+  display: none;
+}
+
+.extras-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 
   label {
-    display: grid;
-    gap: 7px;
-    color: $dark;
-    font-weight: 800;
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
     border: 2px solid #e0e8ee;
     border-radius: 18px;
-    padding: 14px 16px;
-    color: $dark;
-    background: $white;
-    outline: none;
-    transition: border $ease, box-shadow $ease;
-
-    &:focus {
-      border-color: $primary;
-      box-shadow: 0 0 0 4px rgba(16, 166, 165, 0.14);
-    }
+    background: $light;
+    cursor: pointer;
   }
+
+  input {
+    width: auto;
+    accent-color: $primary;
+  }
+}
+
+.calculator-notes {
+  display: grid;
+  gap: 7px;
 }
 
 .form-status {
@@ -487,9 +587,11 @@ h3 {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-18px);
   }
@@ -566,7 +668,9 @@ h3 {
   .service-grid,
   .blog-grid,
   .gallery-grid,
-  .stats {
+  .stats,
+  .calculator-grid,
+  .extras-list {
     grid-template-columns: 1fr;
   }
 
@@ -580,22 +684,16 @@ h3 {
   }
 }
 
-/* Default placeholder color */
 input::placeholder,
 textarea::placeholder {
-    color: #CCC;
-    font-weight: normal;
+  color: #cccccc;
+  font-weight: normal;
+  transition: opacity 0.3s ease;
 }
 
-/* Smooth fade effect on focus */
 input,
 textarea {
   transition: color 0.3s ease;
-}
-
-input::placeholder,
-textarea::placeholder {
-  transition: opacity 0.3s ease;
 }
 
 input:focus::placeholder,

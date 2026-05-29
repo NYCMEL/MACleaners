@@ -5,7 +5,31 @@ class WeCleanSite {
     this.toTop = document.querySelector('.to-top');
     this.animatedItems = Array.from(document.querySelectorAll('[data-animate]'));
     this.countItems = Array.from(document.querySelectorAll('[data-count]'));
-    this.form = document.querySelector('.contact-form');
+    this.calculator = document.querySelector('.booking-calculator');
+    this.calculatorPrices = {
+      service: {
+        standard: 115,
+        deep: 200,
+        move: 225,
+        office: 150
+      },
+      bedroom: 25,
+      bathroom: 30,
+      frequency: {
+        once: 0,
+        weekly: -20,
+        biweekly: -15,
+        monthly: -10
+      },
+      extras: {
+        fridge: 35,
+        oven: 35,
+        windows: 45,
+        cabinets: 40,
+        laundry: 30,
+        pets: 25
+      }
+    };
     this.init();
   }
 
@@ -13,7 +37,7 @@ class WeCleanSite {
     this.bindNavigation();
     this.bindScrollTop();
     this.bindAnimations();
-    this.bindForm();
+    this.bindCalculator();
   }
 
   bindNavigation() {
@@ -86,15 +110,60 @@ class WeCleanSite {
     requestAnimationFrame(tick);
   }
 
-  bindForm() {
-    if (!this.form) return;
+  bindCalculator() {
+    if (!this.calculator) return;
 
-    this.form.addEventListener('submit', (event) => {
+    const continueButton = this.calculator.querySelector('.calculator-continue');
+    const extrasPanel = this.calculator.querySelector('.calculator-extras');
+
+    this.calculator.addEventListener('input', () => this.updateCalculatorTotal());
+    this.calculator.addEventListener('change', () => this.updateCalculatorTotal());
+
+    if (continueButton && extrasPanel) {
+      continueButton.addEventListener('click', () => {
+        extrasPanel.hidden = false;
+        continueButton.hidden = true;
+        this.updateCalculatorTotal();
+        const firstExtra = extrasPanel.querySelector('input, select, textarea, button');
+        if (firstExtra) firstExtra.focus({ preventScroll: true });
+      });
+    }
+
+    this.calculator.addEventListener('submit', (event) => {
       event.preventDefault();
-      const status = this.form.querySelector('.form-status');
-      if (status) status.textContent = 'Thanks. Your request is ready to be sent.';
-      this.form.reset();
+      const status = this.calculator.querySelector('.form-status');
+      const total = this.getCalculatorTotal();
+      if (status) {
+        status.textContent = `Thanks. Your estimate is $${total}. A team member will confirm availability.`;
+      }
     });
+
+    this.updateCalculatorTotal();
+  }
+
+  getCalculatorTotal() {
+    if (!this.calculator) return 0;
+
+    const formData = new FormData(this.calculator);
+    const service = formData.get('service') || 'standard';
+    const bedrooms = Number(formData.get('bedrooms') || 0);
+    const bathrooms = Number(formData.get('bathrooms') || 1);
+    const frequency = formData.get('frequency') || 'once';
+    const extras = formData.getAll('extras');
+
+    const base = this.calculatorPrices.service[service] || this.calculatorPrices.service.standard;
+    const bedroomPrice = bedrooms * this.calculatorPrices.bedroom;
+    const bathroomPrice = Math.max(bathrooms - 1, 0) * this.calculatorPrices.bathroom;
+    const recurringDiscount = this.calculatorPrices.frequency[frequency] || 0;
+    const extrasPrice = extras.reduce((sum, item) => sum + (this.calculatorPrices.extras[item] || 0), 0);
+
+    return Math.max(base + bedroomPrice + bathroomPrice + recurringDiscount + extrasPrice, 65);
+  }
+
+  updateCalculatorTotal() {
+    const price = this.calculator.querySelector('.calculator-total__price');
+    if (!price) return;
+    price.textContent = `$${this.getCalculatorTotal()}`;
   }
 }
 
