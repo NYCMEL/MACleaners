@@ -33,14 +33,14 @@
   outline: none; }
 
 .stats__number {
-  font-size: clamp(3.5rem, 5vw, 4.75rem);
+  font-size: 4.25rem;
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.04em;
   color: #b18407; }
 
 .stats__label {
-  font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+  font-size: 1.5rem;
   line-height: 1.2;
   font-weight: 600;
   color: #646973;

@@ -145,10 +145,10 @@ h3 {
   line-height: 1.08; }
 
 h1 {
-  font-size: clamp(3rem, 7vw, 6.2rem); }
+  font-size: 5.4rem; }
 
 h2 {
-  font-size: clamp(2.1rem, 4vw, 4rem); }
+  font-size: 3.4rem; }
 
 h3 {
   font-size: 1.35rem; }
@@ -472,21 +472,6 @@ h3 {
 input::placeholder,
 textarea::placeholder {
   color: #CCC;
-  font-weight: normal; }
-
-/* Smooth fade effect on focus */
-input,
-textarea {
-  transition: color 0.3s ease; }
-
-input::placeholder,
-textarea::placeholder {
-  transition: opacity 0.3s ease; }
-
-input:focus::placeholder,
-textarea:focus::placeholder {
-  opacity: 0.15; }
- #CCC;
   font-weight: normal; }
 
 /* Smooth fade effect on focus */

@@ -1,85 +1,17 @@
 (() => {
   "use strict";
 
-  const DEFAULT_CHANNEL = "4-macleaners";
-
-  const ensureWc = () => {
-    const existing = window.wc || {};
-
-    if (typeof existing.log !== "function") {
-      existing.log = (...args) => {
-        if (window.console && typeof window.console.log === "function") {
-          window.console.log(...args);
-        }
-      };
-    }
-
-    if (typeof existing.publish !== "function") {
-      existing.publish = (name, detail = {}) => {
-        window.dispatchEvent(new CustomEvent(name, { detail }));
-      };
-    }
-
-    if (typeof existing.subscribe !== "function") {
-      existing.subscribe = (name, callback) => {
-        if (typeof callback !== "function") {
-          return null;
-        }
-        const handler = (event) => callback(event.detail || event);
-        window.addEventListener(name, handler);
-        return () => window.removeEventListener(name, handler);
-      };
-    }
-
-    window.wc = existing;
-    return existing;
-  };
-
-  const defineInclude = () => {
-    if (window.customElements && !window.customElements.get("wc-include")) {
-      class WcInclude extends HTMLElement {
-        connectedCallback() {
-          const href = this.getAttribute("href");
-          if (!href) {
-            return;
-          }
-
-          fetch(href, { credentials: "same-origin" })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`Unable to load ${href}`);
-              }
-              return response.text();
-            })
-            .then((markup) => {
-              this.innerHTML = markup;
-              window.dispatchEvent(new CustomEvent("wc-include:loaded", {
-                detail: { href, element: this }
-              }));
-            })
-            .catch((error) => {
-              ensureWc().log("wc-include:error", { href, error: error.message });
-            });
-        }
-      }
-
-      window.customElements.define("wc-include", WcInclude);
-    }
-  };
-
   class MtkMacleaners {
-    constructor(element, config) {
-      this.root = element;
-      this.config = config || {};
-      this.wc = ensureWc();
-      this.events = this.config.events || {};
-      this.channel = this.events.channel || DEFAULT_CHANNEL;
-      this.isOpen = false;
-      this.onMessage = this.onMessage.bind(this);
-      this.onScroll = this.onScroll.bind(this);
-      this.handleRootClick = this.handleRootClick.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.unsubscribe = null;
+    constructor(root, config) {
+      this.root = root;
+      this.config = config;
+      this.state = {
+        menuOpen: false,
+        selectedService: "",
+        formData: {}
+      };
+      this.boundHandlers = [];
+      this.init();
     }
 
     init() {
@@ -88,354 +20,481 @@
       }
 
       this.root.dataset.macleanersReady = "true";
+      this.ensureWc();
       this.render();
       this.bindEvents();
-      this.observeAnimation();
-      this.publish(this.events.ready || "macleaners:ready", {
-        app: this.config.app && this.config.app.name ? this.config.app.name : "macleaners"
+      this.subscribe();
+      this.publish("macleaners:ready", {
+        component: "macleaners",
+        status: "ready"
       });
     }
 
-    bindEvents() {
-      this.root.addEventListener("click", this.handleRootClick);
-      const form = this.root.querySelector(".macleaners__form");
-      if (form) {
-        form.addEventListener("submit", this.handleSubmit);
+    ensureWc() {
+      const safeLog = (...args) => {
+        if (window.console && typeof window.console.log === "function") {
+          window.console.log(...args);
+        }
+      };
+
+      if (!window.wc) {
+        window.wc = {};
       }
-      window.addEventListener("scroll", this.onScroll, { passive: true });
-      this.unsubscribe = this.wc.subscribe(this.channel, this.onMessage);
+
+      if (typeof window.wc.log !== "function") {
+        window.wc.log = safeLog;
+      }
+
+      if (typeof window.wc.publish !== "function") {
+        window.wc.publish = (name, detail) => {
+          window.dispatchEvent(new CustomEvent(name, { detail }));
+        };
+      }
+
+      if (typeof window.wc.subscribe !== "function") {
+        window.wc.subscribe = (name, callback) => {
+          window.addEventListener(name, event => callback(event.detail || event));
+        };
+      }
     }
 
-    publish(type, payload = {}) {
+    subscribe() {
+      wc.subscribe("4-macleaners", this.onMessage.bind(this));
+    }
+
+    onMessage(message) {
+      const action = message && message.action ? message.action : "";
+      if (action === "openQuote") {
+        this.scrollToSection("quote");
+      }
+
+      if (action === "selectService" && message.service) {
+        this.state.selectedService = message.service;
+        this.setSelectValue("cleaningType", message.service);
+        this.scrollToSection("quote");
+      }
+
+      if (action === "reset") {
+        this.state.formData = {};
+        this.render();
+        this.bindEvents();
+      }
+    }
+
+    publish(name, payload) {
       const detail = {
-        type,
         source: "macleaners",
         timestamp: new Date().toISOString(),
         payload
       };
-      this.wc.log(type, detail);
-      this.wc.publish(this.channel, detail);
-    }
-
-    onMessage(message) {
-      if (!message || message.source === "macleaners") {
-        return;
-      }
-
-      const type = message.type || message.action;
-      if (type === "close-menu") {
-        this.setMenu(false);
-      }
-      if (type === "open-menu") {
-        this.setMenu(true);
-      }
+      wc.log("macleaners publish", name, detail);
+      wc.publish(name, detail);
     }
 
     render() {
-      const app = this.config.app || {};
-      const assets = this.config.assets || {};
-      const hero = this.config.hero || {};
-      const services = this.config.services || {};
-      const about = this.config.about || {};
-      const contact = this.config.contact || {};
+      this.root.innerHTML = [
+        this.headerTemplate(),
+        this.heroTemplate(),
+        this.servicesTemplate(),
+        this.trustTemplate(),
+        this.processTemplate(),
+        this.reviewsTemplate(),
+        this.quoteTemplate(),
+        this.footerTemplate()
+      ].join("");
+    }
 
-      this.root.innerHTML = `
-        <header class="macleaners__header" data-macleaners-header>
-          <a class="macleaners__brand" href="#home" aria-label="${this.escape(app.brandName || "MA Cleaners")} home" data-nav-target="home">
-            <img src="${this.escapeAttr(assets.logo || "")}" alt="${this.escapeAttr(app.brandName || "MA Cleaners")} logo">
-          </a>
-          <button class="macleaners__nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
-            <span></span><span></span><span></span>
-          </button>
-          <nav class="macleaners__nav" aria-label="Main navigation">
-            ${this.renderNavigation()}
-          </nav>
-          ${this.renderHeaderAction()}
+    headerTemplate() {
+      const app = this.config.app;
+      const nav = this.config.navigation.map(item => `
+        <button class="macleaners__nav-link" type="button" data-scroll-target="${this.escape(item.target)}">
+          ${this.escape(item.label)}
+        </button>
+      `).join("");
+
+      return `
+        <header class="macleaners__header" data-section="top">
+          <div class="macleaners__header-inner">
+            <button class="macleaners__brand" type="button" data-scroll-target="top" aria-label="${this.escape(app.name)} home">
+              <span class="macleaners__brand-mark" aria-hidden="true">${this.escape(app.logoText)}</span>
+              <span class="macleaners__brand-copy">
+                <span class="macleaners__brand-name">${this.escape(app.name)}</span>
+                <span class="macleaners__brand-tagline">${this.escape(app.tagline)}</span>
+              </span>
+            </button>
+            <nav class="macleaners__nav" aria-label="Main navigation">
+              ${nav}
+            </nav>
+            <button class="macleaners__menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="macleaners__mobile-nav" hidden>
+            ${nav}
+          </div>
         </header>
+      `;
+    }
+
+    heroTemplate() {
+      const hero = this.config.hero;
+      const stats = hero.stats.map(item => `
+        <li class="macleaners__stat">
+          <strong>${this.escape(item.value)}</strong>
+          <span>${this.escape(item.label)}</span>
+        </li>
+      `).join("");
+
+      return `
         <main class="macleaners__main">
-          <section class="macleaners__hero macleaners__section-grid" id="home">
-            <div class="macleaners__hero-content" data-animate>
-              <p class="macleaners__eyebrow">${this.escape(hero.eyebrow || "")}</p>
-              <h1>${this.escape(hero.headline || "")}</h1>
-              <p class="macleaners__hero-copy">${this.boldBrand(hero.copy || "", app.brandName || "MA Cleaners")}</p>
-              <div class="macleaners__hero-actions">
-                ${this.renderAction(this.config.actions && this.config.actions.heroPrimary)}
-                ${this.renderAction(this.config.actions && this.config.actions.heroSecondary)}
+          <section class="macleaners__hero" data-section="hero">
+            <div class="macleaners__hero-content">
+              ${this.sectionHeader(hero.eyebrow, hero.title, hero.description)}
+              <div class="macleaners__actions">
+                <button class="macleaners__button macleaners__button--primary" type="button" data-scroll-target="${this.escape(hero.primaryAction.target)}" data-event-name="${this.escape(hero.primaryAction.event)}">
+                  ${this.escape(hero.primaryAction.label)}
+                </button>
+                <button class="macleaners__button macleaners__button--secondary" type="button" data-scroll-target="${this.escape(hero.secondaryAction.target)}" data-event-name="${this.escape(hero.secondaryAction.event)}">
+                  ${this.escape(hero.secondaryAction.label)}
+                </button>
               </div>
-            </div>
-            <div class="macleaners__hero-image" data-animate>
-              <img src="${this.escapeAttr(assets.heroImage || "")}" alt="${this.escapeAttr(hero.imageAlt || "")}">
-            </div>
-          </section>
-          <section class="macleaners__section" id="services">
-            <div class="macleaners__section-heading" data-animate>
-              <p class="macleaners__eyebrow">${this.escape(services.eyebrow || "")}</p>
-              <h2>${this.escape(services.headline || "")}</h2>
-              <p>${this.escape(services.copy || "")}</p>
-            </div>
-            <div class="macleaners__pricing-section" aria-label="Cleaning service pricing plans">
-              ${this.renderPlans(services.plans || [])}
-            </div>
-            <h3 class="macleaners__pricing-note">${this.escape(services.note || "")}</h3>
-          </section>
-          <section class="macleaners__section macleaners__section-grid" id="about">
-            <div class="macleaners__about-image" data-animate>
-              <img src="${this.escapeAttr(assets.aboutImage || "")}" alt="${this.escapeAttr(about.imageAlt || "")}">
-            </div>
-            <div class="macleaners__about-content" data-animate>
-              <p class="macleaners__eyebrow">${this.escape(about.eyebrow || "")}</p>
-              <h2>${this.escape(about.headline || "")}</h2>
-              <p>${this.escape(about.copy || "")}</p>
-              <ul class="macleaners__feature-list">
-                ${(about.features || []).map((item) => `<li><span aria-hidden="true">✓</span>${this.escape(item)}</li>`).join("")}
+              <ul class="macleaners__stats" aria-label="Service highlights">
+                ${stats}
               </ul>
             </div>
-          </section>
-          <section class="macleaners__stats" aria-label="Company highlights">
-            ${this.renderStats(this.config.stats || [])}
-          </section>
-          <section class="macleaners__section macleaners__section-grid" id="contact">
-            <div class="macleaners__contact" data-animate>
-              <p class="macleaners__eyebrow">${this.escape(contact.eyebrow || "")}</p>
-              <h2>${this.escape(contact.headline || "")}</h2>
-              <p>${this.escape(contact.copy || "")}</p>
-              <div class="macleaners__contact-card">
-                <strong>${this.escape(contact.phoneLabel || "")}</strong>
-                <a href="${this.escapeAttr(contact.phoneHref || "#")}">${this.escape(contact.phoneDisplay || "")}</a>
+            <div class="macleaners__hero-panel" aria-label="MACleaners service summary">
+              <div class="macleaners__hero-card">
+                <span class="macleaners__hero-icon" aria-hidden="true">cleaning_services</span>
+                <strong>${this.escape(this.config.app.serviceArea)}</strong>
+                <span>${this.escape(this.config.app.businessHours)}</span>
               </div>
             </div>
-            ${this.renderForm(contact)}
           </section>
         </main>
-        <footer class="macleaners__footer">
-          <p>${this.escape(app.copyright || "")}</p>
-        </footer>
-        <button class="macleaners__to-top" type="button" aria-label="Back to top" data-scroll-top>↑</button>
       `;
     }
 
-    renderNavigation() {
-      return (this.config.navigation || []).map((item) => {
-        return `<a href="#${this.escapeAttr(item.target)}" data-nav-target="${this.escapeAttr(item.target)}">${this.escape(item.label)}</a>`;
-      }).join("");
-    }
-
-    renderHeaderAction() {
-      const action = this.config.actions && this.config.actions.header;
-      if (!action) {
-        return "";
-      }
-      return `<button class="macleaners__header-action" type="button" data-nav-target="${this.escapeAttr(action.target)}">${this.escape(action.label)}</button>`;
-    }
-
-    renderAction(action) {
-      if (!action) {
-        return "";
-      }
-      const variant = action.type === "secondary" ? "macleaners__button--secondary" : "macleaners__button--primary";
-      return `<button class="macleaners__button ${variant}" type="button" data-nav-target="${this.escapeAttr(action.target)}">${this.escape(action.label)}</button>`;
-    }
-
-    renderPlans(plans) {
-      return plans.map((plan) => {
-        const modifier = plan.variant ? ` macleaners__pricing-card--${this.escapeAttr(plan.variant)}` : "";
-        const titleClass = plan.variant === "featured" ? "macleaners__pricing-badge" : "macleaners__pricing-title";
-        return `
-          <article class="macleaners__pricing-card${modifier}" tabindex="0">
-            <h3 class="${titleClass}">${this.escape(plan.title || "")}</h3>
-            ${plan.variant === "featured" ? "" : `<div class="macleaners__pricing-rule" aria-hidden="true"></div>`}
-            <div class="macleaners__pricing-price"><span>${this.escape(plan.currency || "$")}</span>${this.escape(plan.price || "")}</div>
-            <p class="macleaners__pricing-subhead">${this.escape(plan.subhead || "")}</p>
-          </article>
-        `;
-      }).join("");
-    }
-
-    renderStats(stats) {
-      return stats.map((item) => `
-        <article class="macleaners__stats-card" tabindex="0">
-          <strong class="macleaners__stats-number">${this.escape(item.number || "")}</strong>
-          <span class="macleaners__stats-label">${this.escape(item.label || "")}</span>
+    servicesTemplate() {
+      const services = this.config.services.items.map(item => `
+        <article class="macleaners__card macleaners__service-card">
+          <span class="macleaners__material-icon" aria-hidden="true">${this.escape(item.icon)}</span>
+          <h3>${this.escape(item.name)}</h3>
+          <p>${this.escape(item.description)}</p>
+          <button class="macleaners__text-button" type="button" data-service-name="${this.escape(item.name)}" data-event-name="${this.escape(item.event)}">
+            Request this service
+          </button>
         </article>
       `).join("");
-    }
 
-    renderForm(contact) {
-      const fields = contact.fields || [];
       return `
-        <form class="macleaners__form" data-animate aria-label="Request cleaning service">
-          ${fields.map((field) => this.renderField(field)).join("")}
-          ${this.renderAction(this.config.actions && this.config.actions.formSubmit)}
-          <p class="macleaners__form-status" role="status" aria-live="polite"></p>
-        </form>
+        <section class="macleaners__section" data-section="services">
+          ${this.sectionHeader(this.config.services.eyebrow, this.config.services.title)}
+          <div class="macleaners__grid macleaners__grid--services">
+            ${services}
+          </div>
+        </section>
       `;
     }
 
-    renderField(field) {
-      const required = field.required ? " required" : "";
-      const autocomplete = field.autocomplete ? ` autocomplete="${this.escapeAttr(field.autocomplete)}"` : "";
-      const placeholder = field.placeholder !== undefined ? ` placeholder="${this.escapeAttr(field.placeholder)}"` : "";
-      const name = this.escapeAttr(field.name || "field");
-      const label = this.escape(field.label || "");
-
-      if (field.type === "select") {
-        return `
-          <label class="macleaners__field">
-            <select name="${name}"${required} aria-label="${this.escapeAttr(field.label || "")}">
-              ${(field.options || []).map((option) => `<option>${this.escape(option)}</option>`).join("")}
-            </select>
-            <span>${label}</span>
-          </label>
-        `;
-      }
-
-      if (field.type === "textarea") {
-        return `
-          <label class="macleaners__field">
-            <textarea name="${name}" rows="${Number(field.rows || 5)}"${placeholder}${required}></textarea>
-            <span>${label}</span>
-          </label>
-        `;
-      }
+    trustTemplate() {
+      const cards = this.config.trust.cards.map(card => `
+        <article class="macleaners__card">
+          <h3>${this.escape(card.title)}</h3>
+          <p>${this.escape(card.description)}</p>
+        </article>
+      `).join("");
 
       return `
+        <section class="macleaners__section macleaners__section--soft" data-section="trust">
+          ${this.sectionHeader(this.config.trust.eyebrow, this.config.trust.title)}
+          <div class="macleaners__grid macleaners__grid--three">
+            ${cards}
+          </div>
+        </section>
+      `;
+    }
+
+    processTemplate() {
+      const steps = this.config.process.steps.map(step => `
+        <article class="macleaners__step">
+          <span>${this.escape(step.number)}</span>
+          <h3>${this.escape(step.title)}</h3>
+          <p>${this.escape(step.description)}</p>
+        </article>
+      `).join("");
+
+      return `
+        <section class="macleaners__section" data-section="process">
+          ${this.sectionHeader(this.config.process.eyebrow, this.config.process.title)}
+          <div class="macleaners__steps">
+            ${steps}
+          </div>
+        </section>
+      `;
+    }
+
+    reviewsTemplate() {
+      const reviews = this.config.reviews.items.map(item => `
+        <figure class="macleaners__review">
+          <blockquote>${this.escape(item.quote)}</blockquote>
+          <figcaption>${this.escape(item.name)}</figcaption>
+        </figure>
+      `).join("");
+
+      return `
+        <section class="macleaners__section macleaners__section--soft" data-section="reviews">
+          ${this.sectionHeader(this.config.reviews.eyebrow, this.config.reviews.title)}
+          <div class="macleaners__grid macleaners__grid--three">
+            ${reviews}
+          </div>
+        </section>
+      `;
+    }
+
+    quoteTemplate() {
+      const quote = this.config.quote;
+      const fields = quote.fields.map(field => this.fieldTemplate(field)).join("");
+      const selects = quote.selects.map(select => this.selectTemplate(select)).join("");
+
+      return `
+        <section class="macleaners__section macleaners__quote-section" data-section="quote">
+          <div class="macleaners__quote-copy">
+            ${this.sectionHeader(quote.eyebrow, quote.title, quote.description)}
+          </div>
+          <form class="macleaners__form" novalidate aria-label="Request a cleaning quote">
+            <div class="macleaners__form-grid">
+              ${fields}
+              ${selects}
+            </div>
+            <div class="macleaners__form-status" role="status" aria-live="polite"></div>
+            <button class="macleaners__button macleaners__button--primary macleaners__form-submit" type="submit">
+              ${this.escape(quote.submitLabel)}
+            </button>
+          </form>
+        </section>
+      `;
+    }
+
+    footerTemplate() {
+      const links = this.config.footer.links.map(link => `
+        <button type="button" class="macleaners__footer-link" data-scroll-target="${this.escape(link.target)}">
+          ${this.escape(link.label)}
+        </button>
+      `).join("");
+
+      return `
+        <footer class="macleaners__footer" data-section="contact">
+          <div>
+            <strong>${this.escape(this.config.footer.headline)}</strong>
+            <p>${this.escape(this.config.footer.description)}</p>
+          </div>
+          <div class="macleaners__footer-contact">
+            <span>${this.escape(this.config.app.phone)}</span>
+            <span>${this.escape(this.config.app.email)}</span>
+            <span>${this.escape(this.config.app.businessHours)}</span>
+          </div>
+          <nav class="macleaners__footer-nav" aria-label="Footer navigation">
+            ${links}
+          </nav>
+        </footer>
+      `;
+    }
+
+    sectionHeader(eyebrow, title, description) {
+      return `
+        <div class="macleaners__section-header">
+          <span class="macleaners__eyebrow">${this.escape(eyebrow || "")}</span>
+          <h2>${this.escape(title || "")}</h2>
+          ${description ? `<p>${this.escape(description)}</p>` : ""}
+        </div>
+      `;
+    }
+
+    fieldTemplate(field) {
+      return `
         <label class="macleaners__field">
-          <input type="${this.escapeAttr(field.type || "text")}" name="${name}"${autocomplete}${placeholder}${required}>
-          <span>${label}</span>
+          <input name="${this.escape(field.name)}" type="${this.escape(field.type)}" autocomplete="${this.escape(field.autocomplete)}" ${field.required ? "required" : ""} placeholder=" " aria-label="${this.escape(field.label)}">
+          <span>${this.escape(field.label)}</span>
         </label>
       `;
     }
 
-    handleRootClick(event) {
-      const menuToggle = event.target.closest("[data-menu-toggle]");
-      if (menuToggle) {
-        this.setMenu(!this.isOpen);
-        this.publish(this.events.toggleMenu || "macleaners:toggle-menu", { open: this.isOpen });
-        return;
-      }
+    selectTemplate(select) {
+      const options = select.options.map(option => `
+        <option value="${this.escape(option)}">${this.escape(option)}</option>
+      `).join("");
 
-      const topButton = event.target.closest("[data-scroll-top]");
-      if (topButton) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        this.publish(this.events.scrollTop || "macleaners:scroll-top", { top: 0 });
-        return;
-      }
+      return `
+        <label class="macleaners__field macleaners__field--select">
+          <select name="${this.escape(select.name)}" ${select.required ? "required" : ""} aria-label="${this.escape(select.label)}">
+            <option value=""></option>
+            ${options}
+          </select>
+          <span>${this.escape(select.label)}</span>
+        </label>
+      `;
+    }
 
-      const navTarget = event.target.closest("[data-nav-target]");
-      if (navTarget) {
-        event.preventDefault();
-        const target = navTarget.getAttribute("data-nav-target");
-        this.navigate(target);
+    bindEvents() {
+      this.clearHandlers();
+
+      this.bindAll("[data-scroll-target]", "click", event => {
+        const target = event.currentTarget.getAttribute("data-scroll-target");
+        const eventName = event.currentTarget.getAttribute("data-event-name");
+        if (eventName) {
+          this.publish(eventName, { target });
+        }
+        this.closeMenu();
+        this.scrollToSection(target);
+      });
+
+      this.bindAll("[data-service-name]", "click", event => {
+        const service = event.currentTarget.getAttribute("data-service-name");
+        const eventName = event.currentTarget.getAttribute("data-event-name");
+        this.state.selectedService = service;
+        this.setSelectValue("cleaningType", service);
+        this.publish(eventName || "service:selected", { service });
+        this.scrollToSection("quote");
+      });
+
+      this.bindAll(".macleaners__menu-button", "click", () => {
+        this.toggleMenu();
+      });
+
+      const form = this.root.querySelector(".macleaners__form");
+      if (form) {
+        const handler = event => this.handleSubmit(event);
+        form.addEventListener("submit", handler);
+        this.boundHandlers.push({ element: form, type: "submit", handler });
       }
+    }
+
+    bindAll(selector, type, handler) {
+      this.root.querySelectorAll(selector).forEach(element => {
+        element.addEventListener(type, handler);
+        this.boundHandlers.push({ element, type, handler });
+      });
+    }
+
+    clearHandlers() {
+      this.boundHandlers.forEach(item => {
+        item.element.removeEventListener(item.type, item.handler);
+      });
+      this.boundHandlers = [];
     }
 
     handleSubmit(event) {
       event.preventDefault();
       const form = event.currentTarget;
-      const formData = new FormData(form);
-      const payload = {};
-      formData.forEach((value, key) => {
-        payload[key] = value;
-      });
-      const status = form.querySelector(".macleaners__form-status");
-      if (status) {
-        status.textContent = this.config.contact && this.config.contact.formStatusSuccess ? this.config.contact.formStatusSuccess : "Thank you.";
-      }
-      this.publish(this.events.submit || "macleaners:submit", payload);
-      form.reset();
-    }
+      const status = this.root.querySelector(".macleaners__form-status");
 
-    navigate(target) {
-      const section = this.root.querySelector(`#${window.CSS && CSS.escape ? CSS.escape(target) : target}`);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      this.setMenu(false);
-      this.publish(this.events.navigate || "macleaners:navigate", { target });
-    }
-
-    setMenu(open) {
-      this.isOpen = Boolean(open);
-      const header = this.root.querySelector("[data-macleaners-header]");
-      const toggle = this.root.querySelector("[data-menu-toggle]");
-      if (header) {
-        header.classList.toggle("macleaners__header--open", this.isOpen);
-      }
-      if (toggle) {
-        toggle.setAttribute("aria-expanded", String(this.isOpen));
-      }
-    }
-
-    onScroll() {
-      const topButton = this.root.querySelector("[data-scroll-top]");
-      if (topButton) {
-        topButton.classList.toggle("macleaners__to-top--visible", window.scrollY > 520);
-      }
-    }
-
-    observeAnimation() {
-      const items = this.root.querySelectorAll("[data-animate]");
-      if (!("IntersectionObserver" in window)) {
-        items.forEach((item) => item.classList.add("macleaners__visible"));
+      if (!form.checkValidity()) {
+        form.classList.add("macleaners__form--validated");
+        if (status) {
+          status.textContent = "Please complete the required fields.";
+        }
+        this.publish("quote:invalid", { reason: "missing_required_fields" });
         return;
       }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("macleaners__visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      items.forEach((item) => observer.observe(item));
+
+      const data = new FormData(form);
+      const payload = {};
+      data.forEach((value, key) => {
+        payload[key] = value;
+      });
+
+      this.state.formData = payload;
+      form.reset();
+
+      if (status) {
+        status.textContent = this.config.quote.successMessage;
+      }
+
+      this.publish("quote:submitted", {
+        title: this.config.quote.successTitle,
+        request: payload
+      });
     }
 
-    boldBrand(text, brand) {
-      const safeText = this.escape(text);
-      const safeBrand = this.escape(brand);
-      return safeText.replace(safeBrand, `<strong>${safeBrand}</strong>`);
+    toggleMenu() {
+      this.state.menuOpen = !this.state.menuOpen;
+      const nav = this.root.querySelector(".macleaners__mobile-nav");
+      const button = this.root.querySelector(".macleaners__menu-button");
+
+      if (nav) {
+        nav.hidden = !this.state.menuOpen;
+      }
+
+      if (button) {
+        button.setAttribute("aria-expanded", String(this.state.menuOpen));
+      }
+
+      this.publish("menu:toggled", { open: this.state.menuOpen });
+    }
+
+    closeMenu() {
+      this.state.menuOpen = false;
+      const nav = this.root.querySelector(".macleaners__mobile-nav");
+      const button = this.root.querySelector(".macleaners__menu-button");
+
+      if (nav) {
+        nav.hidden = true;
+      }
+
+      if (button) {
+        button.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    scrollToSection(target) {
+      const section = target === "top" ? this.root : this.root.querySelector(`[data-section="${target}"]`);
+      if (section && typeof section.scrollIntoView === "function") {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    setSelectValue(name, value) {
+      const select = this.root.querySelector(`[name="${name}"]`);
+      if (select) {
+        select.value = value;
+      }
     }
 
     escape(value) {
-      return String(value).replace(/[&<>'"]/g, (char) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        "'": "&#39;",
-        "\"": "&quot;"
-      }[char]));
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
-    escapeAttr(value) {
-      return this.escape(value);
-    }
-  }
-
-  const boot = () => {
-    ensureWc();
-    defineInclude();
-
-    const start = () => {
+    static boot() {
       const config = window.macleanersConfig || {};
-      document.querySelectorAll("macleaners.macleaners").forEach((element) => {
-        if (element.dataset.macleanersReady !== "true") {
-          new MtkMacleaners(element, config).init();
+      document.querySelectorAll("macleaners.macleaners, .macleaners").forEach(root => {
+        if (root.tagName && root.tagName.toLowerCase() === "macleaners") {
+          new MtkMacleaners(root, config);
         }
       });
-    };
+    }
 
-    start();
-    window.addEventListener("wc-include:loaded", start);
+    static waitForDom() {
+      const start = () => {
+        MtkMacleaners.boot();
+        const observer = new MutationObserver(() => MtkMacleaners.boot());
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+      };
 
-    const observer = new MutationObserver(start);
-    observer.observe(document.documentElement, { childList: true, subtree: true });
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot, { once: true });
-  } else {
-    boot();
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", start, { once: true });
+      } else {
+        start();
+      }
+    }
   }
 
   window.MtkMacleaners = MtkMacleaners;
+  MtkMacleaners.waitForDom();
 })();
