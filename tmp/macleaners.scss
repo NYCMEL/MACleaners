@@ -1,0 +1,112 @@
+.macleaners {
+  display: block;
+  min-height: 100vh;
+  color: #1f2933;
+  background: #e7e9ee;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+.macleaners *, .macleaners *::before, .macleaners *::after { box-sizing: border-box; }
+.macleaners img { display: block; max-width: 100%; }
+.macleaners button, .macleaners input, .macleaners select { font: inherit; }
+.macleaners button { cursor: pointer; }
+.macleaners button:focus-visible, .macleaners input:focus-visible, .macleaners select:focus-visible { outline: 3px solid rgba(16,166,165,.5); outline-offset: 3px; }
+.macleaners__header { position: sticky; top: 0; z-index: 50; width: 100%; background: rgba(255,255,255,.96); box-shadow: 0 8px 24px rgba(19,34,56,.08); backdrop-filter: blur(16px); }
+.macleaners__header-inner { display: flex; align-items: center; gap: 28px; width: 100%; min-height: 86px; padding: 18px 6vw; }
+.macleaners__brand { display: inline-flex; align-items: center; flex: 0 0 auto; padding: 0; background: transparent; border: 0; }
+.macleaners__brand img { width: 181px; height: auto; }
+.macleaners__nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+.macleaners__nav-link { position: relative; padding: 8px 0; color: steelblue; background: transparent; border: 0; font-weight: 800; }
+.macleaners__nav-link::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 3px; background: #10a6a5; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+.macleaners__nav-link:hover::after, .macleaners__nav-link:focus-visible::after { transform: scaleX(1); }
+.macleaners__header-action, .macleaners__button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 12px 22px; color: #fff; background: #10a6a5; border: 0; border-radius: 999px; font-weight: 900; text-decoration: none; transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease; }
+.macleaners__button--secondary { color: steelblue; background: #ffcc4d; }
+.macleaners__header-action:hover, .macleaners__button:hover, .macleaners__header-action:focus-visible, .macleaners__button:focus-visible { transform: translateY(-2px); box-shadow: 0 20px 45px rgba(19,34,56,.12); }
+.macleaners__nav-toggle { display: none; width: 44px; height: 44px; margin-left: auto; background: #f4fbfb; border: 0; border-radius: 12px; }
+.macleaners__nav-toggle span { display: block; width: 22px; height: 2px; margin: 5px auto; background: steelblue; }
+.macleaners__mobile-nav { display: grid; gap: 14px; padding: 0 22px 22px; }
+.macleaners__hero, .macleaners__section, .macleaners__footer { padding: 86px 6vw; background: #fff; }
+.macleaners__hero { display: grid; grid-template-columns: 1fr .9fr; gap: 56px; align-items: center; min-height: 720px; background: radial-gradient(circle at 70% 20%, #ddffff 0, rgba(221,255,255,0) 34%), linear-gradient(135deg, #f4fbfb 0%, #fff 55%); overflow: hidden; }
+.macleaners__eyebrow { display: inline-flex; margin: 0 0 12px; color: #10a6a5; font-size: .78rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+.macleaners h1, .macleaners h2, .macleaners h3 { margin: 0; color: steelblue; line-height: 1.08; }
+.macleaners h1 { max-width: 720px; font-size: 5.4rem; letter-spacing: .02em; }
+.macleaners h2 { font-size: 3.6rem; }
+.macleaners h3 { font-size: 1.35rem; }
+.macleaners__section-header p, .macleaners__hero-copy p, .macleaners__about-copy p, .macleaners__contact-left p { max-width: 650px; color: #1f2933; font-size: 1.08rem; }
+.macleaners__hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.macleaners__hero-image { position: relative; display: flex; align-items: end; justify-content: center; animation: macleaners-float 5s ease-in-out infinite; }
+.macleaners__hero-image::before { content: ""; position: absolute; right: 4%; bottom: 0; z-index: 0; width: 78%; height: 68%; background: #ffcc4d; border-radius: 44% 56% 50% 50%; opacity: .55; }
+.macleaners__hero-image img { position: relative; z-index: 1; width: 520px; margin: 0 auto; }
+.macleaners__section-header { max-width: 760px; margin: 0 auto 42px; text-align: center; }
+.macleaners__process-grid, .macleaners__services-grid, .macleaners__pricing-grid { display: grid; gap: 24px; max-width: 1180px; margin: 0 auto; }
+.macleaners__process-grid { grid-template-columns: repeat(3, 1fr); }
+.macleaners__services-grid { grid-template-columns: repeat(5, 1fr); }
+.macleaners__pricing-grid { grid-template-columns: repeat(4, 1fr); }
+.macleaners__process-card, .macleaners__service-card, .macleaners__pricing-card, .macleaners__form, .macleaners__widget-wrapper { background: #fff; border-radius: 28px; box-shadow: 0 20px 45px rgba(19,34,56,.12); }
+.macleaners__process-card, .macleaners__service-card, .macleaners__pricing-card { padding: 32px 24px; text-align: center; transition: transform 220ms ease, box-shadow 220ms ease; }
+.macleaners__process-card:hover, .macleaners__service-card:hover, .macleaners__pricing-card:hover { transform: translateY(-6px); box-shadow: 0 26px 55px rgba(19,34,56,.18); }
+.macleaners__process-card span, .macleaners__service-icon { display: inline-flex; align-items: center; justify-content: center; width: 58px; height: 58px; margin: 0 auto 18px; color: #fff; background: #10a6a5; border-radius: 50%; font-size: 1.5rem; font-weight: 900; }
+.macleaners__service-card p, .macleaners__process-card p, .macleaners__pricing-card p { color: #526070; }
+.macleaners__text-button { min-height: 42px; padding: 10px 16px; color: steelblue; background: #ffcc4d; border: 0; border-radius: 999px; font-weight: 900; }
+.macleaners__section--soft { background: #f4fbfb; }
+.macleaners__pricing-card--featured { color: #fff; background: #10a6a5; }
+.macleaners__pricing-card--featured h3, .macleaners__pricing-card--featured strong, .macleaners__pricing-card--featured p { color: #fff; }
+.macleaners__pricing-card strong { display: block; margin: 20px 0 12px; color: steelblue; font-size: 4rem; line-height: 1; }
+.macleaners__about { display: grid; grid-template-columns: .85fr 1fr; gap: 56px; align-items: center; }
+.macleaners__about-image img { width: 75%; margin: 0 auto 40px; }
+.macleaners__about-copy .macleaners__section-header { margin-right: 0; margin-left: 0; text-align: left; }
+.macleaners__feature-list { display: grid; gap: 14px; padding: 0; margin: 28px 0 0; list-style: none; }
+.macleaners__feature-list li { display: flex; gap: 12px; align-items: flex-start; font-weight: 700; }
+.macleaners__feature-list span { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 26px; width: 26px; height: 26px; color: #fff; background: #10a6a5; border-radius: 50%; font-weight: 900; }
+.macleaners__contact-section { display: grid; grid-template-columns: .95fr 1.05fr; gap: 34px; align-items: start; }
+.macleaners__contact-left .macleaners__section-header { margin-right: 0; margin-left: 0; text-align: left; }
+.macleaners__form, .macleaners__widget-wrapper { padding: 30px; }
+.macleaners__form-grid, .macleaners__calculator-fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.macleaners__field { position: relative; display: block; }
+.macleaners__field input, .macleaners__field select { width: 100%; min-height: 64px; padding: 24px 16px 10px; color: #1f2933; background: #fff; border: 2px solid rgba(82,96,112,.18); border-radius: 16px; outline: none; transition: border-color 220ms ease, box-shadow 220ms ease; }
+.macleaners__field input:focus, .macleaners__field select:focus { border-color: #10a6a5; box-shadow: 0 0 0 4px rgba(16,166,165,.16); }
+.macleaners__field span { position: absolute; top: 17px; left: 16px; color: #526070; pointer-events: none; transition: transform 220ms ease, font-size 220ms ease, color 220ms ease; }
+.macleaners__field input:focus + span, .macleaners__field input:not(:placeholder-shown) + span, .macleaners__field select:focus + span, .macleaners__field select + span { color: #10a6a5; font-size: .74rem; font-weight: 800; transform: translateY(-12px); }
+.macleaners__form-status { min-height: 24px; margin: 16px 0; color: #10a6a5; font-weight: 800; }
+.macleaners__form-submit { width: 100%; }
+.macleaners__calculator-column { position: sticky; top: 118px; }
+.macleaners__widget-wrapper { border: 1px solid rgba(16,166,165,.18); }
+.macleaners__calculator-head { margin-bottom: 22px; text-align: left; }
+.macleaners__calculator-head h2 { margin-top: 8px; font-size: 2.35rem; }
+.macleaners__calculator-head p { margin-bottom: 0; color: #526070; }
+.macleaners__extras { display: grid; gap: 12px; padding: 20px 0 0; margin: 20px 0 0; border: 0; border-top: 1px solid rgba(82,96,112,.18); }
+.macleaners__extras legend { padding: 0 0 12px; color: steelblue; font-weight: 900; }
+.macleaners__extra-option { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; background: #f4fbfb; border: 1px solid rgba(16,166,165,.16); border-radius: 16px; }
+.macleaners__extra-option input { width: 20px; height: 20px; accent-color: #10a6a5; }
+.macleaners__extra-option strong { color: steelblue; }
+.macleaners__estimate-box { display: grid; gap: 4px; margin: 22px 0; padding: 22px; color: #fff; background: linear-gradient(135deg, #10a6a5, steelblue); border-radius: 24px; box-shadow: 0 20px 45px rgba(19,34,56,.16); }
+.macleaners__estimate-box span { font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.macleaners__estimate-total { font-size: 4.2rem; line-height: 1; }
+.macleaners__estimate-note { color: rgba(255,255,255,.86); }
+.macleaners__calculator-continue { width: 100%; }
+.macleaners__footer { color: #fff; background: #223447; text-align: center; }
+.macleaners__footer p { margin: 8px 0; }
+.macleaners__footer-contact { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 14px 0; }
+@keyframes macleaners-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (max-width: 1180px) {
+  .macleaners h1 { font-size: 4.2rem; }
+  .macleaners h2 { font-size: 3rem; }
+  .macleaners__services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 980px) {
+  .macleaners__header-inner { flex-wrap: wrap; padding-right: 22px; padding-left: 22px; }
+  .macleaners__nav, .macleaners__header-inner > .macleaners__header-action { display: none; }
+  .macleaners__nav-toggle { display: block; }
+  .macleaners__hero, .macleaners__about, .macleaners__contact-section, .macleaners__process-grid, .macleaners__pricing-grid { grid-template-columns: 1fr; }
+  .macleaners__hero { min-height: auto; }
+  .macleaners__calculator-column { position: static; }
+}
+@media (max-width: 640px) {
+  .macleaners__hero, .macleaners__section, .macleaners__footer { padding-right: 22px; padding-left: 22px; }
+  .macleaners__brand img { width: 150px; }
+  .macleaners h1 { font-size: 3rem; }
+  .macleaners h2 { font-size: 2.35rem; }
+  .macleaners__hero-image img { width: 90%; }
+  .macleaners__services-grid, .macleaners__form-grid, .macleaners__calculator-fields { grid-template-columns: 1fr; }
+  .macleaners__estimate-total { font-size: 3.4rem; }
+}
