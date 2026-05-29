@@ -1,0 +1,56 @@
+<section class="macleaners__section macleaners__contact-section" data-section="contact">
+    <div class="macleaners__contact-left">
+        <div class="macleaners__section-header"><span class="macleaners__eyebrow">Book online or call</span><h2>Tell us about your cleaning needs.</h2><p>Use the calculator to estimate your starting price, then send your request. A team member will confirm availability.</p></div>
+        <form class="macleaners__form" novalidate="" aria-label="Request a cleaning quote">
+            <div class="macleaners__form-grid"><label class="macleaners__field"><input name="name" type="text" autocomplete="name" required="" placeholder=" " aria-label="Full name"><span>Full name</span></label><label class="macleaners__field"><input name="phone" type="tel" autocomplete="tel" required="" placeholder=" " aria-label="Phone number"><span>Phone number</span></label><label class="macleaners__field"><input name="address" type="text" autocomplete="street-address" required="" placeholder=" " aria-label="Service address"><span>Service address</span></label><label class="macleaners__field"><input name="preferredDate" type="date" autocomplete="off" required="" placeholder=" " aria-label="Preferred date"><span>Preferred date</span></label><label class="macleaners__field"><select name="cleaningType" required="" aria-label="Cleaning type"><option value=""></option><option value="Standard Cleaning">Standard Cleaning</option><option value="Deep Cleaning">Deep Cleaning</option><option value="Move-In/Move-Out">Move-In/Move-Out</option><option value="Recurring Weekly">Recurring Weekly</option><option value="Small Office Cleaning">Small Office Cleaning</option></select><span>Cleaning type</span></label><label class="macleaners__field"><select name="frequency" required="" aria-label="One-time or recurring"><option value=""></option><option value="One-time">One-time</option><option value="Weekly">Weekly</option><option value="Bi-weekly">Bi-weekly</option><option value="Monthly">Monthly</option></select><span>One-time or recurring</span></label></div>
+            <p class="macleaners__form-status" role="status" aria-live="polite"></p>
+            <button class="macleaners__button macleaners__button--primary macleaners__form-submit" type="submit">Send Request</button>
+        </form>
+    </div>
+    <div class="macleaners__calculator-column">
+        
+        <aside class="macleaners__widget-wrapper" aria-label="Cleaning price estimator">
+            <div class="macleaners__calculator-head">
+		<span class="macleaners__eyebrow">Price estimator</span>
+		<h2>See your estimate</h2>
+		<p>Select your home details. To add extras, choose the options below and continue.</p>
+            </div>
+            <div class="macleaners__calculator-fields">
+		<label class="macleaners__field macleaners__field--calculator"><select name="calculatorService" aria-label="Service"><option value="Standard Cleaning">Standard Cleaning</option><option value="Deep Cleaning">Deep Cleaning</option><option value="Move-In/Move-Out">Move-In/Move-Out</option><option value="Recurring Weekly">Recurring Weekly</option><option value="Small Office Cleaning">Small Office Cleaning</option></select><span>Service</span></label>
+		<label class="macleaners__field macleaners__field--calculator"><select name="calculatorBedrooms" aria-label="Bedrooms"><option value="0" data-add="0">Studio</option><option value="1" data-add="30">1 Bedroom</option><option value="2" data-add="60">2 Bedrooms</option><option value="3" data-add="95">3 Bedrooms</option><option value="4" data-add="135">4+ Bedrooms</option></select><span>Bedrooms</span></label>
+		<label class="macleaners__field macleaners__field--calculator"><select name="calculatorBathrooms" aria-label="Bathrooms"><option value="1" data-add="0">1 Bathroom</option><option value="2" data-add="35">2 Bathrooms</option><option value="3" data-add="70">3 Bathrooms</option><option value="4" data-add="105">4+ Bathrooms</option></select><span>Bathrooms</span></label>
+		<label class="macleaners__field macleaners__field--calculator"><select name="calculatorFrequency" aria-label="Frequency"><option value="One-time">One-time</option><option value="Weekly">Weekly</option><option value="Bi-weekly">Bi-weekly</option><option value="Monthly">Monthly</option></select><span>Frequency</span></label>
+            </div>
+            <fieldset class="macleaners__extras">
+		<legend>Extras</legend>
+		
+		<label class="macleaners__extra-option">
+		    <input type="checkbox" name="extra" value="35" data-label="Inside fridge">
+		    <span>Inside fridge</span>
+		    <strong>+$35</strong>
+		</label>
+		<label class="macleaners__extra-option">
+		    <input type="checkbox" name="extra" value="35" data-label="Inside oven">
+		    <span>Inside oven</span>
+		    <strong>+$35</strong>
+		</label>
+		<label class="macleaners__extra-option">
+		    <input type="checkbox" name="extra" value="45" data-label="Interior windows">
+		    <span>Interior windows</span>
+		    <strong>+$45</strong>
+		</label>
+		<label class="macleaners__extra-option">
+		    <input type="checkbox" name="extra" value="25" data-label="Laundry help">
+		    <span>Laundry help</span>
+		    <strong>+$25</strong>
+		</label>
+            </fieldset>
+            <div class="macleaners__estimate-box">
+		<span>Estimated total</span>
+		<strong class="macleaners__estimate-total">$194</strong>
+		<small class="macleaners__estimate-note">Estimate only. Final price is confirmed by MACleaners.</small>
+            </div>
+            <button class="macleaners__button macleaners__button--primary macleaners__calculator-continue" type="button">Continue</button>
+        </aside>
+    </div>
+</section>
