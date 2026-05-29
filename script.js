@@ -6,7 +6,7 @@ class WeCleanSite {
     this.animatedItems = Array.from(document.querySelectorAll('[data-animate]'));
     this.countItems = Array.from(document.querySelectorAll('[data-count]'));
     this.form = document.querySelector('.contact-form');
-    this.faqButtons = Array.from(document.querySelectorAll('.faq-question'));
+    this.calculator = document.querySelector('.cleaning-calculator');
     this.init();
   }
 
@@ -15,7 +15,7 @@ class WeCleanSite {
     this.bindScrollTop();
     this.bindAnimations();
     this.bindForm();
-    this.bindFaq();
+    this.bindCalculator();
   }
 
   bindNavigation() {
@@ -99,22 +99,47 @@ class WeCleanSite {
     });
   }
 
-  bindFaq() {
-    if (!this.faqButtons.length) return;
+  bindCalculator() {
+    if (!this.calculator) return;
 
-    this.faqButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const item = button.closest('.faq-item');
-        const answer = item ? item.querySelector('.faq-answer') : null;
-        const icon = item ? item.querySelector('.faq-icon') : null;
-        const isOpen = button.getAttribute('aria-expanded') === 'true';
+    const price = this.calculator.querySelector('.calculator-price');
+    const fields = Array.from(this.calculator.querySelectorAll('select'));
 
-        button.setAttribute('aria-expanded', String(!isOpen));
-        if (answer) answer.hidden = isOpen;
-        if (item) item.classList.toggle('is-open', !isOpen);
-        if (icon) icon.textContent = isOpen ? '+' : '−';
-      });
-    });
+    const serviceRates = {
+      standard: 0,
+      deep: 85,
+      move: 115,
+      office: 65
+    };
+
+    const frequencyDiscounts = {
+      onetime: 0,
+      weekly: 0.14,
+      biweekly: 0.1,
+      monthly: 0.05
+    };
+
+    const calculate = () => {
+      const data = new FormData(this.calculator);
+      const bedrooms = Number(data.get('bedrooms') || 1);
+      const bathrooms = Number(data.get('bathrooms') || 1);
+      const size = Number(data.get('size') || 1100);
+      const service = data.get('service') || 'standard';
+      const frequency = data.get('frequency') || 'onetime';
+
+      let estimate = 65;
+      estimate += Math.max(0, bedrooms - 1) * 18;
+      estimate += Math.max(0, bathrooms - 1) * 22;
+      estimate += Math.max(0, size - 900) * 0.035;
+      estimate += serviceRates[service] || 0;
+      estimate -= estimate * (frequencyDiscounts[frequency] || 0);
+      estimate = Math.max(65, Math.round(estimate / 5) * 5);
+
+      if (price) price.textContent = `$${estimate}`;
+    };
+
+    fields.forEach((field) => field.addEventListener('change', calculate));
+    calculate();
   }
 }
 

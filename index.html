@@ -74,14 +74,14 @@
 			    <p class="pricing-card__subhead">Each Visit. <small><small>($100/Recurring)</small></small></p>
 			</article>
 
-			<article class="pricing-card pricing-card--deep">
+			<article class="pricing-card" style="background:#F0F4C3">
 			    <h2 class="pricing-card__title">Deep Cleaning</h2>
 			    <div class="pricing-card__rule" aria-hidden="true"></div>
 			    <div class="pricing-card__price"><span>$</span>200</div>
 			    <p class="pricing-card__subhead">Each Visit</p>
 			</article>
 
-			<article class="pricing-card pricing-card--ultimate">
+			<article class="pricing-card" style="background:#FFECB3">
 			    <h2 class="pricing-card__title">Ultimate Pack</h2>
 			    <div class="pricing-card__rule" aria-hidden="true"></div>
 			    <div class="pricing-card__price"><span>$</span>250</div>
@@ -89,13 +89,13 @@
 			</article>
 		    </main>
 		    
-		    <h3 class="pricing-note">Average charges for 1,100 SQFT apt or homes</h3>
+		    <h3 align="center">Average charges for 1,100 SQFT apt or homes</h3>
 		</div>
 	    </section>
 
 	    <section class="section about section-grid" id="about">
 		<div class="about-image" data-animate>
-		    <img src="./img/cleaning-service.png" alt="Cleaning service team illustration" class="about-image__media">
+		    <img src="./img/cleaning-service.png" alt="Cleaning service team illustration" style="width:75%;margin:auto;margin-bottom:40px;">
 		</div>
 		<div class="about-content" data-animate>
 		    <p class="eyebrow">Why choose us</p>
@@ -141,116 +141,77 @@
 			<a href="tel:6463031234">(646) 303-1234</a>
 		    </div>
 		</div>
-	    </section>
 
-	    <section class="section faq" id="faq" aria-labelledby="faq-title">
-		<div class="section-heading" data-animate>
-		    <p class="eyebrow">Helpful answers</p>
-		    <h2 id="faq-title">Questions? <BR>We got Answers</h2>
+		<form class="cleaning-calculator" data-animate aria-label="Instant cleaning estimate calculator">
+		    <div class="calculator-header">
+			<p class="eyebrow">Instant Cleaning Estimate</p>
+			<h3>Simple price estimator</h3>
+			<p>Answer a few quick questions to estimate your cleaning service.</p>
+		    </div>
 
-		</div>
+		    <div class="calculator-grid">
+			<label class="calculator-field">
+			    <span>Bedrooms</span>
+			    <select name="bedrooms" aria-label="Bedrooms">
+				<option value="1">1 bedroom</option>
+				<option value="2" selected>2 bedrooms</option>
+				<option value="3">3 bedrooms</option>
+				<option value="4">4 bedrooms</option>
+				<option value="5">5+ bedrooms</option>
+			    </select>
+			</label>
 
-		<div class="faq-list" data-animate>
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Are you licensed and insured?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Yes. MA Cleaners is insured, giving customers peace of mind while our team works in their homes and small businesses.</p>
-			</div>
-		    </article>
+			<label class="calculator-field">
+			    <span>Bathrooms</span>
+			    <select name="bathrooms" aria-label="Bathrooms">
+				<option value="1">1 bathroom</option>
+				<option value="2" selected>2 bathrooms</option>
+				<option value="3">3 bathrooms</option>
+				<option value="4">4 bathrooms</option>
+				<option value="5">5+ bathrooms</option>
+			    </select>
+			</label>
 
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Do you screen your cleaning professionals?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Yes. We carefully select reliable, respectful cleaning professionals who understand the importance of trust inside your home.</p>
-			</div>
-		    </article>
+			<label class="calculator-field">
+			    <span>Home Size</span>
+			    <select name="size" aria-label="Home size">
+				<option value="900">Under 900 sq ft</option>
+				<option value="1100" selected>Around 1,100 sq ft</option>
+				<option value="1500">1,500 sq ft</option>
+				<option value="2000">2,000 sq ft</option>
+				<option value="2500">2,500+ sq ft</option>
+			    </select>
+			</label>
 
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>What is included in a standard cleaning?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Standard cleaning typically includes dusting, vacuuming, mopping, bathroom cleaning, kitchen cleaning, trash removal, and general surface cleaning.</p>
-			</div>
-		    </article>
+			<label class="calculator-field">
+			    <span>Service Type</span>
+			    <select name="service" aria-label="Service type">
+				<option value="standard" selected>Standard Cleaning</option>
+				<option value="deep">Deep Cleaning</option>
+				<option value="move">Move-In / Move-Out</option>
+				<option value="office">Small Office Cleaning</option>
+			    </select>
+			</label>
 
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Do you bring your own cleaning supplies?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Yes. Our team can bring cleaning supplies and equipment. If you prefer specific products, we are happy to discuss your preferences before service.</p>
-			</div>
-		    </article>
+			<label class="calculator-field calculator-field--wide">
+			    <span>How Often?</span>
+			    <select name="frequency" aria-label="Cleaning frequency">
+				<option value="onetime" selected>One-time cleaning</option>
+				<option value="weekly">Weekly recurring</option>
+				<option value="biweekly">Bi-weekly recurring</option>
+				<option value="monthly">Monthly recurring</option>
+			    </select>
+			</label>
+		    </div>
 
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Do you use family-safe and pet-friendly products?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Yes. We use family-conscious products whenever possible and can review product preferences for homes with pets, children, or sensitivities.</p>
-			</div>
-		    </article>
+		    <div class="calculator-total" aria-live="polite">
+			<span>Estimated price</span>
+			<strong class="calculator-price">$115</strong>
+			<small>Final price may vary based on home condition and special requests.</small>
+		    </div>
 
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>How do you determine pricing?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Pricing depends on home size, service type, cleaning condition, and frequency. We keep estimates clear so you know what to expect before booking.</p>
-			</div>
-		    </article>
-
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>What if I am not satisfied with the cleaning?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Your satisfaction matters. If something was missed, contact us promptly and we will work with you to make it right.</p>
-			</div>
-		    </article>
-
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Can I request specific cleaning tasks?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Absolutely. Every home is different, so we welcome custom requests and can focus on the areas that matter most to you.</p>
-			</div>
-		    </article>
-
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Do I need to be home during the cleaning?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>No. Many customers provide access instructions and return to a clean, comfortable space after the service is completed.</p>
-			</div>
-		    </article>
-
-		    <article class="faq-item">
-			<button class="faq-question" type="button" aria-expanded="false">
-			    <span>Are there any extra charges?</span>
-			    <span class="faq-icon" aria-hidden="true">+</span>
-			</button>
-			<div class="faq-answer" hidden>
-			    <p>Some services, such as deep cleaning, move-in or move-out cleaning, inside appliances, or specialty requests, may cost extra. We discuss those upfront.</p>
-			</div>
-		    </article>
-		</div>
+		    <a class="button primary calculator-call" href="tel:6463031234">Call to Confirm Estimate</a>
+		</form>
 	    </section>
 	</main>
 
