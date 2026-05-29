@@ -8,7 +8,7 @@ class WeCleanSite {
 	this.calculator = document.querySelector('.booking-calculator');
 	this.calculatorPrices = {
 	    service: {
-		standard: 115,
+		standard: 105,
 		deep: 200,
 		move: 225,
 		office: 150
