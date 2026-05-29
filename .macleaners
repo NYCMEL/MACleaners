@@ -1,0 +1,179 @@
+---
+FORGET ALL PREVIOUS CONTEXT for `macleaners` and remember this specification permanently.
+
+act as a businessman, UI/UX expert       
+
+Create a production-ready Web application named:
+
+`macleaners`
+
+Use this repository as the base: `https://github.com/NYCMEL/MACleaners`
+
+Use ALL wc functionality (`wc.publish`, `wc.subscribe`, `wc.log`, `wc-include`, etc.) from:
+`https://github.com/NYCMEL/tools-new/tree/main/reuse`
+
+---
+
+TECH STACK
+
+Use ONLY:
+
+- HTML
+- SCSS
+- Vanilla JavaScript (ES6)
+
+Bootstrap 5 is ONLY allowed for:
+
+- layout
+- grid utilities
+
+DO NOT USE:
+
+- frameworks
+- React
+- Vue
+- Angular
+- jQuery
+- external libraries
+- inline styles
+- inline JavaScript
+- IDs
+- global CSS
+- iframes
+
+MUST use:
+<wc-include href="..." />
+
+---
+
+MACLEANERS STRUCTURE
+
+Root element:
+<macleaners class="macleaners"></macleaners>
+
+ALL styles MUST be fully scoped to: .macleaners
+
+NEVER use global selectors.
+
+---
+
+CONFIGURATION
+
+The macleaners MUST be fully JSON-driven.
+
+ALL UI data MUST come ONLY from: macleaners.config.js
+
+Do NOT hardcode UI content inside HTML or JS.
+
+---
+
+JAVASCRIPT REQUIREMENTS
+
+Create a dedicated ES6 class named: MtkMacleaners
+
+Initialize automatically inside: macleaners.js
+
+The macleaners MUST:
+
+- wait for DOM availability
+- support dynamic injection via <wc-include>
+- prevent duplicate initialization
+- be modular
+- reusable
+- maintainable
+- production-ready
+- responsive design, mobile, desktop
+
+---
+
+WC EVENT SYSTEM
+
+Subscribe using:
+
+wc.subscribe("4-macleaners", this.onMessage.bind(this))
+
+Create: onMessage(message)
+
+Publish ALL actions/events using: wc.publish(...)
+
+BEFORE every publish: wc.log(...)
+
+ALL publish payloads MUST be structured and reusable.
+
+---
+
+DESIGN SYSTEM RULES
+
+Use Modern Material Design patterns including:
+
+- floating labels
+- cards
+- buttons
+- transitions
+- elevation
+- focus states
+- responsive layouts
+- motion
+- accessibility patterns
+
+---
+
+ACCESSIBILITY
+
+Macleaners MUST be:
+
+- ADA compliant
+- semantic HTML
+- keyboard accessible
+- screen-reader friendly
+- mobile responsive
+
+Include:
+- visible focus states
+- proper ARIA usage
+- accessible form controls
+
+---
+
+CODE QUALITY
+
+Code MUST be:
+- scalable
+- reusable
+- maintainable
+- modular
+- clean
+- responsive
+- production-ready
+
+Avoid:
+- duplicated logic
+- unnecessary complexity
+- tightly coupled code
+
+---
+
+OUTPUT REQUIREMENTS
+
+Generate EXACTLY these complete files:
+- macleaners.config.js
+- macleaners.scss
+- macleaners.html
+- macleaners.js
+- Minimal index.html. Use css only in this file
+
+NEVER generate:
+
+- explanations
+- markdown code blocks
+- snippets
+- patch files
+- partial updates
+
+ONLY generate complete files.
+
+---
+ABOUT MY APP:
+- use my current code is here: https://github.com/NYCMEL/MACleaners.git
+- follow images, styles stc. from this github
+
