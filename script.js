@@ -1,153 +1,123 @@
 class WeCleanSite {
-    constructor() {
-	this.header = document.querySelector('.site-header');
-	this.navToggle = document.querySelector('.nav-toggle');
-	this.toTop = document.querySelector('.to-top');
-	this.animatedItems = Array.from(document.querySelectorAll('[data-animate]'));
-	this.countItems = Array.from(document.querySelectorAll('[data-count]'));
-	this.calculator = document.querySelector('.booking-calculator');
-	this.calculatorPrices = {
-	    service: {
-		standard: 105,
-		deep: 200,
-		move: 225,
-		office: 150
-	    },
-	    bedroom: 25,
-	    bathroom: 30,
-	    frequency: {
-		once: 0,
-		weekly: -20,
-		biweekly: -15,
-		monthly: -10
-	    }
-	};
-	this.init();
+  constructor() {
+    this.header = document.querySelector('.site-header');
+    this.navToggle = document.querySelector('.nav-toggle');
+    this.toTop = document.querySelector('.to-top');
+    this.animatedItems = Array.from(document.querySelectorAll('[data-animate]'));
+    this.countItems = Array.from(document.querySelectorAll('[data-count]'));
+    this.form = document.querySelector('.contact-form');
+    this.faqButtons = Array.from(document.querySelectorAll('.faq-question'));
+    this.init();
+  }
+
+  init() {
+    this.bindNavigation();
+    this.bindScrollTop();
+    this.bindAnimations();
+    this.bindForm();
+    this.bindFaq();
+  }
+
+  bindNavigation() {
+    if (!this.header || !this.navToggle) return;
+
+    this.navToggle.addEventListener('click', () => {
+      const isOpen = this.header.classList.toggle('is-open');
+      this.navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    this.header.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        this.header.classList.remove('is-open');
+        this.navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  bindScrollTop() {
+    if (!this.toTop) return;
+
+    const toggleButton = () => {
+      this.toTop.classList.toggle('is-visible', window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', toggleButton, { passive: true });
+    toggleButton();
+
+    this.toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  bindAnimations() {
+    if (!('IntersectionObserver' in window)) {
+      this.animatedItems.forEach((item) => item.classList.add('is-visible'));
+      this.countItems.forEach((item) => this.animateCount(item));
+      return;
     }
 
-    init() {
-	this.bindNavigation();
-	this.bindScrollTop();
-	this.bindAnimations();
-	this.bindCalculator();
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        if (entry.target.matches('.stats')) {
+          this.countItems.forEach((item) => this.animateCount(item));
+        }
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.18 });
 
-    bindNavigation() {
-	if (!this.header || !this.navToggle) return;
+    this.animatedItems.forEach((item) => observer.observe(item));
+  }
 
-	this.navToggle.addEventListener('click', () => {
-	    const isOpen = this.header.classList.toggle('is-open');
-	    this.navToggle.setAttribute('aria-expanded', String(isOpen));
-	});
+  animateCount(item) {
+    if (item.dataset.done) return;
+    item.dataset.done = 'true';
 
-	this.header.querySelectorAll('a[href^="#"]').forEach((link) => {
-	    link.addEventListener('click', () => {
-		this.header.classList.remove('is-open');
-		this.navToggle.setAttribute('aria-expanded', 'false');
-	    });
-	});
-    }
+    const target = Number(item.dataset.count || 0);
+    const duration = 1200;
+    const start = performance.now();
 
-    bindScrollTop() {
-	if (!this.toTop) return;
+    const tick = (time) => {
+      const progress = Math.min((time - start) / duration, 1);
+      const value = Math.floor(progress * target);
+      item.textContent = value.toLocaleString();
+      if (progress < 1) requestAnimationFrame(tick);
+    };
 
-	const toggleButton = () => {
-	    this.toTop.classList.toggle('is-visible', window.scrollY > 500);
-	};
+    requestAnimationFrame(tick);
+  }
 
-	window.addEventListener('scroll', toggleButton, { passive: true });
-	toggleButton();
+  bindForm() {
+    if (!this.form) return;
 
-	this.toTop.addEventListener('click', () => {
-	    window.scrollTo({ top: 0, behavior: 'smooth' });
-	});
-    }
+    this.form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const status = this.form.querySelector('.form-status');
+      if (status) status.textContent = 'Thanks. Your request is ready to be sent.';
+      this.form.reset();
+    });
+  }
 
-    bindAnimations() {
-	if (!('IntersectionObserver' in window)) {
-	    this.animatedItems.forEach((item) => item.classList.add('is-visible'));
-	    this.countItems.forEach((item) => this.animateCount(item));
-	    return;
-	}
+  bindFaq() {
+    if (!this.faqButtons.length) return;
 
-	const observer = new IntersectionObserver((entries) => {
-	    entries.forEach((entry) => {
-		if (!entry.isIntersecting) return;
-		entry.target.classList.add('is-visible');
-		if (entry.target.matches('.stats')) {
-		    this.countItems.forEach((item) => this.animateCount(item));
-		}
-		observer.unobserve(entry.target);
-	    });
-	}, { threshold: 0.18 });
+    this.faqButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const answer = item ? item.querySelector('.faq-answer') : null;
+        const icon = item ? item.querySelector('.faq-icon') : null;
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
 
-	this.animatedItems.forEach((item) => observer.observe(item));
-    }
-
-    animateCount(item) {
-	if (item.dataset.done) return;
-	item.dataset.done = 'true';
-
-	const target = Number(item.dataset.count || 0);
-	const duration = 1200;
-	const start = performance.now();
-
-	const tick = (time) => {
-	    const progress = Math.min((time - start) / duration, 1);
-	    const value = Math.floor(progress * target);
-	    item.textContent = value.toLocaleString();
-	    if (progress < 1) requestAnimationFrame(tick);
-	};
-
-	requestAnimationFrame(tick);
-    }
-
-    bindCalculator() {
-	if (!this.calculator) return;
-
-	const continueButton = this.calculator.querySelector('.calculator-continue');
-
-	this.calculator.addEventListener('input', () => this.updateCalculatorTotal());
-	this.calculator.addEventListener('change', () => this.updateCalculatorTotal());
-
-	this.calculator.addEventListener('submit', (event) => {
-	    event.preventDefault();
-	    const status = this.calculator.querySelector('.form-status');
-	    const total = this.getCalculatorTotal();
-	    if (status) {
-		status.textContent = `Thanks. Your estimate is $${total}. A team member will confirm availability.`;
-	    }
-	});
-
-	this.updateCalculatorTotal();
-    }
-
-    getCalculatorTotal() {
-	if (!this.calculator) return 0;
-
-	console.log(">>>> getCalculatorTotal")
-
-	const formData = new FormData(this.calculator);
-	const service = formData.get('service') || 'standard';
-	const bedrooms = Number(formData.get('bedrooms') || 0);
-	const bathrooms = Number(formData.get('bathrooms') || 1);
-	const frequency = formData.get('frequency') || 'once';
-
-	const base = this.calculatorPrices.service[service] || this.calculatorPrices.service.standard;
-	const bedroomPrice = bedrooms * this.calculatorPrices.bedroom;
-	const bathroomPrice = Math.max(bathrooms - 1, 0) * this.calculatorPrices.bathroom;
-	const recurringDiscount = this.calculatorPrices.frequency[frequency] || 0;
-
-	return Math.max(base + bedroomPrice + bathroomPrice + recurringDiscount, 65);
-    }
-
-    updateCalculatorTotal() {
-	const price = this.calculator.querySelector('.calculator-total__price');
-	if (!price) return;
-	price.textContent = `$${this.getCalculatorTotal()}`;
-    }
+        button.setAttribute('aria-expanded', String(!isOpen));
+        if (answer) answer.hidden = isOpen;
+        if (item) item.classList.toggle('is-open', !isOpen);
+        if (icon) icon.textContent = isOpen ? '+' : '−';
+      });
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new WeCleanSite();
+  new WeCleanSite();
 });
