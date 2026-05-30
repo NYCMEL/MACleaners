@@ -1,9 +1,35 @@
+#services {
+  background: #e9eaee; }
+
+#services .section-heading {
+  max-width: 760px;
+  margin: 0 auto 42px;
+  text-align: center; }
+
+#services .section-heading .eyebrow {
+  color: #10a6a5;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase; }
+
+#services .section-heading h2 {
+  color: steelblue;
+  font-size: clamp(2.1rem, 4vw, 4rem);
+  line-height: 1.08; }
+
+#services .section-heading p:not(.eyebrow) {
+  color: #303033;
+  max-width: none; }
+
 .pricing-section {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(220px, 1fr));
   gap: 3.2rem;
-  padding: 1.35rem 1.8rem; }
+  padding: 1.35rem 1.8rem;
+  font-family: Roboto, Arial, sans-serif;
+  color: #303033; }
 
 .pricing-card {
   position: relative;
@@ -76,6 +102,19 @@
   color: #303033;
   font-size: clamp(1.25rem, 1.45vw, 1.65rem);
   font-weight: 500; }
+
+.pricing-card p[align="left"] {
+  margin: 0;
+  color: #303033;
+  font-size: 1rem;
+  line-height: 1.6; }
+
+#services h3[align="center"] {
+  color: steelblue;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0.8rem 0 0;
+  text-align: center; }
 
 @media (max-width: 1200px) {
   .pricing-section {
