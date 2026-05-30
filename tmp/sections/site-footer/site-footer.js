@@ -1,0 +1,1 @@
+(()=>{wc.publish('macleaners.footer.loaded',{section:'site-footer'});})();

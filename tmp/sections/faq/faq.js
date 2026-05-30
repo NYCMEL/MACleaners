@@ -1,0 +1,1 @@
+(()=>{document.currentScript.closest('.faq')?.querySelectorAll('details').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)wc.publish('macleaners.faq.open',{question:item.querySelector('summary')?.textContent||''});}));})();
