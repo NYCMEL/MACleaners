@@ -1,1 +1,0 @@
-(()=>{wc.publish('macleaners.home.loaded',{section:'home'});})();

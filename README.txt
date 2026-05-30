@@ -1,1 +1,1 @@
-Simplified website source. Main files: index.html, style.scss, script.js, and img/. No external frameworks or plugins are used.
+MACleaners refreshed into section folders. Each section has HTML, SCSS, and JavaScript. index.html includes sections using <wc-include>. CSS files were intentionally replaced with SCSS files only.

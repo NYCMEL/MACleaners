@@ -1,1 +1,0 @@
-(()=>{wc.publish('macleaners.hero.loaded',{section:'hero'});})();
