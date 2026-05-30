@@ -1,0 +1,1 @@
+(()=>{document.currentScript.closest('.services')?.querySelectorAll('.service-card').forEach(card=>card.addEventListener('click',()=>wc.publish('macleaners.service.select',{service:card.querySelector('h3')?.textContent||''})));})();

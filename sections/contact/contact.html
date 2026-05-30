@@ -1,0 +1,83 @@
+<section class="section contact section-grid" id="contact">
+    <div data-animate>
+        <p class="eyebrow">Get started</p>
+        <h2>Book a cleaning service today.</h2>
+        <p>Call us the first time and tell us what you’d like done. After that, just give us your phone number when you come back.</p>
+        <div class="contact-card">
+            <strong>Call us</strong>
+            <a href="tel:6463031234">(646) 303-1234</a>
+        </div>
+    </div>
+
+    <form class="cleaning-calculator" data-animate aria-label="Instant cleaning estimate calculator">
+        <div class="calculator-header">
+            <p class="eyebrow">Instant Cleaning Estimate</p>
+            <h3>Simple price estimator</h3>
+            <p>Answer a few quick questions to estimate your cleaning service.</p>
+        </div>
+
+        <div class="calculator-grid">
+            <label class="calculator-field">
+                <span>Bedrooms</span>
+                <select name="bedrooms" aria-label="Bedrooms">
+                    <option value="1">1 bedroom</option>
+                    <option value="2">2 bedrooms</option>
+                    <option value="3">3 bedrooms</option>
+                    <option value="4">4 bedrooms</option>
+                    <option value="5">5+ bedrooms</option>
+                </select>
+            </label>
+
+            <label class="calculator-field">
+                <span>Bathrooms</span>
+                <select name="bathrooms" aria-label="Bathrooms">
+                    <option value="1">1 bathroom</option>
+                    <option value="2">2 bathrooms</option>
+                    <option value="3">3 bathrooms</option>
+                    <option value="4">4 bathrooms</option>
+                    <option value="5">5+ bathrooms</option>
+                </select>
+            </label>
+
+            <label class="calculator-field">
+                <span>Home Size (SQ FT)</span>
+                <select name="size" aria-label="Home size">
+                    <option value="900">Under 900</option>
+                    <option value="1000" selected>1,000</option>
+                    <option value="1500">1,500</option>
+                    <option value="2000">2,000</option>
+                    <option value="2500">2,500+</option>
+                </select>
+            </label>
+
+            <label class="calculator-field">
+                <span>Service Type</span>
+                <select name="service" aria-label="Service type">
+                    <option value="standard" selected>Standard Cleaning</option>
+                    <option value="deep">Deep Cleaning</option>
+                    <option value="move">Move-In / Move-Out</option>
+                    <option value="office">Small Office Cleaning</option>
+                </select>
+            </label>
+
+            <label class="calculator-field calculator-field--wide">
+                <span>How Often?</span>
+                <select name="frequency" aria-label="Cleaning frequency">
+                    <option value="onetime" selected>One-time cleaning</option>
+                    <option value="weekly">Weekly recurring</option>
+                    <option value="biweekly">Bi-weekly recurring</option>
+                    <option value="monthly">Monthly recurring</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="calculator-total" aria-live="polite">
+            <span>Estimated price</span>
+            <strong class="calculator-price">$115</strong>
+            <small>Final price may vary based on home condition and special requests.</small>
+        </div>
+
+        <a class="button primary calculator-call" href="tel:6463031234">Call to Confirm Estimate</a>
+    </form>
+    <script src="sections/contact/contact.js"></script>
+</section>
