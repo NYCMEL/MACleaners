@@ -1,0 +1,13 @@
+my original code is here: refresh from https://github.com/NYCMEL/MACleaners.git
+
+I like to create separate section for the following elemnents inot their own folders with html, csss and javascript.
+sections are included into a new index.html file using <wc-include ...>
+
+- .site-header
+- .hero
+- #services
+- #about
+- #home
+- #contact
+- .faq
+- .site-footer
