@@ -1,1 +1,1 @@
-MACleaners refreshed from https://github.com/NYCMEL/MACleaners.git. Sections are split into folders and loaded from index.html using wc-include.
+MACleaners refreshed into section folders. Each section has HTML, SCSS, and JavaScript. index.html includes sections using <wc-include>. CSS files were intentionally replaced with SCSS files only.
